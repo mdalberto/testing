@@ -23,15 +23,77 @@
   </head>
 
   <body ng-app="starter">
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Welcome</h1>
+  </ion-header-bar>
+    <ion-nav-view class="has-header"></ion-nav-view>
+    <div class="bar bar-footer bar-dark">                   
+         <div class="title">Privacy Policy</div>                       
+       </div>             
+     </div>  
+    <script type="text/ng-template" id="welcome.html">
+      <!-- Index page -->
+      <ion-view view-title="Welcome">
+      <ion-content class="padding">
+        <div class="list card">
+          <div class="item text-center button-dark">
+            <h2>Welcome to Psychic Source</h2>
+            <h2>To Begin using this app please login</h2>
+          </div>
+        </div>
+        <div class="list list-inset">       
+          Login with your email and password
+          <label class="item item-input">
+            <input type="text" placeholder="Email"> 
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Password">
+          </label>
+          or<br>
+          Login with your Phone number and Pin
+          <label class="item item-input">
+            <input type="text" placeholder="Phone Number">  
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Pin">
+          </label>
+        </div> 
+          <button class="button button-block button-assertive" ui-sref="login">Login</button>
+          <div class="row">
+            <div class="col col-50 col-offset-25 text-center">
+              <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>
+            </div>
+          </div>
 
-    <ion-pane>
-        <ion-header-bar class="bar-stable">
-            <h1 class="title">Ionic Push Notification Sample</h1>
-        </ion-header-bar>
-        <ion-content padding="true" has-header="true">
-            
-        </ion-content>
-    </ion-pane>
-
+        <button class="button button-block button-positive">
+          <a href="www.psychicsource.com/enroll">Not a Member? Create an Account</a>
+        </button>
+        <div class="row">
+        <div class="col col-80 text-right">
+          <h4>Remember Me</h4>
+        </div>
+        
+        <label class="toggle toggle-balanced remember-me">
+          <input type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+        
+        </div>
+      </ion-content>
+      </ion-view>
+    </script>
+    <script type="text/ng-template" id="login.html">
+      <!-- Member Home page -->
+      <ion-view view-title="Login">
+      <ion-content>
+        <div class="padding">
+        <h4>Psychic source member login</h4>
+        <p>You just have to login one time and we will keep you logged in</p>
+        </div>
+      </ion-content>         
+    </script>
   </body>
 </html>
+

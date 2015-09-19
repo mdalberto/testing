@@ -1,6 +1,22 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+.DS_Store*
+.rvmrc
+
+# Ignore Vim related files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
 node_modules/
 platforms/
 plugins/

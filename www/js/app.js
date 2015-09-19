@@ -13,11 +13,11 @@ var starter = angular.module('starter', ['ionic', 'ngCordova', 'starter.services
   $stateProvider
   .state('welcome', {
     url: '/welcome',
-    templateUrl: 'welcome.html'
+    templateUrl: 'views/welcome.html'
   })
   .state('login', {
     url: '/login',
-    templateUrl: 'login.html'
+    templateUrl: 'views/login.html'
   });
   $urlRouterProvider.otherwise('/welcome');
 })

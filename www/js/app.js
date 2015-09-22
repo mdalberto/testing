@@ -4,6 +4,7 @@
  * blog: devgirl.org
  * more tutorials: hollyschinsky.github.io
  */
+
 var starter = angular.module('starter', ['ionic', 'ngCordova', 'starter.services'])
 //.run(function(PushProcessingService) {
    //run once for the app
@@ -13,14 +14,15 @@ var starter = angular.module('starter', ['ionic', 'ngCordova', 'starter.services
   $stateProvider
   .state('welcome', {
     url: '/welcome',
-    templateUrl: 'views/welcome.html'
+    templateUrl: 'views/welcome.html',
+    controller: 'WelcomeCtrl' 
   })
-  .state('login', {
-    url: '/login',
-    templateUrl: 'views/login.html'
+  .state('become-member',{
+    url: '/become_member',
+    templateUrl: 'views/become_member.html',
+    controller: 'BecomeMemberCtrl'
   });
   $urlRouterProvider.otherwise('/welcome');
 })
-
 
 

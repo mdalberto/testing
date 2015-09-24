@@ -20,3 +20,7 @@ Session.vim
 node_modules/
 platforms/
 plugins/
+
+# ignore generated css
+www/css/ionic.app.css
+www/css/ionic.app.min.css

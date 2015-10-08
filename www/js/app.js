@@ -12,27 +12,49 @@ var starter = angular.module('starter', ['ionic','ngCordova','starter.services']
 //});
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-  .state('welcome', {
+  .state('app',{
+    url: "/app",
+    abstract: true,
+    templateUrl: "views/menu.html",
+    controller: 'GeneralCtrl'
+  })
+  .state('app.welcome', {
     url: '/welcome',
-    templateUrl: 'views/welcome.html',
-    controller: 'WelcomeCtrl' 
+    views: {
+      'menuContent':{
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl' 
+      }
+    }
   })
-  .state('become-member',{
+  .state('app.become-member',{
     url: '/become_member',
-    templateUrl: 'views/become_member.html',
-    controller: 'BecomeMemberCtrl'
+    views: {
+      'menuContent':{
+        templateUrl: 'views/become_member.html',
+        controller: 'BecomeMemberCtrl'
+      }
+    }
   })
-  .state('member-home',{
+  .state('app.member-home',{
     url: '/member_home',
-    templateUrl: 'views/member_home.html',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/member_home.html',
+      }
+    }
     //controller: 'MemberHomeCtrl'
   })
-  .state('preferences',{
+  .state('app.preferences',{
     url: '/preferences',
-    templateUrl: 'views/preferences.html'
+    views: {
+      'menuContent':{
+        templateUrl: 'views/preferences.html'
+      }
+    }
   });
 
-  $urlRouterProvider.otherwise('/welcome');
+  $urlRouterProvider.otherwise('/app/welcome');
 })
 
 

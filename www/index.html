@@ -27,7 +27,8 @@
 
   <body ng-app="starter">
     <ion-pane ng-controller="GeneralCtrl">
-      <ion-nav-bar class="bar-psychic1"></ion-nav-bar>
+      <ion-nav-bar class="bar bar-stable bar-header disable-user-behaviour">
+      </ion-nav-bar>
       <ion-nav-view class="has_header"></ion-nav-view>
       <div class="bar bar-footer bar-psychic1" ng-if="showPrivacy">                   
         <div class="title">Privacy Policy</div>                       
@@ -45,7 +46,7 @@
         <a class="tab-item">
           <i class="icon ion-clock"><span>Availability</span></i> 
         </a>                
-        <a class="tab-item" ui-sref="preferences">
+        <a class="tab-item" ui-sref="app.preferences">
           <i class="icon ion-gear-a"><span>Preference</span></i>
         </a>                
       </div>

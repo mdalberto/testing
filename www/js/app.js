@@ -26,6 +26,10 @@ var starter = angular.module('starter', ['ionic','ngCordova','starter.services']
     url: '/member_home',
     templateUrl: 'views/member_home.html',
     //controller: 'MemberHomeCtrl'
+  })
+  .state('preferences',{
+    url: '/preferences',
+    templateUrl: 'views/preferences.html'
   });
 
   $urlRouterProvider.otherwise('/welcome');

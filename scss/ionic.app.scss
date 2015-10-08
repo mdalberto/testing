@@ -15,9 +15,89 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
+$psych_color_bg_1:                #f8ebcb;
+$psych_color_bg_2:                #e8efe8;
+
+$psych_color_1:                   #8BA4A8;
+$psych_color_2:                   #BD4B4B;
+$psych_color_3:                   #A7A7A7;
+$button-psychic1-bg:              $psych_color_1 !default;
+$button-psychic1-text:            #eee !default;
+$button-psychic1-border:          darken($psych_color_1, 10%) !default;
+$button-psychic1-active-bg:       darken($psych_color_1, 10%) !default;
+$button-psychic1-active-border:   darken($psych_color_1, 10%) !default;
+
+$button-psychic2-bg:              $psych_color_2 !default;
+$button-psychic2-text:            #eee !default;
+$button-psychic2-border:          darken($psych_color_2, 10%) !default;
+$button-psychic2-active-bg:       darken($psych_color_2, 10%) !default;
+$button-psychic2-active-border:   darken($psych_color_2, 10%) !default;
+
+$button-psychic3-bg:              $psych_color_3 !default;
+$button-psychic3-text:            #eee !default;
+$button-psychic3-border:          darken($psych_color_3, 10%) !default;
+$button-psychic3-active-bg:       darken($psych_color_3, 10%) !default;
+$button-psychic3-active-border:   darken($psych_color_3, 10%) !default;
+
+$button-psychicbg1-bg:              $psych_color_bg_1 !default;
+$button-psychicbg1-text:            #eee !default;
+$button-psychicbg1-border:          darken($psych_color_bg_1, 10%) !default;
+$button-psychicbg1-active-bg:       darken($psych_color_bg_1, 10%) !default;
+$button-psychicbg1-active-border:   darken($psych_color_bg_1, 10%) !default;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+$bar-psychic1-bg:                 rgba($button-psychic1-bg, $bar-transparency) !default;
+$bar-psychic1-text:               $button-psychic1-text !default;
+$bar-psychic1-border:             $button-psychic1-border !default;
+$bar-psychic1-active-bg:          $button-psychic1-active-bg !default;
+$bar-psychic1-active-border:      $button-positive-active-border !default;
+
+.bar{
+  &.bar-psychic1 {
+    @include bar-style($bar-psychic1-bg, $bar-psychic1-border, $bar-psychic1-text);
+    &.bar-footer{
+      background-image: linear-gradient(180deg, $bar-psychic1-border, $bar-psychic1-border 50%, transparent 50%);
+    }
+  }
+}
+
+.button-psychic2 {
+      /*
+      Usage : <button class="button button-psychic2">
+                Custom Styled Button
+              </button>
+      */
+  @include button-style($button-psychic2-bg, $button-psychic2-border,$button-psychic2-active-bg, $button-psychic2-active-border, $button-psychic2-text);
+  @include button-clear($button-psychic2-bg);
+  @include button-outline($button-psychic2-bg);
+}
+
+.button-psychic3 {
+  @include button-style($button-psychic3-bg, $button-psychic3-border,$button-psychic3-active-bg, $button-psychic3-active-border, $button-psychic3-text);
+  @include button-clear($button-psychic3-bg);
+  @include button-outline($button-psychic3-bg);
+}
+.button-psychicbg1 {
+  @include button-style($button-psychicbg1-bg, $button-psychicbg1-border,$button-psychicbg1-active-bg, $button-psychicbg1-active-border, $button-psychicbg1-text);
+  @include button-clear($button-psychicbg1-bg);
+  @include button-outline($button-psychicbg1-bg);
+}
+
+div.button-psychicbg1 {
+  h2 {
+    font-size: x-large;
+  }
+  h2.bold {
+    font-weight: 600;
+  }
+}
+
+
+ion-content {
+  background: linear-gradient(to bottom, #f8ebcb 0%,#e8efe8 100%); /* W3C */
+}

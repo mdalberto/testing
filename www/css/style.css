@@ -1,0 +1,7 @@
+.remember-me {
+  margin: auto 5px;
+}
+h3.no-wrap {
+  text-overflow: inherit;
+  white-space: normal;
+}

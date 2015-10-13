@@ -10,7 +10,8 @@ var starter = angular.module('starter', ['ionic','ngCordova','starter.services']
   //run once for the app
   //PushProcessingService.initialize();
 //});
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider) {
+  $ionicConfigProvider.navBar.alignTitle('center');
   $stateProvider
   .state('app',{
     url: "/app",

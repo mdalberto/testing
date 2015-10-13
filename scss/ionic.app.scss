@@ -117,7 +117,11 @@ button a {
   color: inherit;
 }
 
-.button-clear.ion-navicon {
+.item h2 {
+  white-space:normal;
+}
+
+.button-clear.ion-navicon, .button-clear.back-button {
   color: $button-psychic1-text;
 }
 

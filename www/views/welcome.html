@@ -1,38 +1,31 @@
 <ion-view title="Welcome">
-  <ion-content class="padding has-footer">
+  <ion-content class="padding welcome-content">
     <div class="list card">
       <div class="item text-center button-psychicbg1">
-        <h2>Welcome to Psychic Source</h2>
-        <h2 class="bold">To Begin using this app please login</h2>
+        <h2>To get started please login</h2>
       </div>
     </div>
-    <div class="list list-inset">       
-      Login with your email and password
+    <div class="list list-inset text-center">       
+      Login with your Email and Password
       <label class="item item-input">
         <input type="text" placeholder="Email"> 
       </label>
       <label class="item item-input">
         <input type="text" placeholder="Password">
       </label>
-      or<br>
-      Login with your Phone number and Pin
+    </div>
+      <span class="or-separator text-center">
+        or<br>
+      </span>
+    <div class="list list-inset text-center">       
+      Login with your Phone Number and PIN
       <label class="item item-input">
         <input type="text" placeholder="Phone Number">  
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Pin">
+        <input type="text" placeholder="PIN">
       </label>
     </div> 
-      <button class="button button-block button-psychic2" ui-sref="app.member-home">Login</button>
-      <div class="row">
-        <div class="col col-50 col-offset-25 text-center">
-          <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>
-        </div>
-      </div>
-
-    <button class="button button-block button-psychic3" ui-sref="app.become-member">
-      <a ui-sref="app.become-member">Not a Member? Create an Account</a>
-    </button>
     <div class="row">
       <div class="col col-80 text-right">
         <h4>Remember Me</h4>
@@ -46,6 +39,16 @@
       </label>
     
     </div>
+      <button class="button button-block button-psychic2" ui-sref="app.member-home">Login</button>
+      <div class="row">
+        <div class="col col-50 col-offset-25 text-center">
+          <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>
+        </div>
+      </div>
+
+    <button class="button button-block button-psychic3" ui-sref="app.become-member">
+      <a ui-sref="app.become-member">Not a Member? Create an Account</a>
+    </button>
   </ion-content>
 </ion-view>
 

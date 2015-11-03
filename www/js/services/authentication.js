@@ -45,7 +45,14 @@ angular.module('PsychicSource.Authentication', [])
       return $q(function(resolve, reject){
         $http({
           method: 'POST',
+          cache: false,
           url: auth.baseUrl + 'token' + '?rnd=' + new Date().getTime(),
+          headers: {
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Origin': '*',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache'
+          },
           data: sendData
         }).then(function(res){
           auth.storeUserCredentials(res);

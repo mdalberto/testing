@@ -1,4 +1,4 @@
 
-starter.controller('WelcomeCtrl',function($scope){
+PsychicSource.controller('WelcomeCtrl',function($scope,authentication){
   $scope.title = 'something'
 });

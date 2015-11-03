@@ -9,21 +9,21 @@
     <div class="list list-inset">       
       Login with your email and password
       <label class="item item-input">
-        <input type="text" placeholder="Email"> 
+        <input type="text" placeholder="Email" ng-model="data.email"> 
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Password">
+        <input type="text" placeholder="Password" ng-model="data.password">
       </label>
       or<br>
       Login with your Phone number and Pin
       <label class="item item-input">
-        <input type="text" placeholder="Phone Number">  
+        <input type="text" placeholder="Phone Number" ng-model="data.phone">  
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Pin">
+        <input type="text" placeholder="Pin" ng-model="data.pin">
       </label>
     </div> 
-      <button class="button button-block button-psychic2" ui-sref="member-home">Login</button>
+      <button class="button button-block button-psychic2" ui-sref="member-home" ng-click="login(data)">Login</button>
       <div class="row">
         <div class="col col-50 col-offset-25 text-center">
           <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>

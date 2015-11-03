@@ -5,10 +5,10 @@
  * more tutorials: hollyschinsky.github.io
  */
 
-var starter = angular.module('starter', ['ionic','ngCordova','starter.services'])
+var PsychicSource = angular.module('PsychicSource', ['ionic','ngCordova','PsychicSource.Authentication'])
 //.run(function(PushProcessingService) {
-  //run once for the app
-  //PushProcessingService.initialize();
+//run once for the app
+//PushProcessingService.initialize();
 //});
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -28,7 +28,10 @@ var starter = angular.module('starter', ['ionic','ngCordova','starter.services']
     //controller: 'MemberHomeCtrl'
   });
 
-  $urlRouterProvider.otherwise('/welcome');
+  $urlRouterProvider.otherwise( function($injector, $location) {
+    var $state = $injector.get("$state");
+    $state.go("welcome");
+  });
 })
 
 

@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', [])
-.factory('AuthService',function($q,$http,$localstorage){
+.factory('AuthService',function($q,$http,$localstorage,USER_ROLES){
   var auth = {
     baseUrl: 'https://testapi.vseinc.com/',
     networkId: 2,
@@ -11,12 +11,12 @@ angular.module('PsychicSource.Authentication', [])
     loadUserCredentials: function(){
       var token = $localstorage.getObject(auth.tokenName).access_token;
       if(token) {
-        useCredentials(token);
+        auth.useCredentials(token);
       }
     },
     storeUserCredentials: function(userData){
       $localstorage.setObject(auth.tokenName,userData);
-      useCredentials(userData);
+      auth.useCredentials(userData);
     },
     useCredentials: function(userData){
       isAuthenticated = true;
@@ -38,7 +38,7 @@ angular.module('PsychicSource.Authentication', [])
     login: function(data) {
       sendData = {
         networkId: auth.networkId,
-        grantType: 'password'
+        grant_type: 'password'
       };
       sendData.username = data.phone ? data.phone : data.email
       sendData.password = data.pin ? data.pin : data.password
@@ -48,12 +48,13 @@ angular.module('PsychicSource.Authentication', [])
           cache: false,
           url: auth.baseUrl + 'token' + '?rnd=' + new Date().getTime(),
           headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Allow-Credentials': true,
             'Access-Control-Allow-Origin': '*',
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache'
           },
-          data: sendData
+          data: jQuery.param(sendData)
         }).then(function(res){
           auth.storeUserCredentials(res);
           resolve('Login success'); 

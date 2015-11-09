@@ -22,9 +22,9 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ui.router','ionic.
     }
 
     if(!AuthService.isAuthenticated()){
-      if(next.name !== 'app.welcome'){
+      if(next.name !== 'welcome'){
         event.preventDefault();
-        $state.go('app.welcome');
+        $state.go('welcome');
       }
     }
   });
@@ -71,22 +71,21 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ui.router','ionic.
 
   });
 })
-.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider) {
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
   $ionicConfigProvider.navBar.alignTitle('center');
   $stateProvider
+  .state('welcome', {
+    url: '/welcome',
+    templateUrl: 'views/welcome.html',
+    controller: 'WelcomeCtrl'  
+  })
   .state('app',{
     url: "/app",
     abstract: true,
     templateUrl: "views/menu.html",
-    controller: 'GeneralCtrl'
-  })
-  .state('app.welcome', {
-    url: '/welcome',
-    views: {
-      'menuContent':{
-        templateUrl: 'views/welcome.html',
-        controller: 'WelcomeCtrl' 
-      }
+    controller: 'GeneralCtrl',
+    data: {
+      authorizedRoles: [USER_ROLES.member]
     }
   })
   .state('app.become-member',{
@@ -118,7 +117,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ui.router','ionic.
 
   $urlRouterProvider.otherwise( function($injector, $location) {
     var $state = $injector.get("$state");
-    $state.go("app.welcome");
+    $state.go("welcome");
   });
 })
 

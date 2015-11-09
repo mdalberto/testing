@@ -18,13 +18,13 @@
     </ion-header-bar>                               
     <ion-content>                                   
       <ion-list>                                    
-        <ion-item menu-close href="#/app/member_home">   
+        <ion-item menu-close ui-sref="app.member-home">   
           My Account                  
         </ion-item>                                 
-        <ion-item menu-close href="#/app/become_member">   
+        <ion-item menu-close ui-sref="app.become-member">   
           Create an Account
         </ion-item>                                 
-        <ion-item menu-close href="#/app/preferences">
+        <ion-item menu-close ui-sref="app.preferences">
           Notification Preferences                             
         </ion-item>                                 
         <ion-item menu-close href="#/app/welcome">   
@@ -33,7 +33,7 @@
         <ion-item menu-close>   
           Privacy Policy
         </ion-item>                                 
-        <ion-item menu-close>   
+        <ion-item menu-close ng-click="logout()">   
           Logout
         </ion-item>                                 
       </ion-list>                                   

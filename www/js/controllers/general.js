@@ -2,7 +2,13 @@ PsychicSource.controller('GeneralCtrl',function($scope,$state,$ionicPlatform,$io
 
   $scope.showPrivacy = true;
   $scope.membershipId = AuthService.id;
-  $rootScope.$on('$ionicView.beforeEnter',function(event,view){
+
+  $scope.logout = function(){
+    AuthService.logout();
+    $state.go('welcome');
+  };
+
+  $scope.$on('$ionicView.beforeEnter',function(event,view){
     if(view.stateName == 'app.member-home' || view.stateName == 'app.preferences'){
       $scope.showPrivacy = false;
     } else {
@@ -19,7 +25,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$state,$ionicPlatform,$io
 
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
     AuthService.logout();
-    $state.go('login');
+    $state.go('welcome');
     var alertPopup = $ionicPopup.alert({
       title: 'Session Lost!',
       template: 'Sorry, You have to login again.'

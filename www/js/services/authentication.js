@@ -68,7 +68,7 @@ angular.module('PsychicSource.Authentication', [])
       if(!angular.isArray(authorizedRoles)){
         authorizedRoles = [authorizedRoles];
       }
-      return (isAuthenticated && authorizedRoles.indexOf(role) !== -1);
+      return (auth.isAuthenticated && authorizedRoles.indexOf(role) !== -1);
     }
 
   };

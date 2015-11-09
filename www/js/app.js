@@ -22,9 +22,9 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ui.router','ionic.
     }
 
     if(!AuthService.isAuthenticated()){
-      if(next.name !== 'welcome'){
+      if(next.name !== 'app.welcome'){
         event.preventDefault();
-        $state.go('welcome');
+        $state.go('app.welcome');
       }
     }
   });
@@ -50,26 +50,75 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ui.router','ionic.
 .config(function($stateProvider, $urlRouterProvider, USER_ROLES,$httpProvider) {
   $httpProvider.defaults.withCredentials = true;
   $httpProvider.interceptors.push('AuthInterceptor');
+  //run once for the app
+  //PushProcessingService.initialize();
+})
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.InAppBrowser) {
+      window.open = cordova.InAppBrowser.open;
+    }
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      // Set the statusbar to use the default style, tweak this to
+      // remove the status bar on iOS or change it to use white instead of dark colors.
+      StatusBar.styleDefault();
+    }
+
+  });
+})
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider) {
+  $ionicConfigProvider.navBar.alignTitle('center');
   $stateProvider
-  .state('welcome', {
+  .state('app',{
+    url: "/app",
+    abstract: true,
+    templateUrl: "views/menu.html",
+    controller: 'GeneralCtrl'
+  })
+  .state('app.welcome', {
     url: '/welcome',
-    templateUrl: 'views/welcome.html',
-    controller: 'WelcomeCtrl' 
+    views: {
+      'menuContent':{
+        templateUrl: 'views/welcome.html',
+        controller: 'WelcomeCtrl' 
+      }
+    }
   })
-  .state('become-member',{
+  .state('app.become-member',{
     url: '/become_member',
-    templateUrl: 'views/become_member.html',
-    controller: 'BecomeMemberCtrl'
+    views: {
+      'menuContent':{
+        templateUrl: 'views/become_member.html',
+        controller: 'BecomeMemberCtrl'
+      }
+    }
   })
-  .state('member-home',{
+  .state('app.member-home',{
     url: '/member_home',
-    templateUrl: 'views/member_home.html',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/member_home.html',
+      }
+    }
     //controller: 'MemberHomeCtrl'
+  })
+  .state('app.preferences',{
+    url: '/preferences',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/preferences.html'
+      }
+    }
   });
 
   $urlRouterProvider.otherwise( function($injector, $location) {
     var $state = $injector.get("$state");
-    $state.go("welcome");
+    $state.go("app.welcome");
   });
 })
 

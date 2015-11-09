@@ -4,7 +4,7 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$state,$ionicPopup,AuthSe
 
   $scope.login = function(data) {
     AuthService.login(data).then(function(authenticated){
-      $state.go('member-home',{},{reload: true});
+      $state.go('app.member-home',{},{reload: true});
     },function(err){
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',

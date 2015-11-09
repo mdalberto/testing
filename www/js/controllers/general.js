@@ -3,7 +3,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$state,$ionicPlatform,$io
   $scope.showPrivacy = true;
   $scope.membershipId = AuthService.id;
   $rootScope.$on('$ionicView.beforeEnter',function(event,view){
-    if(view.stateName == 'member-home'){
+    if(view.stateName == 'app.member-home' || view.stateName == 'app.preferences'){
       $scope.showPrivacy = false;
     } else {
       $scope.showPrivacy = true;

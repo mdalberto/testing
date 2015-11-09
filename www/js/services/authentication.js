@@ -19,7 +19,7 @@ angular.module('PsychicSource.Authentication', [])
       auth.useCredentials(userData);
     },
     useCredentials: function(userData){
-      isAuthenticated = true;
+      auth.isAuthenticated = true;
       auth.token = userData.access_token;
       auth.membershipId = userData.membershipId;
       auth.role = USER_ROLES.member;
@@ -42,26 +42,27 @@ angular.module('PsychicSource.Authentication', [])
       };
       sendData.username = data.phone ? data.phone : data.email
       sendData.password = data.pin ? data.pin : data.password
-      return $q(function(resolve, reject){
-        $http({
-          method: 'POST',
-          cache: false,
-          url: auth.baseUrl + 'token' + '?rnd=' + new Date().getTime(),
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Access-Control-Allow-Credentials': true,
-            'Access-Control-Allow-Origin': '*',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache'
-          },
-          data: jQuery.param(sendData)
+      d = $q.defer();
+      $http({
+        method: 'POST',
+        cache: false,
+        url: auth.baseUrl + 'token',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Access-Control-Allow-Credentials': true,
+          'Access-Control-Allow-Origin': '*',
+          'Pragma': 'no-cache',
+          'Cache-Control': 'no-cache'
+        },
+        data: jQuery.param(sendData)
         }).then(function(res){
-          auth.storeUserCredentials(res);
-          resolve('Login success'); 
+          auth.storeUserCredentials(res.data);
+          d.resolve('sucess');
         },function(err){
-          reject('Login failed');
+          d.reject('Login failed');
         });
-      });
+      return d.promise;
+      
     },
     isAuthorized: function(authorizedRoles){
       if(!angular.isArray(authorizedRoles)){

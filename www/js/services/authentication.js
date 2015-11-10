@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', [])
-.factory('AuthService',function($q,$http,$localstorage,USER_ROLES){
+.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES){
   var auth = {
     baseUrl: 'https://testapi.vseinc.com/',
     networkId: 2,
@@ -8,6 +8,7 @@ angular.module('PsychicSource.Authentication', [])
     emailOrPhone: '',
     membershipId: null,
     token: null,
+    role: USER_ROLES.public_role,
     loadUserCredentials: function(){
       var token = $localstorage.getObject(auth.tokenName).access_token;
       if(token) {
@@ -28,12 +29,21 @@ angular.module('PsychicSource.Authentication', [])
     },
     destroyUserCredentials: function(){
       auth.token = undefined;
-      isAuthenticated = false;
+      auth.isAuthenticated = false;
+      auth.role = USER_ROLES.public_role;
       $http.defaults.headers.common['Authorization'] = undefined;
       $localstorage.remove(auth.tokenName);
     },
     logout: function() {
+      $ionicLoading.show({template:'Logging out....'});
       auth.destroyUserCredentials();
+      $timeout(function(){
+        $ionicLoading.hide();
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+        $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+        $rootScope.$broadcast('user:logout');
+      },30);
     },
     login: function(data) {
       sendData = {
@@ -68,12 +78,19 @@ angular.module('PsychicSource.Authentication', [])
       if(!angular.isArray(authorizedRoles)){
         authorizedRoles = [authorizedRoles];
       }
-      return (auth.isAuthenticated && authorizedRoles.indexOf(role) !== -1);
+      if(authorizedRoles == []){
+        return true;
+      }
+      if(authorizedRoles.indexOf(auth.role) !== -1 && auth.role == 'public_role'){
+        return true
+      }
+      return (auth.isAuthenticated && authorizedRoles.indexOf(auth.role) !== -1);
     }
 
   };
   auth.loadUserCredentials();
   return {
+    refresh: auth.loadUserCredentials,
     login: auth.login,
     logout: auth.logout,
     isAuthorized : auth.isAuthorized,

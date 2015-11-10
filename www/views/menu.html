@@ -1,8 +1,6 @@
-<ion-side-menus enable-menu-with-back-views="false">                                                                               
+<ion-side-menus enable-menu-with-back-views="true">                                                                               
   <ion-side-menu-content>
     <ion-nav-bar class="bar-psychic1">                
-      <ion-nav-back-button>                         
-      </ion-nav-back-button>                        
                                                     
       <ion-nav-buttons side="left">                 
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">  
@@ -18,22 +16,22 @@
     </ion-header-bar>                               
     <ion-content>                                   
       <ion-list>                                    
-        <ion-item menu-close ui-sref="app.member-home">   
+        <ion-item ng-show="isLoggedIn()" menu-close href="#/app/member_home">   
           My Account                  
         </ion-item>                                 
-        <ion-item menu-close ui-sref="app.become-member">   
+        <ion-item ng-hide="isLoggedIn()" menu-close href="#/app/become_member">   
           Create an Account
         </ion-item>                                 
-        <ion-item menu-close ui-sref="app.preferences">
+        <ion-item ng-show="isLoggedIn()" menu-close href="#/app/preferences">
           Notification Preferences                             
         </ion-item>                                 
-        <ion-item menu-close href="#/app/welcome">   
+        <ion-item ng-hide="isLoggedIn()" menu-close href="#/app/welcome">   
           Login  
         </ion-item>                                 
         <ion-item menu-close>   
           Privacy Policy
         </ion-item>                                 
-        <ion-item menu-close ng-click="logout()">   
+        <ion-item ng-show="isLoggedIn()" menu-close ng-click="logout()">   
           Logout
         </ion-item>                                 
       </ion-list>                                   

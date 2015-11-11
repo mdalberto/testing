@@ -1,5 +1,5 @@
 
-PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService){
+PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService, SummaryService){
   $rootScope.showFooter = false;
   $scope.data = {};
 
@@ -7,6 +7,7 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
     $ionicLoading.show({template: 'Verifying Credentials'});
     AuthService.login(data).then(function(authenticated){
       $ionicLoading.hide();
+      SummaryService.getSummary();
       $state.go('app.member-home');
     },function(err){
       $ionicLoading.hide();

@@ -20,11 +20,6 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
   member: 'member_role',
   public_role: 'public_role'
 })
-.config(function($stateProvider, $urlRouterProvider, USER_ROLES,$httpProvider) {
-  $httpProvider.defaults.withCredentials = true;
-  //run once for the app
-  //PushProcessingService.initialize();
-})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -43,7 +38,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 
   });
 })
-.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
+.config(function($ionicConfigProvider,$httpProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
+  $httpProvider.defaults.withCredentials = true;
   $ionicConfigProvider.navBar.alignTitle('center');
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
@@ -106,7 +102,12 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 
   $urlRouterProvider.otherwise( function($injector, $location) {
     var $state = $injector.get("$state");
-    $state.go("app.welcome");
+    var AuthService = $injector.get("AuthService");
+    if(AuthService.isAuthenticated()){
+      $state.go('app.member-home');
+    } else {
+      $state.go('app.welcome');
+    }
   });
 })
 

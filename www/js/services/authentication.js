@@ -96,7 +96,7 @@ angular.module('PsychicSource.Authentication', [])
     isAuthorized : auth.isAuthorized,
     isAuthenticated: function() {return auth.isAuthenticated;},
     role: function(){return auth.role;},
-    id: auth.membershipId
+    id: function(){return auth.membershipId;}
   };
 
 });

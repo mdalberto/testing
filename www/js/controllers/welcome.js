@@ -6,9 +6,16 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials'});
     AuthService.login(data).then(function(authenticated){
-      $ionicLoading.hide();
-      SummaryService.getSummary();
-      $state.go('app.member-home');
+      SummaryService.getSummary().then(function(summaryMsg){
+        $ionicLoading.hide();
+        $state.go('app.member-home'); 
+      }, function(err2){
+        $ionicLoading.hide();
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: 'Error while retrieving account information'
+        });  
+      });
     },function(err){
       $ionicLoading.hide();
       var alertPopup = $ionicPopup.alert({

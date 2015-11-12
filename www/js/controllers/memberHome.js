@@ -1,5 +1,4 @@
 
 PsychicSource.controller('MemberHomeCtrl',function($scope, SummaryService){
-	alert(SummaryService.balance);
-	$scope.balance = SummaryService.balance;
+	$scope.summary = SummaryService.summaryObj();
 });

@@ -4,8 +4,9 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
   $scope.data = {};
 
   $scope.login = function(data) {
-    $ionicLoading.show({template: 'Verifying Credentials'});
+    $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(authenticated){
+      $scope.data = {};
       $ionicLoading.hide();
       $state.go('app.member-home');
     },function(err){

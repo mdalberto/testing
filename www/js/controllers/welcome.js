@@ -1,4 +1,3 @@
-
 PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService){
   $rootScope.showFooter = false;
   $scope.data = {};

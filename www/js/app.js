@@ -1,9 +1,3 @@
-/**
- * Author: hollyschinsky
- * twitter: @devgirfl
- * blog: devgirl.org
- * more tutorials: hollyschinsky.github.io
- */
 
 var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication'])
 //.run(function(PushProcessingService) {

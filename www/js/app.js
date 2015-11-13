@@ -27,7 +27,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     if(window.cordova && window.cordova.InAppBrowser) {
       window.open = cordova.InAppBrowser.open;
     }
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
@@ -66,6 +66,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     views: {
       'menuContent':{
         templateUrl: 'views/become_member.html',
+        controller: 'BecomeMemberCtrl'
       }
     },
     data: {

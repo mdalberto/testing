@@ -1,7 +1,8 @@
 angular.module('PsychicSource.Summary', [])
-.factory('SummaryService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES, AuthService){
+.factory('SummaryService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES, AuthService){
   var summary = {
     baseUrl: 'https://testapi.vseinc.com/',
+    prefixKey: 'summary-',
     token: null,
     role: USER_ROLES.public_role,
     balance: null,
@@ -9,17 +10,26 @@ angular.module('PsychicSource.Summary', [])
     availableUntil: null,
     numberOfNotifications: null,
     storeUserSummary: function(userData){
-      $localstorage.setObject(AuthService.id(),userData);
+      $localstorage.setObject(summary.prefixKey + AuthService.id(),userData);
       summary.loadUserSummary();
     },
     loadUserSummary: function(){
-      var info_summary = $localstorage.getObject(AuthService.id());
+      var info_summary = $localstorage.getObject(summary.prefixKey + AuthService.id());
       summary.balance = info_summary.Balance;
       summary.callCount = info_summary.ReturnCallQueueCount;
       summary.availableUntil = info_summary.AvailableUntil;
       summary.numberOfNotifications = info_summary.NumberOfNotifications;
     },
+    summaryObj: function(){
+      return {
+        balance: summary.balance,
+        callCount: summary.callCount,
+        availability: summary.availabilityUntil,
+        notifications: summary.numberOfNotifications
+      }
+    },
     getSummary: function() {
+      $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
       $http({
         method: 'GET',
@@ -34,8 +44,14 @@ angular.module('PsychicSource.Summary', [])
         },
         }).then(function(res){
           summary.storeUserSummary(res.data);
-          d.resolve('sucess');
+          $ionicLoading.hide();
+          d.resolve(summary.summaryObj());
         },function(err){
+          $ionicLoading.hide();
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Error while retrieving account information'
+          });  
           d.reject('Login failed');
       });
       return d.promise;
@@ -49,12 +65,7 @@ angular.module('PsychicSource.Summary', [])
     callCount: function(){return summary.callCount},
     availability: function(){return summary.availableUntil},
     notifications: function(){return summary.numberOfNotifications},
-    summaryObj: function(){ return {
-      balance: result.balance(),
-      callCount: result.callCount(),
-      availability: result.availability(),
-      notifications: result.notifications()
-    }},
+    summaryObj: summary.summaryObj,
     getSummary: summary.getSummary
   };
   return result;

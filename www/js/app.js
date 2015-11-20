@@ -81,6 +81,11 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
         controller: 'MemberHomeCtrl'
       }
     },
+    resolve: {
+      summary: function(SummaryService){
+        return SummaryService.getSummary();
+      }
+    },
     data: {
       authorizedRoles: [USER_ROLES.member],
       showFooter: true

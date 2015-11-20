@@ -1,4 +1,4 @@
 
-PsychicSource.controller('MemberHomeCtrl',function($scope, SummaryService){
-	$scope.summary = SummaryService.summaryObj();
+PsychicSource.controller('MemberHomeCtrl',function($scope,AuthService, SummaryService, summary){
+	$scope.summary = summary;
 });

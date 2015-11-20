@@ -52,8 +52,8 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
   });
 
-  $scope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
-  });
+  //$scope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
+  //});
    
   $scope.notAuthorized = function(){
     var alertPopup = $ionicPopup.alert({

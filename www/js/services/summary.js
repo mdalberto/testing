@@ -24,7 +24,7 @@ angular.module('PsychicSource.Summary', [])
       return {
         balance: summary.balance,
         callCount: summary.callCount,
-        availability: summary.availabilityUntil,
+        availability: summary.availableUntil,
         notifications: summary.numberOfNotifications
       }
     },

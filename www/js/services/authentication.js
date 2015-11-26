@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', [])
-.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES){
+.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService){
   var auth = {
     baseUrl: 'https://testapi.vseinc.com/',
     networkId: 2,
@@ -50,33 +50,10 @@ angular.module('PsychicSource.Authentication', [])
       },30);
     },
     login: function(data) {
-      sendData = {
-        networkId: auth.networkId,
-        grant_type: 'password'
-      };
-      sendData.username = data.phone ? data.phone : data.email
-      sendData.password = data.pin ? data.pin : data.password
-      d = $q.defer();
-      $http({
-        method: 'POST',
-        cache: false,
-        url: auth.baseUrl + 'token',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Origin': '*',
-          'Pragma': 'no-cache',
-          'Cache-Control': 'no-cache'
-        },
-        data: jQuery.param(sendData)
-        }).then(function(res){
-          auth.storeUserCredentials(res.data);
-          d.resolve('sucess');
-        },function(err){
-          d.reject('Login failed');
-        });
-      return d.promise;
-      
+      return AjaxService.login(data).then(function(res){
+        auth.storeUserCredentials(res.data);
+        return res.code;
+      }); 
     },
     isAuthorized: function(authorizedRoles){
       if(!angular.isArray(authorizedRoles)){

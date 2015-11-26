@@ -1,8 +1,6 @@
 angular.module('PsychicSource.Authentication', [])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService){
   var auth = {
-    baseUrl: 'https://testapi.vseinc.com/',
-    networkId: 2,
     isAuthenticated: false,
     tokenName: 'token',
     emailOrPhone: '',

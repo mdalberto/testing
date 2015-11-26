@@ -1,7 +1,6 @@
 angular.module('PsychicSource.Summary', [])
-.factory('SummaryService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES, AuthService){
+.factory('SummaryService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
   var summary = {
-    baseUrl: 'https://testapi.vseinc.com/',
     prefixKey: 'summary-',
     token: null,
     role: USER_ROLES.public_role,
@@ -31,31 +30,19 @@ angular.module('PsychicSource.Summary', [])
     getSummary: function() {
       $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
-      $http({
-        method: 'GET',
-        cache: false,
-        url: summary.baseUrl + 'member/v1/' + AuthService.id() + '/summary',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Origin': '*',
-          'Pragma': 'no-cache',
-          'Cache-Control': 'no-cache'
-        },
-        }).then(function(res){
-          summary.storeUserSummary(res.data);
-          $ionicLoading.hide();
-          d.resolve(summary.summaryObj());
-        },function(err){
-          $ionicLoading.hide();
-          var alertPopup = $ionicPopup.alert({
-            title: 'Error',
-            template: 'Error while retrieving account information'
-          });  
-          d.reject('Login failed');
+      AjaxService.getSummary(AuthService.id()).then(function(res){
+        summary.storeUserSummary(res.data);
+        $ionicLoading.hide();
+        d.resolve(summary.summaryObj());
+      },function(err){                                           
+        $ionicLoading.hide();
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: 'Error while retrieving account information'
+        });  
+        d.reject(err);                             
       });
       return d.promise;
-      
     }
   };
   summary.loadUserSummary();

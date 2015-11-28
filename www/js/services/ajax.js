@@ -4,12 +4,15 @@ angular.module('PsychicSource.Ajax', [])
   var ajaxHandler = {
     baseUrl: 'https://testapi.vseinc.com/',
     networkId: 2,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Origin': '*',
-      'Pragma': 'no-cache',
-      'Cache-Control': 'no-cache'
+    headers: function(contentType){
+      contentType = typeof contentType !== 'undefined' ? contentType : 'application/json';
+      return {
+        'Content-Type': contentType,
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': '*',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache'
+      };
     },
     login: function(data){
       var sendData = {
@@ -22,7 +25,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'POST',
         cache: false,
         url: ajaxHandler.baseUrl + 'token',
-        header: ajaxHandler.headers,
+        header: ajaxHandler.headers('application/x-www-form-urlencoded'),
         data: jQuery.param(sendData)
       })
     },
@@ -31,7 +34,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/summary',
-        header: ajaxHandler.headers,
+        header: ajaxHandler.headers(),
       });
     },
     getPreferences: function(id){
@@ -39,8 +42,17 @@ angular.module('PsychicSource.Ajax', [])
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
-        header: ajaxHandler.headers,
+        header: ajaxHandler.headers(),
       });
+    },
+    savePreferences: function(id,preferences){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
+        header: ajaxHandler.headers(),
+        data: JSON.stringify(preferences)
+      });      
     }
   };
   return ajaxHandler;

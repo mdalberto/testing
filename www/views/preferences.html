@@ -50,37 +50,10 @@
         </div>               
       </label>               
       </li>                     
-      <li class="item item-toggle">
-        {{preferences[0].ContentTitle}}
+      <li class="item item-toggle" ng-repeat="setting in preferences">
+        {{setting.ContentTitle}}
       <label class="toggle toggle-balanced">                   
-        <input type="checkbox" checked> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle">
-        {{preferences[1].ContentTitle}}
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox"> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle">
-        {{preferences[2].ContentTitle}}
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox" checked> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle">                              
-        {{preferences[3].ContentTitle}}
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox"> 
+        <input ng-model="setting.Preference" type="checkbox" ng-click="preferenceUpdated($index)"> 
         <div class="track">  
           <div class="handle"></div>                           
         </div>               

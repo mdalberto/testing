@@ -3,7 +3,7 @@ PsychicSource.controller('PreferencesCtrl',function($scope, $ionicLoading, $ioni
  
  $scope.preferenceUpdated = function($index){
   $ionicLoading.show({template: 'Updating Setting...'});
-  AjaxService.savePreferences(AuthService.id(),[$scope.preferences[$index]]).then(function(res){
+  AjaxService.savePreferences(AuthService.id(),$scope.preferences).then(function(res){
     $ionicLoading.hide();
   },function(err){
     $ionicLoading.hide();

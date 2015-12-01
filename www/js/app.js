@@ -6,15 +6,10 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 //}
 .run(function($rootScope, $state, AuthService,AUTH_EVENTS){
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
-    console.log("state change start");
-    console.log(fromState);
-    console.log(next);
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
-      console.log(authorizedRoles);
       if (!AuthService.isAuthorized(authorizedRoles)) {
         event.preventDefault();
-        console.log("not authorized?");
         if('data' in next){
           $rootScope.showFooter = next.data.showFooter;
         }
@@ -28,7 +23,6 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
 
     if (!AuthService.isAuthenticated()) {
-      console.log("not authenticated");
       if (next.data && 'authorizedRoles' in next.data && next.data.authorizedRoles.indexOf('public_role') == -1) {
         event.preventDefault();
         $state.go('app.welcome');
@@ -133,7 +127,6 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     var $state = $injector.get("$state");
     var AuthService = $injector.get("AuthService");
     if(AuthService.isAuthenticated()){
-      console.log(AuthService.id());
       $state.go('app.member-home');
     } else {
       $state.go('app.welcome');

@@ -1,6 +1,6 @@
 PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS){
 
-  $scope.membershipId = AuthService.id;
+  $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
     AuthService.logout();

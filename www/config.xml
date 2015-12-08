@@ -15,17 +15,60 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="auto-hide-splash-screen" value="false" />
   <preference name="SplashScreenDelay" value="3000"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <platform name="ios">
+    <!-- iPhone 6 / 6+ -->
+    <icon src="img/ios/icon/icon-60@3x.png" platform="ios" width="180" height="180" />
+
+    <!-- iPhone / iPod Touch  -->
+    <icon src="img/ios/icon/icon-60.png" platform="ios" width="60" height="60" />
+    <icon src="img/ios/icon/icon-60@2x.png" platform="ios" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="img/ios/icon/icon-76.png" platform="ios" width="76" height="76" />
+    <icon src="img/ios/icon/icon-76@2x.png" platform="ios" width="152" height="152" />
+
+    <!-- Settings Icon -->
+    <icon src="img/ios/icon/icon-Small.png" platform="ios" width="29" height="29" />
+    <icon src="img/ios/icon/icon-Small@2x.png" platform="ios" width="58" height="58" />
+    <icon src="img/ios/icon/icon-Small@3x.png" platform="ios" width="87" height="87" />
+
+    <!-- Spotlight Icon -->
+    <icon src="img/ios/icon/icon-Small-40.png" platform="ios" width="40" height="40" />
+    <icon src="img/ios/icon/icon-Small-40@2x.png" platform="ios" width="80" height="80" />
+
+    <!-- iPhone and iPod touch -->
+    <splash src="img/ios/splash/Default.png" platform="ios" width="320" height="480" />
+    <splash src="img/ios/splash/Default@2x.png" platform="ios" width="640" height="960" />
+
+    <!-- iPhone 5 / iPod Touch (5th Generation) -->
+    <splash src="img/ios/splash/Default-568h@2x.png" platform="ios" width="640" height="1136" />
+
+    <!-- iPhone 6 -->
+    <splash src="img/ios/splash/Default-667h@2x.png" platform="ios" width="750" height="1334" />
+    <splash src="img/ios/splash/Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+    <splash src="img/ios/splash/Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />
+
+    <!-- iPad -->
+    <splash src="img/ios/splash/Default-Portrait.png" platform="ios" width="768" height="1024" />
+    <splash src="img/ios/splash/Default-Landscape.png" platform="ios" width="1024" height="768" />
+
+    <!-- Retina iPad -->
+    <splash src="img/ios/splash/Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
+    <splash src="img/ios/splash/Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
+
+  </platform>
   <platform name="android">
-    <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
-    <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
-    <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
-    <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
-    <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
-    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
+    <icon src="img/android/icon/ldpi/psychic-source-icon.png" density="ldpi"/>
+    <icon src="img/android/icon/mipmap-mdpi/psychic-source-icon.png" density="mdpi"/>
+    <icon src="img/android/icon/mipmap-hdpi/psychic-source-icon.png" density="hdpi"/>
+    <icon src="img/android/icon/mipmap-xhdpi/psychic-source-icon.png" density="xhdpi"/>
+    <icon src="img/android/icon/mipmap-xxhdpi/psychic-source-icon.png" density="xxhdpi"/>
+    <icon src="img/android/icon/mipmap-xxxhdpi/psychic-source-icon.png" density="xxxhdpi"/>
     <splash src="resources/android/splash/drawable-land-ldpi-screen.png" density="land-ldpi"/>
     <splash src="resources/android/splash/drawable-land-mdpi-screen.png" density="land-mdpi"/>
     <splash src="resources/android/splash/drawable-land-hdpi-screen.png" density="land-hdpi"/>

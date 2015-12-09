@@ -6,6 +6,11 @@
  */
 
 var starter = angular.module('starter', ['ionic','ngCordova','starter.services'])
+.run(function($cordovaSplashscreen){
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  },5000);
+})
 //.run(function(PushProcessingService) {
   //run once for the app
   //PushProcessingService.initialize();

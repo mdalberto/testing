@@ -39,14 +39,14 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
   member: 'member_role',
   public_role: 'public_role'
 })
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.InAppBrowser) {
       window.open = cordova.InAppBrowser.open;
     }
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
@@ -54,7 +54,34 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
+    var push = PushNotification.init({
+        android: {
+            senderID: "117405771847"
+        },
+        ios: {
+            alert: "true",
+            badge: "true",
+            sound: "true"
+        }
+    });
 
+    push.on('registration', function(data) {
+      alert(data.registrationId);
+    });
+
+    push.on('notification', function(data) {
+        // data.message,
+        // data.title,
+        // data.count,
+        // data.sound,
+        // data.image,
+        // data.additionalData
+        alert(data.message);
+    });
+
+    push.on('error', function(e) {
+        alert(e);
+    });
   });
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {

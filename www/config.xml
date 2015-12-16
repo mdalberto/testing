@@ -85,18 +85,18 @@
     <icon src="icons/android/mipmap-xhdpi/psychic-source-icon.png" gap:density="xhdpi"/>
     <icon src="icons/android/mipmap-xxhdpi/psychic-source-icon.png" gap:density="xxhdpi"/>
     <icon src="icons/android/mipmap-xxxhdpi/psychic-source-icon.png" gap:density="xxxhdpi"/>
-    <splash src="splashscreen/android/drawable-land-ldpi-screen.png" gap:qualifier="land-ldpi"/>
-    <splash src="splashscreen/android/drawable-land-mdpi-screen.png" gap:qualifier="land-mdpi"/>
-    <splash src="splashscreen/android/drawable-land-hdpi-screen.png" gap:qualifier="land-hdpi"/>
-    <splash src="splashscreen/android/drawable-land-xhdpi-screen.png" gap:qualifier="land-xhdpi"/>
-    <splash src="splashscreen/android/drawable-land-xxhdpi-screen.png" gap:qualifier="land-xxhdpi"/>
-    <splash src="splashscreen/android/drawable-land-xxxhdpi-screen.png" gap:qualifier="land-xxxhdpi"/>
-    <splash src="splashscreen/android/splash-port-ldpi.png" gap:qualifier="port-ldpi"/>
-    <splash src="splashscreen/android/splash-port-mdpi.png" gap:qualifier="port-mdpi"/>
-    <splash src="splashscreen/android/splash-port-hdpi.png" gap:qualifier="port-hdpi"/>
-    <splash src="splashscreen/android/splash-port-xhdpi.png" gap:qualifier="port-xhdpi"/>
-    <!--<splash src="splashscreen/android/splash-port-xxhdpi.png" gap:qualifier="port-xxhdpi"/>-->
-    <!--<splash src="splashscreen/android/splash-port-xxxhdpi.png" gap:qualifier="port-xxxhdpi"/>-->
+    <splash src="splashscreen/android/splash-land-LDPI.png" gap:qualifier="land-ldpi"/>
+    <splash src="splashscreen/android/splash-land-MDPI.png" gap:qualifier="land-mdpi"/>
+    <splash src="splashscreen/android/splash-land-HDPI.png" gap:qualifier="land-hdpi"/>
+    <splash src="splashscreen/android/splash-land-XHDPI.png" gap:qualifier="land-xhdpi"/>
+    <splash src="splashscreen/android/splash-land-XXHDPI.png" gap:qualifier="land-xxhdpi"/>
+    <splash src="splashscreen/android/splash-land-XXXHPDI.png" gap:qualifier="land-xxxhdpi"/>
+    <splash src="splashscreen/android/splash-port-LDPI.png" gap:qualifier="port-ldpi"/>
+    <splash src="splashscreen/android/splash-port-MDPI.png" gap:qualifier="port-mdpi"/>
+    <splash src="splashscreen/android/splash-port-HDPI.png" gap:qualifier="port-hdpi"/>
+    <splash src="splashscreen/android/splash-port-XHDPI.png" gap:qualifier="port-xhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXHPDI.png" gap:qualifier="port-xxhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXXHPDI.png" gap:qualifier="port-xxxhdpi"/>
   </platform>
   <access origin="tel:*" launch-external="yes" />
 </widget>

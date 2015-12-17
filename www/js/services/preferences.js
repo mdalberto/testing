@@ -20,11 +20,15 @@ angular.module('PsychicSource.Preferences', [])
         d.resolve(preferences.settings);
       },function(err){                                           
         $ionicLoading.hide();
-        var alertPopup = $ionicPopup.alert({
-          title: 'Error',
-          template: 'Error while retrieving account information'
-        });  
-        d.reject(err);                             
+        if(err.status === 401){
+          $rootScope.$broadcast('user:logout:complete');
+        } else {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Error while retrieving account information'
+          });  
+          d.reject(err);                             
+        }
       });
       return d.promise;
     }

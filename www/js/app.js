@@ -4,7 +4,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 //run once for the app
 //PushProcessingService.initialize();
 //}
-.run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+.run(function($ionicPlatform,$ionicPopup,$rootScope, $state, AuthService,AUTH_EVENTS){
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -30,16 +30,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
 
   });
-})
-.constant('AUTH_EVENTS', {
-  notAuthenticated: 'auth-not-authenticated',
-  notAuthorized: 'auth-not-authorized'
-})
-.constant('USER_ROLES',{
-  member: 'member_role',
-  public_role: 'public_role'
-})
-.run(function($ionicPlatform,$ionicPopup) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -66,7 +57,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     });
 
     push.on('registration', function(data) {
-      alert(data.registrationId);
+      var platform = ionic.Platform.platform();
+      AuthService.updateCredentials({platform: platform, platformId: data.registrationId});
     });
 
     push.on('notification', function(data) {
@@ -83,6 +75,15 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
         alert(e);
     });
   });
+
+})
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+.constant('USER_ROLES',{
+  member: 'member_role',
+  public_role: 'public_role'
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
   //$httpProvider.defaults.withCredentials = true;

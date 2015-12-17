@@ -2,13 +2,13 @@ angular.module('PsychicSource.Authentication', [])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService){
   var auth = {
     isAuthenticated: false,
-    tokenName: 'token',
+    sessionKey: 'token',
     emailOrPhone: '',
     membershipId: null,
     token: null,
     role: USER_ROLES.public_role,
     loadUserCredentials: function(){
-      var data = $localstorage.getObject(auth.tokenName);
+      var data = $localstorage.getObject(auth.sessionKey);
       var token = data.access_token;
       
       if(token) {
@@ -16,8 +16,14 @@ angular.module('PsychicSource.Authentication', [])
       }
     },
     storeUserCredentials: function(userData){
-      $localstorage.setObject(auth.tokenName,userData);
+      $localstorage.setObject(auth.sessionKey,userData);
       auth.useCredentials(userData);
+    },
+    updateCredentials: function(userData){
+      var data = $localstorage.getObject(auth.sessionKey);
+      $.extend(data,userData);
+      $localstorage.setObject(auth.sessionKey,data);
+      auth.useCredentials(data);
     },
     useCredentials: function(userData){
       auth.isAuthenticated = true;
@@ -32,7 +38,7 @@ angular.module('PsychicSource.Authentication', [])
       auth.isAuthenticated = false;
       auth.role = USER_ROLES.public_role;
       $http.defaults.headers.common['Authorization'] = undefined;
-      $localstorage.remove(auth.tokenName);
+      $localstorage.remove(auth.sessionKey);
       $localstorage.remove('summary-'+auth.membershipId);
       auth.membershipId = null;
     },
@@ -72,7 +78,9 @@ angular.module('PsychicSource.Authentication', [])
     refresh: auth.loadUserCredentials,
     login: auth.login,
     logout: auth.logout,
+    sessionKey: auth.sessionKey,
     isAuthorized : auth.isAuthorized,
+    updateCredentials: auth.updateCredentials,
     isAuthenticated: function() {return auth.isAuthenticated;},
     role: function(){return auth.role;},
     id: function(){return auth.membershipId;}

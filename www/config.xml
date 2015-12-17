@@ -15,6 +15,7 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="AutoHideSplashScreen" value="false" />
   <preference name="auto-hide-splash-screen" value="false" />
   <preference name="SplashScreenDelay" value="3000" />
   <preference name="SplashMaintainAspectRatio" value="true|false" />
@@ -90,13 +91,14 @@
     <splash src="splashscreen/android/splash-land-HDPI.png" gap:qualifier="land-hdpi"/>
     <splash src="splashscreen/android/splash-land-XHDPI.png" gap:qualifier="land-xhdpi"/>
     <splash src="splashscreen/android/splash-land-XXHDPI.png" gap:qualifier="land-xxhdpi"/>
-    <splash src="splashscreen/android/splash-land-XXXHPDI.png" gap:qualifier="land-xxxhdpi"/>
+    <splash src="splashscreen/android/splash-land-XXXHDPI.png" gap:qualifier="land-xxxhdpi"/>
     <splash src="splashscreen/android/splash-port-LDPI.png" gap:qualifier="port-ldpi"/>
     <splash src="splashscreen/android/splash-port-MDPI.png" gap:qualifier="port-mdpi"/>
     <splash src="splashscreen/android/splash-port-HDPI.png" gap:qualifier="port-hdpi"/>
     <splash src="splashscreen/android/splash-port-XHDPI.png" gap:qualifier="port-xhdpi"/>
-    <splash src="splashscreen/android/splash-port-XXHPDI.png" gap:qualifier="port-xxhdpi"/>
-    <splash src="splashscreen/android/splash-port-XXXHPDI.png" gap:qualifier="port-xxxhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXHDPI.png" gap:qualifier="port-xxhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXXHDPI.png" gap:qualifier="port-xxxhdpi"/>
+    <splash src="screen.png" />
   </platform>
   <access origin="tel:*" launch-external="yes" />
 </widget>

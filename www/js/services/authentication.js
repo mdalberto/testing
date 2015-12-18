@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', [])
-.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService){
+.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
     isAuthenticated: false,
     sessionKey: 'token',
@@ -16,8 +16,7 @@ angular.module('PsychicSource.Authentication', [])
       }
     },
     storeUserCredentials: function(userData){
-      $localstorage.setObject(auth.sessionKey,userData);
-      auth.useCredentials(userData);
+      auth.updateCredentials(userData);
     },
     updateCredentials: function(userData){
       var data = $localstorage.getObject(auth.sessionKey);
@@ -55,8 +54,31 @@ angular.module('PsychicSource.Authentication', [])
     },
     login: function(data) {
       return AjaxService.login(data).then(function(res){
-        auth.storeUserCredentials(res.data);
-        return res.code;
+        d = $q.defer();
+        var push = PushNotificationService.init();
+        push.on('registration', function(pushData) {
+          alert(pushData.registrationId);
+          var platform = ionic.Platform.platform();
+          auth.storeUserCredentials(res.data);
+          auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
+          d.resolve(res.code);
+        });
+
+        push.on('notification', function(data) {
+            // data.message,
+            // data.title,
+            // data.count,
+            // data.sound,
+            // data.image,
+            // data.additionalData
+            alert(data.message);
+        });
+
+        push.on('error', function(e) {
+          d.reject(e);   
+          alert(e);
+        });
+        return d.promise;
       }); 
     },
     isAuthorized: function(authorizedRoles){
@@ -78,7 +100,7 @@ angular.module('PsychicSource.Authentication', [])
     refresh: auth.loadUserCredentials,
     login: auth.login,
     logout: auth.logout,
-    sessionKey: auth.sessionKey,
+    sessionKey: function() { return auth.sessionKey;},
     isAuthorized : auth.isAuthorized,
     updateCredentials: auth.updateCredentials,
     isAuthenticated: function() {return auth.isAuthenticated;},

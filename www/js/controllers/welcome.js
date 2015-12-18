@@ -1,13 +1,15 @@
 
-PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService, SummaryService){
+PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,$ionicPopup,AuthService, SummaryService, AjaxService, $localstorage){
   $rootScope.showFooter = false;
   $scope.data = {};
 
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(authenticated){
-      $scope.data = {};
-      $state.go('app.member-home'); 
+      $scope.sendNotificationId().then(function(res){; 
+        $scope.data = {};
+        $state.go('app.member-home'); 
+      });
     },function(err){
       $ionicLoading.hide();
       var alertPopup = $ionicPopup.alert({
@@ -16,4 +18,27 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
       });
     });
   };
+
+  $scope.sendNotificationId = function() {
+    $ionicLoading.show({template: 'Updating device credentials...'});
+    d = $q.defer();
+    var data = $localstorage.getObject(AuthService.sessionKey());
+    AjaxService.sendNotificationId(data).then(function(res){
+      $ionicLoading.hide();
+      d.resolve(res);
+    },function(err){                                           
+      $ionicLoading.hide();
+      if(err.status === 401){
+        $rootScope.$broadcast('user:logout:complete');
+      } else {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: '(2) Error while updating device information'
+        });  
+        d.reject(err);   
+      }
+    });
+    return d.promise;
+  };
+
 });

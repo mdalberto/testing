@@ -1,15 +1,18 @@
 angular.module('PsychicSource.Ajax', [])
 .factory('AjaxService',function($q,$http){
-
+  var mobilePlatforms = {android: 1, ios: 2};
   var ajaxHandler = {
     baseUrl: 'https://testapi.vseinc.com/',
     networkId: 2,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+    headers: function(contentType){
+      var contentType = typeof contentType !== 'undefined' ? contentType : 'application/json';
+      return {
+      'Content-Type': contentType,
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Origin': '*',
       'Pragma': 'no-cache',
       'Cache-Control': 'no-cache'
+      };
     },
     login: function(data){
       var sendData = {
@@ -22,7 +25,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'POST',
         cache: false,
         url: ajaxHandler.baseUrl + 'token',
-        header: ajaxHandler.headers,
+        header: ajaxHandler.headers('application/x-www-form-urlencoded'),
         data: jQuery.param(sendData)
         })
     },
@@ -31,8 +34,18 @@ angular.module('PsychicSource.Ajax', [])
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/summary',
-        header: ajaxHandler.headers,
+        header: ajaxHandler.headers(),
         });
+    },
+    sendNotificationId: function(data){
+      var mobileOS = mobilePlatforms[data.platform];
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + data.membershipId + '/registersnsdevice/' + mobileOS + '/' + data.platformId,
+        header: ajaxHandler.headers(),
+        });
+  
     }
     
   };

@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.Push'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();
@@ -45,35 +45,6 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
-    var push = PushNotification.init({
-        android: {
-            senderID: "117405771847"
-        },
-        ios: {
-            alert: "true",
-            badge: "true",
-            sound: "true"
-        }
-    });
-
-    push.on('registration', function(data) {
-      var platform = ionic.Platform.platform();
-      AuthService.updateCredentials({platform: platform, platformId: data.registrationId});
-    });
-
-    push.on('notification', function(data) {
-        // data.message,
-        // data.title,
-        // data.count,
-        // data.sound,
-        // data.image,
-        // data.additionalData
-        alert(data.message);
-    });
-
-    push.on('error', function(e) {
-        alert(e);
-    });
   });
 
 })

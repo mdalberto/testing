@@ -2,6 +2,7 @@ angular.module('PsychicSource.Authentication', [])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
     isAuthenticated: false,
+    registrationIdSent: false,
     sessionKey: 'token',
     emailOrPhone: '',
     membershipId: null,
@@ -57,21 +58,15 @@ angular.module('PsychicSource.Authentication', [])
         d = $q.defer();
         var push = PushNotificationService.init();
         push.on('registration', function(pushData) {
-          alert(pushData.registrationId);
           var platform = ionic.Platform.platform();
           auth.storeUserCredentials(res.data);
           auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
-          d.resolve(res.code);
-        });
-
-        push.on('notification', function(data) {
-            // data.message,
-            // data.title,
-            // data.count,
-            // data.sound,
-            // data.image,
-            // data.additionalData
-            alert(data.message);
+          var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
+          if(storePlatformId && storePlatformId === pushData.registrationId){
+            d.resolve(false);
+          } else {
+            d.resolve(pushData.registrationId);
+          }
         });
 
         push.on('error', function(e) {

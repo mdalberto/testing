@@ -39,12 +39,28 @@ angular.module('PsychicSource.Ajax', [])
     },
     sendNotificationId: function(data){
       var mobileOS = mobilePlatforms[data.platform];
-      return $http({
-        method: 'POST',
-        cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + data.membershipId + '/registersnsdevice/' + mobileOS + '/' + data.platformId,
-        header: ajaxHandler.headers(),
-        });
+      var counter = 0;
+      var queryResults = $q.defer();
+      var query = function() {
+        $http({
+          method: 'POST',
+          cache: false,
+          url: ajaxHandler.baseUrl + 'member/v1/' + data.membershipId + '/registersnsdevice/' + mobileOS,
+          header: ajaxHandler.headers(),
+          data: {registrationId: data.platformId}
+          }).success(function(result){
+           queryResults.resolve(result); 
+          }).error(function(err){
+            if(counter < 3) {
+              query();
+              counterr++;
+            } else {
+              queryResults.reject(err);
+            }
+          });
+      };
+      query();
+      return queryResults.promise;
   
     }
     

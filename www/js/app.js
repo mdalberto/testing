@@ -1,10 +1,6 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication','PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Summary'])
-//.run(function(PushProcessingService) {
-//run once for the app
-//PushProcessingService.initialize();
-//}
-.run(function($rootScope, $state, $cordovaSplashscreen, AuthService,AUTH_EVENTS){
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.Preferences','PsychicSource.Push'])
+.run(function($ionicPlatform,$ionicPopup,$cordovaSplashscreen,$rootScope, $state, AuthService,AUTH_EVENTS){
   setTimeout(function(){
     $cordovaSplashscreen.hide();
   },5000);
@@ -33,16 +29,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
 
   });
-})
-.constant('AUTH_EVENTS', {
-  notAuthenticated: 'auth-not-authenticated',
-  notAuthorized: 'auth-not-authorized'
-})
-.constant('USER_ROLES',{
-  member: 'member_role',
-  public_role: 'public_role'
-})
-.run(function($ionicPlatform) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -57,8 +44,16 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
-
   });
+
+})
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
+.constant('USER_ROLES',{
+  member: 'member_role',
+  public_role: 'public_role'
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
   //$httpProvider.defaults.withCredentials = true;

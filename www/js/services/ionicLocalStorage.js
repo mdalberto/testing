@@ -11,7 +11,7 @@ angular.module('ionic.utils', [])
       return $window.localStorage.removeItem(key);
     },
     setObject: function(key, value) {
-      $window.localStorage[key] = JSON.stringify(value);
+      $window.localStorage.setItem(key,JSON.stringify(value));
     },
     getObject: function(key) {
       return JSON.parse($window.localStorage[key] || '{}');

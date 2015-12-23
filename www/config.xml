@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" versionCode="1">
+<widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.6.8" android-versionCode="68">
   <name>PushNotification</name>
   <description>
     Smartphone Innovation Project 
@@ -24,8 +24,10 @@
   <preference name="ShowSplashScreenSpinner" value="false"/> 
   <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/> 
+  <preference name="android-build-tool" value="gradle"/>
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+  <gap:plugin name="phonegap-plugin-push" source="npm" version="1.4.5"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

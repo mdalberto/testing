@@ -24,7 +24,6 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     event.stopPropagation();
   });
 
-
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
     var alertPopup = $ionicPopup.alert({
       title: 'Unauthorized!',

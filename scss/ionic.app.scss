@@ -35,7 +35,7 @@ $button-psychic1-active-bg:       darken($psych_color_1, 10%) !default;
 $button-psychic1-active-border:   darken($psych_color_1, 10%) !default;
 
 $button-psychic2-bg:              $psych_color_2 !default;
-$button-psychic2-text:            #eee !default;
+$button-psychic2-text:            black !default;
 $button-psychic2-border:          darken($psych_color_2, 10%) !default;
 $button-psychic2-active-bg:       darken($psych_color_2, 10%) !default;
 $button-psychic2-active-border:   darken($psych_color_2, 10%) !default;
@@ -75,6 +75,12 @@ $bar-psychic1-border:             $button-psychic1-border !default;
 $bar-psychic1-active-bg:          $button-psychic1-active-bg !default;
 $bar-psychic1-active-border:      $button-psychic1-active-border !default;
 
+$bar-psychic2-bg:                 rgba($button-psychic2-bg, $bar-transparency) !default;
+$bar-psychic2-text:               $button-psychic2-text !default;
+$bar-psychic2-border:             $button-psychic2-border !default;
+$bar-psychic2-active-bg:          $button-psychic2-active-bg !default;
+$bar-psychic2-active-border:      $button-psychic2-active-border !default;
+
 $bar-psychic4-bg:                 rgba($button-psychic4-bg, $bar-transparency) !default;
 $bar-psychic4-text:               $button-psychic4-text !default;
 $bar-psychic4-border:             $button-psychic4-border !default;
@@ -93,18 +99,21 @@ $bar-psychic5-active-border:      $button-psychic5-active-border !default;
       background-image: linear-gradient(180deg, $bar-psychic1-border, $bar-psychic1-border 50%, transparent 50%);
     }
   }
-}
 
-.bar{
+  &.bar-psychic2 {
+    @include bar-style($bar-psychic2-bg, $bar-psychic2-border, $bar-psychic2-text);
+    &.bar-footer{
+      background-image: linear-gradient(180deg, $bar-psychic2-border, $bar-psychic2-border 50%, transparent 50%);
+    }
+  }
+
   &.bar-psychic4 {
     @include bar-style($bar-psychic4-bg, $bar-psychic4-border, $bar-psychic4-text);
     &.bar-footer{
       background-image: linear-gradient(180deg, $bar-psychic4-border, $bar-psychic4-border 50%, transparent 50%);
     }
   }
-}
 
-.bar{
   &.bar-psychic-gradient {
     background: -webkit-linear-gradient(top, $psych-color-gradient-1 0%,$psych-color-gradient-2 18%,$psych-color-gradient-2 32%,$psych-color-gradient-3 66%,$psych-color-gradient-3 100%);
     border-color: $bar-psychic5-border;
@@ -161,6 +170,9 @@ button a {
     font-size:x-large;
   }
 }
+.bar-footer {
+  height: 64px !important;
+}
 
 div.button-psychicbg1 {
   h2 {
@@ -172,10 +184,13 @@ div.button-psychicbg1 {
 }
 
 .tabs .tab-item {
+  &.is-active {
+    color: #fffefe;
+  }
   .icon {
-    font-size: 26px;
+    font-size: 32px;
     span {
-      font-size:x-small;
+      font-size:16px;
       clear:both;
       display:block;
       position: relative;

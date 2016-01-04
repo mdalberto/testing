@@ -1,5 +1,4 @@
 PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS){
-
   $scope.membershipId = AuthService.id;
 
   $scope.logout = function(){
@@ -36,6 +35,16 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
       template: 'Sorry, You have to login again.'
     });
   });
+
+  $scope.init = function(){
+    $scope.isAccount = function() { return $state.is('app.member-home'); };
+    $scope.isReturnCall = function() { return $state.is('app.return-call'); };
+    $scope.isAvailability = function() { return $state.is('app.availability'); };
+    $scope.isPreference = function() { return $state.is('app.preferences'); };
+  };
+
+
+  $scope.init();
 
 });
 

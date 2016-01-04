@@ -32,21 +32,18 @@
       <ion-nav-bar class="bar bar-psychic-gradient bar-header disable-user-behaviour">
       </ion-nav-bar>
       <ion-nav-view class="has_header"></ion-nav-view>
-      <div class="bar bar-footer bar-psychic4 tabs tabs-icon-only" ng-show="showFooter">
-        <a class="tab-item" ui-sref="app.member-home">
-          <i class="icon ion-person"><span>My Account</span></i>  
+      <div class="bar bar-footer bar-psychic2 tabs tabs-icon-only" ng-show="showFooter">
+        <a class="tab-item" ng-class="{ 'is-active': isAccount() }" ui-sref="app.member-home">
+          <i class="icon ion-person"><span>Account</span></i>  
         </a>                
-        <a class="tab-item">
+        <a class="tab-item" ng-class="{ 'is-active': isReturnCall() }">
           <i class="icon ion-person-stalker"><span>Return Call</span></i>
         </a>                
-        <a class="tab-item">
-          <i class="icon ion-social-usd"><span>Balance</span></i>    
-        </a>                
-        <a class="tab-item">
+        <a class="tab-item" ng-class="{ 'is-active': isAvailability() }">
           <i class="icon ion-clock"><span>Availability</span></i> 
         </a>                
-        <a class="tab-item" ui-sref="app.preferences">
-          <i class="icon ion-gear-a"><span>Notifications</span></i>
+        <a class="tab-item" ng-class="{ 'is-active': isPreference() }" ui-sref="app.preferences">
+          <i class="icon ion-gear-a"><span>Preference</span></i>
         </a>                
       </div>
 

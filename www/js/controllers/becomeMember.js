@@ -1,5 +1,5 @@
 
-starter.controller('BecomeMemberCtrl',function($scope){
+PsychicSource.controller('BecomeMemberCtrl',function($scope){
 
 });
 

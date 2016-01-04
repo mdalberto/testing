@@ -1,4 +1,19 @@
+PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService){
+  $rootScope.showFooter = false;
+  $scope.data = {};
 
-starter.controller('WelcomeCtrl',function($scope){
-  $scope.title = 'something'
+  $scope.login = function(data) {
+    $ionicLoading.show({template: 'Verifying Credentials...'});
+    AuthService.login(data).then(function(authenticated){
+      $scope.data = {};
+      $ionicLoading.hide();
+      $state.go('app.member-home');
+    },function(err){
+      $ionicLoading.hide();
+      var alertPopup = $ionicPopup.alert({
+        title: 'Login failed!',
+        template: 'Please check your credentials!'
+      });
+    });
+  };
 });

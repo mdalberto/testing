@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication'])
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();
@@ -98,6 +98,12 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     views: {
       'menuContent':{
         templateUrl: 'views/member_home.html',
+        controller: 'MemberHomeCtrl'
+      }
+    },
+    resolve: {
+      summary: function(SummaryService){
+        return SummaryService.getSummary();
       }
     },
     data: {

@@ -1,9 +1,3 @@
-/**
- * Author: hollyschinsky
- * twitter: @devgirfl
- * blog: devgirl.org
- * more tutorials: hollyschinsky.github.io
- */
 
 var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
 //.run(function(PushProcessingService) {
@@ -11,6 +5,31 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 //PushProcessingService.initialize();
 //}
 .run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+  $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
+    if ('data' in next && 'authorizedRoles' in next.data) {
+      var authorizedRoles = next.data.authorizedRoles;
+      if (!AuthService.isAuthorized(authorizedRoles)) {
+        event.preventDefault();
+        if('data' in next){
+          $rootScope.showFooter = next.data.showFooter;
+        }
+        $state.go(next,{},{reload: true});
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      } else {
+        if('data' in next){
+          $rootScope.showFooter = next.data.showFooter;
+        }
+      }
+    }
+
+    if (!AuthService.isAuthenticated()) {
+      if (next.data && 'authorizedRoles' in next.data && next.data.authorizedRoles.indexOf('public_role') == -1) {
+        event.preventDefault();
+        $state.go('app.welcome');
+      }
+    }
+
+  });
 })
 .constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated',
@@ -38,8 +57,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
 
   });
 })
-.config(function($ionicConfigProvider,$httpProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
-  $httpProvider.defaults.withCredentials = true;
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
+  //$httpProvider.defaults.withCredentials = true;
   $ionicConfigProvider.navBar.alignTitle('center');
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider

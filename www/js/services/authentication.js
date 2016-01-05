@@ -10,7 +10,6 @@ angular.module('PsychicSource.Authentication', [])
     loadUserCredentials: function(){
       var data = $localstorage.getObject(auth.tokenName);
       var token = data.access_token;
-      
       if(token) {
         auth.useCredentials(data);
       }

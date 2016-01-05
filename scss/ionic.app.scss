@@ -13,7 +13,7 @@ $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
-*/
+ */
 
 $psych_color_bg_1:                #f8ebcb;
 $psych_color_bg_2:                #e8efe8;
@@ -130,14 +130,14 @@ $bar-psychic5-active-border:      $button-psychic5-active-border !default;
 
 
 .button-psychic2 {
-      /*
-      Usage : <button class="button button-psychic2">
-                Custom Styled Button
-              </button>
-      */
-  @include button-style($button-psychic2-bg, $button-psychic2-border,$button-psychic2-active-bg, $button-psychic2-active-border, $button-psychic2-text);
-  @include button-clear($button-psychic2-bg);
-  @include button-outline($button-psychic2-bg);
+  /*
+  Usage : <button class="button button-psychic2">
+  Custom Styled Button
+  </button>
+   */
+@include button-style($button-psychic2-bg, $button-psychic2-border,$button-psychic2-active-bg, $button-psychic2-active-border, $button-psychic2-text);
+@include button-clear($button-psychic2-bg);
+@include button-outline($button-psychic2-bg);
 }
 
 .button-psychic3 {
@@ -161,17 +161,35 @@ button a {
   white-space:normal;
 }
 
+
+$footer-and-header-height: 64px;
+
 .button-clear.ion-navicon, .button-clear.back-button {
-  color: $button-psychic5-text;
+  color: #666666;
+  line-height: $footer-and-header-height;
+  height: $footer-and-header-height;
+  font-size:2.5em;
+}
+
+bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
+  vertical-align: top;
+  font-size: 48px;
+  font-weight: bold;
+  padding: 10px;
+  line-height: 32px;
 }
 
 .bar-header,.bar-footer{
+  height: $footer-and-header-height !important;
   .title {
-    font-size:x-large;
+    font-size:2.5em;
+    line-height: $footer-and-header-height;
+    height: $footer-and-header-height;
   }
 }
-.bar-footer {
-  height: 64px !important;
+
+.has-header,.has-footer {
+  top: $footer-and-header-height;
 }
 
 div.button-psychicbg1 {

@@ -16,4 +16,16 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
       });
     });
   };
+
+  $scope.init = function(){
+    var logoElem = document.getElementById('pslogo');
+    logoElem.addEventListener('load',function(){
+      var logo = svgPanZoom('#pslogo');
+      logo.resize();
+      logo.fit();
+      logo.center();
+    },false)
+  };
+
+  $scope.init();
 });

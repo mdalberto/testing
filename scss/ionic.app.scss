@@ -202,6 +202,7 @@ div.button-psychicbg1 {
 }
 
 .tabs .tab-item {
+  opacity: 1;
   &.is-active {
     color: #fffefe;
   }
@@ -225,3 +226,4 @@ ion-content {
 @import "scss/welcome";
 @import "scss/become-member";
 @import "scss/preferences";
+@import "scss/member-home";

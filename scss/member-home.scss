@@ -1,0 +1,18 @@
+.member-home-content{
+  .col.col-90.text-right{
+    margin:auto;
+    a{
+      font-size: 20px;
+      font-weight: bold;
+      color: $psych-color-2;
+      vertical-align: super;
+    }
+    i {
+      font-size: 36px;
+    }
+  }
+
+  i.ion-chevron-right{
+    color:#ccc;
+  }
+}

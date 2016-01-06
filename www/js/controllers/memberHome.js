@@ -5,7 +5,6 @@ PsychicSource.controller('MemberHomeCtrl',function($scope,AuthService, SummarySe
   $scope.refresh = function(){
     SummaryService.getSummary().then(function(summary){
        $scope.summary = summary;
-       $scope.apply();
     });
   };
 });

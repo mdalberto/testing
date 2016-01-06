@@ -112,6 +112,18 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
     //controller: 'MemberHomeCtrl'
   })
+  .state('app.return-call',{
+    url: '/return_call',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/return_call.html'
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  })
   .state('app.preferences',{
     url: '/preferences',
     views: {

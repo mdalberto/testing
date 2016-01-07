@@ -116,7 +116,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     url: '/return_call',
     views: {
       'menuContent':{
-        templateUrl: 'views/return_call.html'
+        templateUrl: 'views/return_call.html',
+        controller: 'ReturnCallCtrl'
       }
     },
     resolve: {

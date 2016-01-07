@@ -12,13 +12,12 @@ angular.module('PsychicSource.ReturnCalls', [])
       calls.queuesInfo = $localstorage.getObject(calls.prefixKey + AuthService.id());
     },
     callsObj: function(){
-      return calls.queueInfo;
+      return calls.queuesInfo;
     },
     getQueues: function() {
       $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
       AjaxService.getReturnCallQueues(AuthService.id()).then(function(res){
-        console.log(res);
         calls.storeReturnCallsInfo(res.data);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());

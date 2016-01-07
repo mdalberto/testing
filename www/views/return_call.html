@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col col-90 text-right">
         <i class="ion-android-refresh"></i>
-        <a href="" class="padding" >Refresh</a>
+        <a href="" class="padding" ng-click="refresh()">Refresh</a>
       </div>
     </div>
     <div class="padding list">
@@ -17,38 +17,14 @@
       </div>
       <div class="row item advisor-container" ng-repeat="call in calls">
         <div class="col col-offset-5 col-50 col-center advisor-info">
-          <img class="profile-pic" src="{{call.ExpertPhoto}}"/>
+          <img class="profile-pic" width="60" height="80" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=60"/>
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
             <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              {{moment().add(call.AvailabilityTime,'seconds').format('LLL')}}</span>
+              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('LLL')}}</span>
           </span>
         </div>
         <div class="col col-offset-5 col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>
-        <div class="col col-center text-center"><i class="icon ion-close-circled"></i></div>
-      </div>
-      <div class="row item advisor-container">
-        <div class="col col-offset-5 col-50 col-center advisor-info">
-          <img class="profile-pic" src="http://placehold.it/60x80"/>
-          <span class="advisor-details">
-            <span class="advisor-name">Joy x7744</span> <br>
-            <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              11/25/2015 2:00 PM</span>
-          </span>
-        </div>
-        <div class="col col-offset-5 col-center text-center advisor-position">1st</div>
-        <div class="col col-center text-center"><i class="icon ion-close-circled"></i></div>
-      </div>
-      <div class="row item advisor-container">
-        <div class="col col-offset-5 col-50 col-center advisor-info">
-          <img class="profile-pic" src="http://placehold.it/60x80"/>
-          <span class="advisor-details">
-            <span class="advisor-name">Mary Jane x7177</span> <br>
-            <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              11/25/2015 8:00 AM</span>
-          </span>
-        </div>
-        <div class="col col-offset-5 col-center text-center advisor-position">3rd</div>
         <div class="col col-center text-center"><i class="icon ion-close-circled"></i></div>
       </div>
     </div>

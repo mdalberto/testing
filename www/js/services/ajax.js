@@ -33,6 +33,14 @@ angular.module('PsychicSource.Ajax', [])
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/summary',
         header: ajaxHandler.headers,
         });
+    },
+    getReturnCallQueues: function(id){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/ReturnCalls',
+        header: ajaxHandler.headers
+      });
     }
     
   };

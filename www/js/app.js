@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();
@@ -117,6 +117,11 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     views: {
       'menuContent':{
         templateUrl: 'views/return_call.html'
+      }
+    },
+    resolve: {
+      calls: function(ReturnCallsService){
+        return ReturnCallsService.getQueues();
       }
     },
     data: {

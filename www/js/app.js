@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
+var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();
@@ -111,6 +111,24 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       showFooter: true
     }
     //controller: 'MemberHomeCtrl'
+  })
+  .state('app.availability',{
+    url: '/availability',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/availability.html'
+        //controller: 'MemberHomeCtrl'
+      }
+    },
+    //resolve: {
+      //summary: function(SummaryService){
+        //return SummaryService.getSummary();
+      //}
+    //},
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
   })
   .state('app.preferences',{
     url: '/preferences',

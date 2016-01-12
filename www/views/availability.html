@@ -1,0 +1,42 @@
+<ion-view title="Availability">
+  <ion-content class="padding availability-content">
+    <div class="text-center">
+      <h2 class="title">Edit Return Call Settings</h2>
+    </div>
+    <h4 class="text-center">Return Call Number: 1(267)5891520</h4>
+    <h4 class="text-center">Availability: 08:59 hour(s)</h4>
+
+    <div class="padding list">
+      <div class="row item advisor-board-header">
+        <div class="col col-100">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"> Your Return Call Number </span>
+          </label>
+            <input type="text" international-phone-number only-countries="us,es" ng-model="phone">
+          
+        </div>
+      </div>
+
+      <div class="row item advisor-board-header">
+        <div class="col col-80"> 
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"> Availability </span> 
+            <input type="number" ng-init="data.hours=12" ng-model="data.hours" maxlength="12">
+          </label>
+        </div>
+        <div class="col col-center text-center"> 
+          <span class="right">hours(s) </span>
+        </div>
+      </div>
+      <div class="row item advisor-board-header">
+        <div class="col text-right">
+        <button class="button button-light pull-right">&nbsp;Cancel</button>
+        <button class="button button-assertive right">&nbsp;Save changes</button>
+      </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
+
+

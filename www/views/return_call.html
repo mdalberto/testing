@@ -1,0 +1,37 @@
+<!-- Return Call page -->
+
+<ion-view title="Return Call">
+<ion-content class="padding has-footer return-call-content">
+  <br>
+  <div class="text-center">
+    <h2 class="title">Manage Your Return Call Lines</h2>
+  </div>
+  <div class="row">
+      <div class="col col-90 text-right">
+        <i class="ion-android-refresh"></i>
+        <a href="" class="padding" ng-click="refresh()">Refresh</a>
+      </div>
+    </div>
+    <div class="padding list">
+      <div class="row item advisor-board-header">
+        <div class="col col-offset-5 col-50"></div>
+        <div class="col col-offset-5 text-center">Position</div>
+        <div class="col text-center">Delete</div>
+      </div>
+      <div class="row item advisor-container" ng-repeat="call in calls">
+        <div class="col col-offset-5 col-50 col-center advisor-info">
+          <img class="profile-pic" width="60" height="80" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=60"/>
+          <span class="advisor-details">
+            <span class="advisor-name">{{call.ExpertName}}</span> <br>
+            <span class="advisor-availability"><strong>Next Availability:</strong> <br>
+              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('LLL')}}</span>
+          </span>
+        </div>
+        <div class="col col-offset-5 col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>
+        <a class="col col-center text-center" ng-click="remove($index)"><i class="icon ion-close-circled"></i></a>
+      </div>
+    </div>
+</ion-content>
+</ion-view>
+
+

@@ -116,15 +116,15 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     url: '/availability',
     views: {
       'menuContent':{
-        templateUrl: 'views/availability.html'
-        //controller: 'MemberHomeCtrl'
+        templateUrl: 'views/availability.html',
+        controller: 'AvailabilityCtrl'
       }
     },
-    //resolve: {
-      //summary: function(SummaryService){
-        //return SummaryService.getSummary();
-      //}
-    //},
+    resolve: {
+      availabilityObj: function(AvailabilityService){
+        return AvailabilityService.getCountryCodesAndHours();
+      }
+    },
   .state('app.return-call',{
     url: '/return_call',
     views: {

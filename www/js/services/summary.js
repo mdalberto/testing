@@ -31,6 +31,7 @@ angular.module('PsychicSource.Summary', [])
       $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
       AjaxService.getSummary(AuthService.id()).then(function(res){
+        console.log(res);
         summary.storeUserSummary(res.data);
         $ionicLoading.hide();
         d.resolve(summary.summaryObj());

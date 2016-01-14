@@ -47,9 +47,23 @@ angular.module('PsychicSource.Ajax', [])
         method: 'DELETE',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + membershipId + '/DeleteReturnCall/' + advisorId,
+    getCountryCodes: function(){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'domain/countrycodes',
+        header: ajaxHandler.headers
+      });
+    },
+    getReturnCallAvailabilityHours: function(){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'domain/returncallavailabilityhours',
         header: ajaxHandler.headers
       });
     }
+
     
   };
   return ajaxHandler;

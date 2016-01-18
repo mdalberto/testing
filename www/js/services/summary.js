@@ -7,7 +7,10 @@ angular.module('PsychicSource.Summary', [])
     balance: null,
     callCount: null,
     availableUntil: null,
+    availabilityTime: null,
     numberOfNotifications: null,
+    phone: null,
+    countryId: null,
     storeUserSummary: function(userData){
       $localstorage.setObject(summary.prefixKey + AuthService.id(),userData);
       summary.loadUserSummary();
@@ -17,14 +20,20 @@ angular.module('PsychicSource.Summary', [])
       summary.balance = info_summary.Balance;
       summary.callCount = info_summary.ReturnCallQueueCount;
       summary.availableUntil = info_summary.AvailableUntil;
+      summary.availabilityTime = info_summary.AvailabilityTime;
       summary.numberOfNotifications = info_summary.NumberOfNotifications;
+      summary.countryId = info_summary.CountryId;
+      summary.phone = info_summary.Phone;
     },
     summaryObj: function(){
       return {
         balance: summary.balance,
         callCount: summary.callCount,
         availability: summary.availableUntil,
-        notifications: summary.numberOfNotifications
+        availabilityInSeconds: summary.availabilityTime,
+        notifications: summary.numberOfNotifications,
+        countryId: summary.countryId,
+        phone: summary.phone
       }
     },
     getSummary: function() {

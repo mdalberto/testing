@@ -18,13 +18,11 @@ angular.module('PsychicSource.Availability', [])
         AjaxService.getReturnCallAvailabilityHours()
       ])
       .then(function(responses){
-        console.log(responses[0]);
         availability.countryCodes = responses[0].data;
         availability.hours = responses[1].data;
         $ionicLoading.hide();
         d.resolve(availability.availabilityObj());
       },function(err){
-        console.log(err);
         var alertPopup = $ionicPopup.alert({
           title: 'Error',
           template: '(2) Error while retrieving country codes or return call availability hours'

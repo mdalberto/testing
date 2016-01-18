@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls','ordinal','underscore'])
+var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls','PsychicSource.Availability','ordinal','underscore'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();
@@ -125,6 +125,11 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
         return AvailabilityService.getCountryCodesAndHours();
       }
     },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  })
   .state('app.return-call',{
     url: '/return_call',
     views: {

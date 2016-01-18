@@ -3,8 +3,8 @@
     <div class="text-center">
       <h2 class="title">Edit Return Call Settings</h2>
     </div>
-    <h4 class="text-center">Return Call Number: 1(267)5891520</h4>
-    <h4 class="text-center">Availability: 08:59 hour(s)</h4>
+    <h4 class="text-center">Return Call Number: {{times.formattedPhone}}</h4>
+    <h4 class="text-center" >Availability: {{times.availableHours}} hour(s)</h4>
 
     <div class="padding list">
       <div class="row item advisor-board-header">
@@ -12,7 +12,7 @@
           <label class="item item-input item-stacked-label">
             <span class="input-label"> Your Return Call Number </span>
           </label>
-            <input type="text" international-phone-number only-countries="us,es" ng-model="phone">
+          <input type="text" international-phone-number preferred-countries="ca" default-country="ca" country="ca" ng-model="phone">
           
         </div>
       </div>
@@ -23,8 +23,8 @@
             <span class="input-label"> Availability </span> 
           </label>
             <div class="item item-input item-select">
-            <select>
-              <option ng-repeat="option in hours">{{option}}</option>
+            <select ng-model="times.hour" ng-change="updateAvailableHours()">
+              <option ng-repeat="option in hours" >{{option}}</option>
             </select>
             <span class="input-label"> hour(s) </span> 
           </div>

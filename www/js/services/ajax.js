@@ -47,6 +47,9 @@ angular.module('PsychicSource.Ajax', [])
         method: 'DELETE',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + membershipId + '/DeleteReturnCall/' + advisorId,
+        header: ajaxHandler.headers
+      });
+    },
     getCountryCodes: function(){
       return $http({
         method: 'GET',

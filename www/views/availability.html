@@ -7,13 +7,15 @@
     <h4 class="text-center" >Availability: {{times.availableHours}} hour(s)</h4>
 
     <div class="padding list">
+      <form>
       <div class="row item advisor-board-header">
         <div class="col col-100">
           <label class="item item-input item-stacked-label">
             <span class="input-label"> Your Return Call Number </span>
           </label>
-          <input type="text" international-phone-number preferred-countries="ca" default-country="ca" country="ca" ng-model="phone">
-          
+          <span class="tel-input-wrapper">
+          <input type="text" ng-if="showPhoneDropdown" international-phone-number ng-model="phone">
+          </span>
         </div>
       </div>
 
@@ -23,7 +25,7 @@
             <span class="input-label"> Availability </span> 
           </label>
             <div class="item item-input item-select">
-            <select ng-model="times.hour" ng-change="updateAvailableHours()">
+            <select ng-model="times.hour">
               <option ng-repeat="option in hours" >{{option}}</option>
             </select>
             <span class="input-label"> hour(s) </span> 
@@ -32,11 +34,12 @@
       </div>
       <div class="row item advisor-board-header">
         <div class="col text-right">
-        <button class="button button-light pull-right">&nbsp;Cancel</button>
-        <button class="button button-assertive right">&nbsp;Save changes</button>
-      </div>
+        <button class="button button-light pull-right" ng-click="reset()">&nbsp;Cancel</button>
+        <button type="submit" class="button button-assertive right" ng-click="update">&nbsp;Save changes</button>
       </div>
     </div>
+  </form>
+  </div>
 
   </ion-content>
 </ion-view>

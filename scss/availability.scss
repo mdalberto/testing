@@ -24,9 +24,12 @@
     label.item-stacked-label{
       border:0;
     }
-    div.intl-tel-input {
-      display: block;
-      margin-left:12px !important;
+    span.tel-input-wrapper{
+      height:2em;
+      display:block;
+      div.intl-tel-input {
+        margin-left:12px !important;
+      }
     }
 
     .button {

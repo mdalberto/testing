@@ -20,7 +20,8 @@ Session.vim
 node_modules/
 platforms/
 plugins/
-www/lib/jquery/src
+www/bower_components
+www/lib
 
 # ignore generated css
 www/css/ionic.app.css

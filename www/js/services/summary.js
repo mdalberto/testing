@@ -15,6 +15,12 @@ angular.module('PsychicSource.Summary', [])
       $localstorage.setObject(summary.prefixKey + AuthService.id(),userData);
       summary.loadUserSummary();
     },
+    updateUserSummary: function(userData){
+      var data = $localstorage.getObject(summary.prefixKey + AuthService.id());
+      $.extend(data,userData);
+      $localstorage.setObject(summary.prefixKey + AuthService.id(),data);
+      summary.loadUserSummary(data);
+    },
     loadUserSummary: function(){
       var info_summary = $localstorage.getObject(summary.prefixKey + AuthService.id());
       summary.balance = info_summary.Balance;
@@ -66,8 +72,10 @@ angular.module('PsychicSource.Summary', [])
     callCount: function(){return summary.callCount},
     availability: function(){return summary.availableUntil},
     notifications: function(){return summary.numberOfNotifications},
+    phone: function(){return summary.phone},
     summaryObj: summary.summaryObj,
-    getSummary: summary.getSummary
+    getSummary: summary.getSummary,
+    updateUserSummary: summary.updateUserSummary
   };
   return result;
 });

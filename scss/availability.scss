@@ -29,6 +29,9 @@
       display:block;
       div.intl-tel-input {
         margin-left:12px !important;
+        input.ng-invalid {
+          background-color: #FFC7C7;
+        }
       }
     }
 

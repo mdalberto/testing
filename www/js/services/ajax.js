@@ -65,6 +65,16 @@ angular.module('PsychicSource.Ajax', [])
         url: ajaxHandler.baseUrl + 'domain/returncallavailabilityhours',
         header: ajaxHandler.headers
       });
+    },
+    updateReturnCallProfile: function(data){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/UpdateReturnCallProfile',
+        header: $.extend(ajaxHandler.headers, {'Content-Type': 'application/json'}),
+        data: data
+      });
+
     }
 
     

@@ -7,14 +7,14 @@
     <h4 class="text-center" >Availability: {{times.availableHours}} hour(s)</h4>
 
     <div class="padding list">
-      <form>
+      <form name="updatesettings" novalidate ng-submit="warnInvalid(updatesettings) && updatesettings.$valid && update()">
       <div class="row item advisor-board-header">
         <div class="col col-100">
           <label class="item item-input item-stacked-label">
             <span class="input-label"> Your Return Call Number </span>
           </label>
           <span class="tel-input-wrapper">
-          <input type="text" ng-if="showPhoneDropdown" international-phone-number ng-model="phone">
+          <input type="text" ng-if="showPhoneDropdown" international-phone-number ng-model="times.phone" ng-pattern="/^[d{0,9}-]*/" required>
           </span>
         </div>
       </div>
@@ -34,8 +34,8 @@
       </div>
       <div class="row item advisor-board-header">
         <div class="col text-right">
-        <button class="button button-light pull-right" ng-click="reset()">&nbsp;Cancel</button>
-        <button type="submit" class="button button-assertive right" ng-click="update">&nbsp;Save changes</button>
+        <button type="button" class="button button-light pull-right" ng-click="reset()">&nbsp;Cancel</button>
+        <button type="submit" class="button button-assertive right">&nbsp;Save changes</button>
       </div>
     </div>
   </form>

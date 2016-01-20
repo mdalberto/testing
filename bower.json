@@ -13,6 +13,7 @@
     "svg-pan-zoom": "~3.2.6",
     "ngCordova": "~0.1.24-alpha",
     "moment-duration-format": "~1.3.0",
-    "jquerypp": "~2.0.1"
+    "jquerypp": "~2.0.1",
+    "moment-timezone": "~0.5.0"
   }
 }

@@ -18,6 +18,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script> 
     <script src="bower_components/moment/min/moment.min.js"></script> 
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script> 
     <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script> 
     <script src="bower_components/underscore/underscore-min.js"></script> 
     <script src="bower_components/angularjs-ordinal-filter/ordinal-browser.js"></script> 
@@ -59,7 +60,7 @@
         <a class="tab-item" ng-class="{ 'is-active': isReturnCall() }">
           <i class="icon ion-person-stalker"><span>Return Call</span></i>
         </a>                
-        <a class="tab-item" ng-class="{ 'is-active': isAvailability() }">
+        <a class="tab-item" ng-class="{ 'is-active': isAvailability() }" ui-sref="app.availability">
           <i class="icon ion-clock"><span>Availability</span></i> 
         </a>                
         <a class="tab-item" ng-class="{ 'is-active': isPreference() }" ui-sref="app.preferences">

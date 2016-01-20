@@ -21,6 +21,8 @@ node_modules/
 platforms/
 plugins/
 www/lib/jquery/src
+www/lib
+www/bower_components
 
 # ignore generated css
 www/css/ionic.app.css

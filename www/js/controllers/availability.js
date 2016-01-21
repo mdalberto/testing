@@ -101,7 +101,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
 
   $timeout(function(){
     $scope.afterPageRender();
-  });
+  },500);
   
   $scope.warnInvalid = function(form){
     if(!form.$valid){

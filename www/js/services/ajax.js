@@ -117,7 +117,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'POST',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/UpdateReturnCallProfile',
-        header: ajaxHandler.headers()
+        header: ajaxHandler.headers(),
         data: data
       });
 

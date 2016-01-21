@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>PushNotification</name>
+<widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.6.3" android-versionCode="63">
+  <name>PsychicSource</name>
   <description>
       Smartphone Innovation Project 
     </description>
@@ -9,6 +9,7 @@
   </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access origin="tel:*" launch-external="yes"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -16,12 +17,13 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/> 
+  <preference name="StatusBarOverlaysWebView" value="false"/>
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <platform name="ios" />
+  <platform name="ios"/>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
@@ -42,5 +44,4 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
-  <access origin="tel:*" launch-external="yes" />
 </widget>

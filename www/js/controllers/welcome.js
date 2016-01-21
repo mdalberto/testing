@@ -2,6 +2,7 @@
 PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService, SummaryService){
   $rootScope.showFooter = false;
   $scope.data = {};
+  $scope.rememberMe = true;
   $scope.callNowNumber = ionic.Platform.isAndroid() ? "8669040177" : "8668842981";
   
   $scope.login = function(data) {

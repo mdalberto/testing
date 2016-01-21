@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
   $scope.membershipId = AuthService.id;
 
   $scope.logout = function(){
@@ -21,6 +21,14 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
   $scope.$on('$ionicView.beforeEnter',function(event,view){
     event.stopPropagation();
+    if(ionic.Platform.isIOS()){
+      $timeout(function(){
+        $('.bar-header').each(function(i,elem){
+          $(elem).find('.title').css('margin-top',0);
+          $(elem).find('.buttons-left').css('margin-top',0);
+        });
+      });
+    }
   });
 
    

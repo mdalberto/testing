@@ -33,7 +33,7 @@
       </div>
     
       <label class="toggle toggle-balanced remember-me">
-        <input type="checkbox">
+        <input type="checkbox" ng-model="rememberMe">
         <div class="track">
           <div class="handle"></div>
         </div>
@@ -42,13 +42,13 @@
     </div>
     <div class="padding"><button class="button button-large button-block button-psychic2" ng-click="login(data)">Login</button></div>
       <div class="row">
-        <div class="forgot-login col col-50 col-offset-25 text-center">
+        <div class="forgot-login col col-70 col-offset-15 text-center">
           <div>Forgot your login information? </div>
-          <a href="#" onclick="window.open('http://wwww.pyshicsource.com/forgot-information', '_system', 'location=yes'); return false;">CLICK HERE</a> or <a ng-click="callNow()">call 1.xxx.xxx.xxxx</a>
+          <a href="#" onclick="window.open('http://wwww.pyshicsource.com/forgot-information', '_system', 'location=yes'); return false;">CLICK HERE</a> or call <a href="#" ng-click="callNow()">1.xxx.xxx.xxxx</a>
         </div>
       </div>
       <div class="padding">
-        <button class="button button-large button-block button-psychic3" menu-close ui-sref="app.become-member"> 
+        <button class="button button-large button-block button-psychic3 medium-font-size" menu-close ui-sref="app.become-member"> 
           Not a Member? Create an Account
         </button>
       </div>

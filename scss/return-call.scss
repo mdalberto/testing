@@ -18,7 +18,7 @@
   }
   h2.title {
     color: $psych-color-2;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
   }
 
@@ -31,12 +31,15 @@
   }
 
   .advisor-board-header {
-    font-size: 24px;
+    font-size: 1em;
     padding: 15px 0;
+  }
+  .col.ellipsis { 
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .advisor-container {
-    
     padding: 10px 0;
     .profile-pic {
       border-radius: 8px;
@@ -48,9 +51,11 @@
       color:#bbb;
     } 
     .advisor-position,.ion-close-circled{
-      font-size: 24px;
+      font-size: 1em;
     }
     .advisor-info {
+      text-overflow: ellipsis;
+      overflow: hidden; 
       .advisor-details {
         display: block;
         padding: 15px 0;
@@ -58,10 +63,12 @@
           font-weight: bold;
         }
         .advisor-availability {
+          font-size:0.9em;
           color: #bbb;
         }
       }
     }
   }
+
 }
 

@@ -1,0 +1,45 @@
+.availability-content {
+  h2.title {
+    color: $psych-color-2;
+    font-size: 2em;
+    font-weight: bold;
+  }
+  h4 {
+    font-weight: normal;
+  }
+  .row,.item{
+    overflow:visible;
+    z-index:initial; 
+  }
+  .row {
+    border: 0;
+    &:last-child {
+      border-top: 1px solid rgb(221,221,221);
+      padding: 15px 0;
+    }
+    span.right {
+      position: relative;
+      top: 12px;
+    }
+    label.item-stacked-label{
+      border:0;
+    }
+    span.tel-input-wrapper{
+      height:2em;
+      display:block;
+      div.intl-tel-input {
+        margin-left:12px !important;
+        input.ng-invalid {
+          background-color: #FFC7C7;
+        }
+      }
+    }
+
+    .button {
+      font-weight: bold;
+      min-height: 32px;
+      line-height: 32px;
+    }
+  }
+}
+

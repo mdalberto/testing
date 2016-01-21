@@ -5,22 +5,32 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
     <link href="css/ionic.app.css" rel="stylesheet"> 
-    <!--<link href="lib/ionic/css/ionic.css" rel="stylesheet">-->
+    <!--<link href="bower_components/ionic/css/ionic.css" rel="stylesheet">-->
     <link href="css/style.css" rel="stylesheet">
-    <script src="lib/jquery/dist/jquery.min.js"></script>
-    <script src="lib/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script> 
-    <script src="lib/moment/min/moment.min.js"></script> 
-    <script src="lib/underscore/underscore-min.js"></script> 
+    <link href="bower_components/intl-tel-input/build/css/intlTelInput.css" rel="stylesheet">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/insertionQuery/insQ.min.js"></script>
+    <script src="bower_components/intl-tel-input/build/js/intlTelInput.js"></script>
+
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/angularjs-ordinal-filter/ordinal-browser.js"></script> 
-    <script src="lib/angular-underscore-module/angular-underscore-module.js"></script> 
+    <script src="bower_components/ionic/js/ionic.bundle.js"></script>
+    <script src="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js"></script>
+    <script src="bower_components/international-phone-number/releases/international-phone-number.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script> 
+    <script src="bower_components/moment/min/moment.min.js"></script> 
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script> 
+    <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script> 
+    <script src="bower_components/underscore/underscore-min.js"></script> 
+    <script src="bower_components/angularjs-ordinal-filter/ordinal-browser.js"></script> 
+    <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script> 
 
     <!-- ng cordova js -->
-    <script src="lib/ng-cordova.js"></script>
+    <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script type="text/javascript" src="cordova.js"></script>
+
     <script type="text/javascript" src="js/services/ionicLocalStorage.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services/ajax.js"></script>
@@ -29,14 +39,16 @@
     <script src="js/services/summary.js"></script>
     <script src="js/services/preferences.js"></script>
     <script src="js/services/returnCalls.js"></script>
+    <script src="js/services/availability.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/controllers/general.js"></script>
     <script src="js/controllers/becomeMember.js"></script>
     <script src="js/controllers/memberHome.js"></script>
     <script src="js/controllers/returnCalls.js"></script>
+    <script src="js/controllers/availability.js"></script>
     <script src="js/controllers/welcome.js"></script>
     <script src="js/controllers/preferences.js"></script>
     <script src="js/services.js"></script>
-    <script src="lib/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script> 
 
   </head>
 
@@ -52,7 +64,7 @@
         <a class="tab-item" ng-class="{ 'is-active': isReturnCall() }" ui-sref="app.return-call">
           <i class="icon ion-person-stalker"><span>Return Call</span></i>
         </a>                
-        <a class="tab-item" ng-class="{ 'is-active': isAvailability() }">
+        <a class="tab-item" ng-class="{ 'is-active': isAvailability() }" ui-sref="app.availability">
           <i class="icon ion-clock"><span>Availability</span></i> 
         </a>                
         <a class="tab-item" ng-class="{ 'is-active': isPreference() }" ui-sref="app.preferences">

@@ -1,0 +1,64 @@
+angular.module('PsychicSource.Availability', [])
+.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,SummaryService){
+  var availability = {
+    hours: null,
+    countryCodes: null,
+    availabilityObj: function(){
+      return {
+        hours: availability.hours,
+        countryCodes: availability.countryCodes
+      }
+    },
+    getCountryCodesAndHours: function() {
+      $ionicLoading.show({template: 'Loading...'});
+      d = $q.defer();
+
+      $q.all([
+        AjaxService.getCountryCodes(),
+        AjaxService.getReturnCallAvailabilityHours(),
+        AjaxService.getSummary(AuthService.id())
+      ])
+      .then(function(responses){
+        availability.countryCodes = responses[0].data;
+        availability.hours = responses[1].data;
+        SummaryService.updateUserSummary(responses[2].data);
+        $ionicLoading.hide();
+        d.resolve(availability.availabilityObj());
+      },function(err){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: '(2) Error while retrieving country codes or return call availability hours'
+        });  
+        d.reject(err);   
+      });
+      return d.promise;
+    },
+    updateReturnCallProfile: function(data){
+      $ionicLoading.show({template: 'Saving...'});
+      d = $q.defer();
+      AjaxService.updateReturnCallProfile(data).then(function(res){
+        $ionicLoading.hide();
+        d.resolve(true);
+      }, function(err){
+        $ionicLoading.hide();
+        if(err.status === 401){
+          $rootScope.$broadcast('user:logout:complete');
+        } else {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: '(2) Error while saving return call profile settings'
+          });  
+          d.reject(err);   
+        }
+      });
+      return d.promise;
+    }
+  };
+  var result = {
+    availabilityObj: availability.availabilityObj,
+    getCountryCodesAndHours: availability.getCountryCodesAndHours,
+    updateReturnCallProfile: availability.updateReturnCallProfile
+  };
+  return result;
+});
+

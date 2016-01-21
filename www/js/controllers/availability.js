@@ -21,7 +21,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   };
 
   $scope.setFormattedPhone = function(){
-    $scope.times.formattedPhone = $('input[international-phone-number').val();
+    $scope.times.formattedPhone = $('input[international-phone-number]').val();
   };
 
   $scope.setFlag = function(){
@@ -89,12 +89,10 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
     }
     $scope.setCountryObj();
     $timeout(function(){ 
-      insertionQ('input[international-phone-number]').every(function() {
-        $timeout(function(){
-          $scope.afterPageRender();
-          $ionicLoading.hide();
-        },500);
-      });
+      $timeout(function(){
+        $scope.afterPageRender();
+        $ionicLoading.hide();
+      },500);
       $scope.showPhoneDropdown = true;
     },500);
   };

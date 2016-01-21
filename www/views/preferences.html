@@ -1,7 +1,6 @@
 <!-- Preferences page -->
 <ion-view title="Notification Settings">
 <ion-content class="padding has-footer preferences-content">
-  <br>
   <h3 class="no-ellipsis text-center"> 
     Receive notifications about your Return Call Availability and more
   </h3>
@@ -12,6 +11,34 @@
         {{setting.ContentTitle}}
       <label class="toggle toggle-balanced">                   
         <input ng-model="setting.Preference" type="checkbox" ng-click="preferenceUpdated($index)"> 
+        <input type="checkbox"> 
+        <div class="track">  
+          <div class="handle"></div>                           
+        </div>               
+      </label>               
+      </li>                     
+      <li class="item item-toggle no-ellipsis">
+      Availability expires in 30 minutes
+      <label class="toggle toggle-balanced">                   
+        <input type="checkbox" checked> 
+        <div class="track">  
+          <div class="handle"></div>                           
+        </div>               
+      </label>               
+      </li>                     
+      <li class="item item-toggle no-ellipsis">
+      Account balance below minimum for Return Call                      
+      <label class="toggle toggle-balanced">                   
+        <input type="checkbox"> 
+        <div class="track">  
+          <div class="handle"></div>                           
+        </div>               
+      </label>               
+      </li>                     
+      <li class="item item-toggle no-ellipsis">
+      Removed from Return Call Line
+      <label class="toggle toggle-balanced">                   
+        <input type="checkbox" checked> 
         <div class="track">  
           <div class="handle"></div>                           
         </div>               

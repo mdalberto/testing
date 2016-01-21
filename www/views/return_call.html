@@ -14,20 +14,20 @@
     </div>
     <div class="padding list">
       <div class="row item advisor-board-header">
-        <div class="col col-offset-5 col-50"></div>
-        <div class="col col-offset-5 text-center">Position</div>
-        <div class="col text-center">Delete</div>
+        <div class="col col-67"></div>
+        <div class="col text-center ellipsis">Position</div>
+        <div class="col text-center ellipsis">Remove</div>
       </div>
       <div class="row item advisor-container" ng-repeat="call in calls">
-        <div class="col col-offset-5 col-50 col-center advisor-info">
+        <div class="col col-67 col-center advisor-info">
           <img class="profile-pic" width="60" height="80" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=60"/>
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
             <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('LLL')}}</span>
+              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('M/D/YYYY ha')}}</span>
           </span>
         </div>
-        <div class="col col-offset-5 col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>
+        <div class="col col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>
         <a class="col col-center text-center" ng-click="remove($index)"><i class="icon ion-close-circled"></i></a>
       </div>
     </div>

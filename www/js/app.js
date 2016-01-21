@@ -58,8 +58,8 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
   });
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
-  //$httpProvider.defaults.withCredentials = true;
   $ionicConfigProvider.navBar.alignTitle('center');
+  //$httpProvider.defaults.withCredentials = true;
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
   .state('app',{

@@ -168,7 +168,7 @@ $footer-and-header-height: 64px;
   color: #666666;
   line-height: $footer-and-header-height;
   height: $footer-and-header-height;
-  font-size:2.5em;
+  font-size:1.5em;
 }
 
 bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
@@ -182,14 +182,14 @@ bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .but
 .bar-header,.bar-footer{
   height: $footer-and-header-height !important;
   .title {
-    font-size:2.5em;
-    line-height: $footer-and-header-height;
-    height: $footer-and-header-height;
+    font-size:2em !important;
+    line-height: $footer-and-header-height !important;
+    height: $footer-and-header-height !important;
   }
 }
 
 .has-header,.has-footer {
-  top: $footer-and-header-height;
+  top: $footer-and-header-height !important;
 }
 
 div.button-psychicbg1 {
@@ -207,13 +207,14 @@ div.button-psychicbg1 {
     color: #fffefe;
   }
   .icon {
-    font-size: 32px;
+    font-size: 2em;
+    margin-top: 0.25em;
     span {
-      font-size:16px;
+      font-size:14px;
       clear:both;
       display:block;
       position: relative;
-      top: -18px;
+      top: -1em;
       padding:0;
       margin:0;
     }
@@ -222,6 +223,13 @@ div.button-psychicbg1 {
 ion-content {
   background: #fcf2e1;
 }
+
+/* Overwrites-fixes ionic header for ios */
+/* https://github.com/driftyco/ionic/issues/2063 */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+    margin-top: 0px !important;
+}
+
 
 @import "scss/welcome";
 @import "scss/become-member";

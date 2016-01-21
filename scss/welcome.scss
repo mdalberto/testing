@@ -11,13 +11,13 @@
     margin: 10px 10px;
   }
   .ps-logo {
-    height:6em;
+    height:5em;
     margin: auto;
     display: block;
   }
   h2.title {
     color: $psych-color-2;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: bold;
     margin-top:1em;
     margin-bottom:2em;
@@ -26,6 +26,10 @@
     color: #fffefe;
     font-size:28px;
   }
+  .medium-font-size {
+    font-size: 110% !important;
+    padding:0;
+  }   
   .remember-me-label {
     font-size: 28px;
   }

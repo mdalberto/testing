@@ -2,7 +2,9 @@
 PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService, SummaryService){
   $rootScope.showFooter = false;
   $scope.data = {};
-
+  $scope.rememberMe = true;
+  $scope.callNowNumber = ionic.Platform.isAndroid() ? "8669040177" : "8668842981";
+  
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(authenticated){
@@ -26,6 +28,12 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
       logo.center();
     },false)
   };
+
+  $scope.callNow = function(){
+    window.open('tel:' + $scope.callNowNumber, '_system', 'location=yes');
+    return false;
+  };
+  
 
   $scope.init();
 });

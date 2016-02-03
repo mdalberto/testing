@@ -101,13 +101,14 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
 
   $timeout(function(){
     $scope.afterPageRender();
+    $('ul.country-list').wrap("<ion-scroll direction='y'></ion-scroll>");
   },500);
   
   $scope.warnInvalid = function(form){
     if(!form.$valid){
         var alertPopup = $ionicPopup.alert({
           title: 'Invalid Phone Number',
-          template: 'Please verify you country code and phone number'
+          template: 'Please verify your country code and phone number'
         });  
     }
     return form.$valid;

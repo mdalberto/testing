@@ -18,7 +18,12 @@
         <div class="col text-center ellipsis">Position</div>
         <div class="col text-center ellipsis">Remove</div>
       </div>
-      <div class="row item advisor-container" ng-repeat="call in calls">
+      <div class="row item advisor-container text-center" ng-hide="calls.length">
+        <div class="col col-100 col-center empty-message">
+          You are not in any Return Calls Lines
+        </div>
+      </div>
+      <div class="row item advisor-container" ng-show="calls.length" ng-repeat="call in calls">
         <div class="col col-50 col-center advisor-info">
           <img class="profile-pic" width="40" height="50" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=50"/>
           <span class="advisor-details">

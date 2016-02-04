@@ -1,5 +1,5 @@
 
-PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$ionicPopup){
+PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$ionicPopup,$window){
   $scope.showPhoneDropdown = true;
 	$scope.hours = availabilityObj.hours;
   $scope.countryCodes = availabilityObj.countryCodes;
@@ -57,11 +57,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
         phone: String($scope.times.phone),
         countryId: countryId  
       });
-      $state.reload();
-      $timeout(function(){
-      $scope.setCountryObj();
-      $scope.afterPageRender();
-      });
+      $window.location.reload();
     });
     
   };
@@ -81,22 +77,21 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
 
   $scope.reset = function(){
     $ionicLoading.show({template: 'Reseting Info...'});
-    $scope.times.phone = SummaryService.phone();    
-    $scope.showPhoneDropdown = false;
-    if($scope.times.availableHours){
-      var hoursArr = $scope.times.availableHours.split(":");
-      $scope.times.hour = hoursArr[0];
-    }
-    $scope.setCountryObj();
-    $timeout(function(){ 
-      insertionQ('input[international-phone-number]').every(function() {
-        $timeout(function(){
-          $scope.afterPageRender();
-          $ionicLoading.hide();
-        },500);
-      });
-      $scope.showPhoneDropdown = true;
-    },500);
+    $window.location.reload();
+    //$scope.times.phone = SummaryService.phone();    
+    //$scope.showPhoneDropdown = false;
+    //if($scope.times.availableHours){
+      //var hoursArr = $scope.times.availableHours.split(":");
+      //$scope.times.hour = hoursArr[0];
+    //}
+    //$scope.setCountryObj();
+    //$timeout(function(){ 
+      //$timeout(function(){
+        //$scope.afterPageRender();
+        //$ionicLoading.hide();
+      //},500);
+      //$scope.showPhoneDropdown = true;
+    //},500);
   };
 
   $timeout(function(){

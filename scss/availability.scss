@@ -41,5 +41,10 @@
       line-height: 32px;
     }
   }
+
+  .intl-tel-input .country-list {
+    max-height: inherit;
+    overflow-y: hidden;
+  }
 }
 

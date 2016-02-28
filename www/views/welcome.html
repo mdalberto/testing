@@ -1,38 +1,34 @@
 <ion-view title="Welcome">
-  <ion-content class="padding">
+  <ion-content class="padding welcome-content">
+    <div class="col-80 col-offset-10">
+      <img class="ps-logo text-center" ng-src="img/pslogo.png"></img>
+    </div>
     <div class="list card">
       <div class="item text-center button-psychicbg1">
-        <h2>Welcome to Psychic Source</h2>
-        <h2 class="bold">To Begin using this app please login</h2>
+        <h2>To get started please login</h2>
       </div>
     </div>
-    <div class="list list-inset">       
-      Login with your email and password
+    <div class="list list-inset text-center">       
+      Login with your Email and Password
       <label class="item item-input">
-        <input type="text" placeholder="Email"> 
+        <input type="text" placeholder="Email" ng-model="data.email"> 
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Password">
+        <input type="password" placeholder="Password" ng-model="data.password">
       </label>
-      or<br>
-      Login with your Phone number and Pin
+    </div>
+      <span class="or-separator text-center">
+        or<br>
+      </span>
+    <div class="list list-inset text-center">       
+      Login with your Phone Number and PIN
       <label class="item item-input">
-        <input type="text" placeholder="Phone Number">  
+        <input type="text" placeholder="Phone Number" ng-model="data.phone">  
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Pin">
+        <input type="password" placeholder="PIN" ng-model="data.pin" maxlength="4">
       </label>
     </div> 
-      <button class="button button-block button-psychic2" ui-sref="member-home">Login</button>
-      <div class="row">
-        <div class="col col-50 col-offset-25 text-center">
-          <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>
-        </div>
-      </div>
-
-    <button class="button button-block button-psychic3">
-      <a href="www.psychicsource.com/enroll">Not a Member? Create an Account</a>
-    </button>
     <div class="row">
       <div class="col col-80 text-right">
         <h4>Remember Me</h4>
@@ -46,6 +42,16 @@
       </label>
     
     </div>
+      <button class="button button-block button-psychic2" ng-click="login(data)">Login</button>
+      <div class="row">
+        <div class="col col-50 col-offset-25 text-center">
+          <a href="" ui-sref="forgot-password.html">Forgot your login information? </a>
+        </div>
+      </div>
+
+      <button class="button button-block button-psychic3" menu-close ui-sref="app.become-member"> 
+        Not a Member? Create an Account
+      </button>
   </ion-content>
 </ion-view>
 

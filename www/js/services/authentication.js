@@ -32,6 +32,8 @@ angular.module('PsychicSource.Authentication', [])
       auth.role = USER_ROLES.public_role;
       $http.defaults.headers.common['Authorization'] = undefined;
       $localstorage.remove(auth.tokenName);
+      $localstorage.remove('summary-'+auth.membershipId);
+      auth.membershipId = null;
     },
     logout: function() {
       $ionicLoading.show({template:'Logging out....'});

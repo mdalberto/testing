@@ -1,11 +1,14 @@
 <!-- Preferences page -->
 <ion-view title="Notification Settings">
-<ion-content class="padding has-footer">
+<ion-content class="padding has-footer preferences-content">
   <br>
+  <h3 class="no-ellipsis text-center"> 
+    Receive notifications about your Return Call Availability and more
+  </h3>
   <br>
   <div>
     <ul class="list">
-      <li class="item item-toggle" ng-repeat="setting in preferences">
+      <li class="item item-toggle no-ellipsis" ng-repeat="setting in preferences">
         {{setting.ContentTitle}}
       <label class="toggle toggle-balanced">                   
         <input ng-model="setting.Preference" type="checkbox" ng-click="preferenceUpdated($index)"> 

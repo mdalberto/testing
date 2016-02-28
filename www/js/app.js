@@ -1,10 +1,9 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication','PsychicSource.Preferences','PsychicSource.Ajax'])
-//.run(function(PushProcessingService) {
-//run once for the app
-//PushProcessingService.initialize();
-//}
-.run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax'])
+.run(function($rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  },5000);
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -46,7 +45,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     if(window.cordova && window.cordova.InAppBrowser) {
       window.open = cordova.InAppBrowser.open;
     }
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
@@ -85,6 +84,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     views: {
       'menuContent':{
         templateUrl: 'views/become_member.html',
+        controller: 'BecomeMemberCtrl'
       }
     },
     data: {
@@ -97,6 +97,12 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     views: {
       'menuContent':{
         templateUrl: 'views/member_home.html',
+        controller: 'MemberHomeCtrl'
+      }
+    },
+    resolve: {
+      summary: function(SummaryService){
+        return SummaryService.getSummary();
       }
     },
     data: {

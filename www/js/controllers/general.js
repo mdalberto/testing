@@ -9,7 +9,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   $scope.$on('user:logout:complete',function(){
     $scope.logout();       
   });
-
+  
   $scope.$on('user:logout',function(event){
     $ionicLoading.hide();
     $rootScope.showFooter = false;

@@ -11,7 +11,6 @@ angular.module('PsychicSource.Authentication', [])
     loadUserCredentials: function(){
       var data = $localstorage.getObject(auth.sessionKey);
       var token = data.access_token;
-      
       if(token) {
         auth.useCredentials(data);
       }
@@ -53,6 +52,7 @@ angular.module('PsychicSource.Authentication', [])
         $rootScope.$broadcast('user:logout');
       },30);
     },
+
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         d = $q.defer();

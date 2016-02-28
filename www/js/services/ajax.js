@@ -27,7 +27,7 @@ angular.module('PsychicSource.Ajax', [])
         url: ajaxHandler.baseUrl + 'token',
         header: ajaxHandler.headers('application/x-www-form-urlencoded'),
         data: jQuery.param(sendData)
-        })
+      })
     },
     getSummary: function(id){
       return $http({
@@ -60,10 +60,25 @@ angular.module('PsychicSource.Ajax', [])
           });
       };
       query();
-      return queryResults.promise;
-  
+      return queryResults.promise; 
+    },
+    getPreferences: function(id){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
+        header: ajaxHandler.headers(),
+      });
+    },
+    savePreferences: function(id,preferences){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
+        header: ajaxHandler.headers(),
+        data: JSON.stringify(preferences)
+      });      
     }
-    
   };
   return ajaxHandler;
 

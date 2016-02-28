@@ -1,10 +1,9 @@
 
 var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax'])
-//.run(function(PushProcessingService) {
-//run once for the app
-//PushProcessingService.initialize();
-//}
-.run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+.run(function($rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  },5000);
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;

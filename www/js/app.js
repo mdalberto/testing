@@ -1,10 +1,9 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.Filters'])
-//.run(function(PushProcessingService) {
-//run once for the app
-//PushProcessingService.initialize();
-//}
-.run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters'])
+.run(function($rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  },5000);
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -110,13 +109,18 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       authorizedRoles: [USER_ROLES.member],
       showFooter: true
     }
-    //controller: 'MemberHomeCtrl'
   })
   .state('app.preferences',{
     url: '/preferences',
     views: {
       'menuContent':{
-        templateUrl: 'views/preferences.html'
+        templateUrl: 'views/preferences.html',
+        controller: 'PreferencesCtrl'
+      }
+    },
+    resolve: {
+      preferences: function(PreferencesService){
+        return PreferencesService.getPreferences();
       }
     },
     data: {

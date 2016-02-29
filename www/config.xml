@@ -2,10 +2,10 @@
 <widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.6.4" android-versionCode="64">
   <name>PsychicSource</name>
   <description>
-      Smartphone Innovation Project 
-    </description>
+    Smartphone Innovation Project 
+  </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Novotorium Team
+    Novotorium Team
   </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -16,6 +16,14 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="AutoHideSplashScreen" value="false" />
+  <preference name="auto-hide-splash-screen" value="false" />
+  <preference name="SplashScreenDelay" value="3000" />
+  <preference name="SplashMaintainAspectRatio" value="true|false" />
+  <preference name="FadeSplashScreen" value="false"/>
+  <preference name="FadeSplashScreenDuration" value="3000"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/> 
+  <plugin name="cordova-plugin-splashscreen" source="npm"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="StatusBarOverlaysWebView" value="false"/>
   <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/>
@@ -23,25 +31,75 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <platform name="ios"/>
+  <platform name="browser">
+    <preference name="SplashScreen" value="images/browser/splashscreen.jpg" /> <!-- defaults to "img/logo.png" -->
+    <preference name="SplashScreenDelay" value="3000" /> <!-- defaults to "3000" -->
+    <preference name="SplashScreenBackgroundColor" value="green" /> <!-- defaults to "#464646" -->
+    <preference name="ShowSplashScreen" value="false" /> <!-- defaults to "true" -->
+    <preference name="SplashScreenWidth" value="600" /> <!-- defaults to "170" -->
+    <preference name="SplashScreenHeight" value="300" /> <!-- defaults to "200" -->
+  </platform>
+  <platform name="ios">
+    <!-- iPhone 6 / 6+ -->
+    <icon src="icons/ios/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+
+    <!-- iPhone / iPod Touch  -->
+    <icon src="icons/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="icons/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="icons/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="icons/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+
+    <!-- Settings Icon -->
+    <icon src="icons/ios/icon-Small.png" gap:platform="ios" width="29" height="29" />
+    <icon src="icons/ios/icon-Small@2x.png" gap:platform="ios" width="58" height="58" />
+    <icon src="icons/ios/icon-Small@3x.png" gap:platform="ios" width="87" height="87" />
+
+    <!-- Spotlight Icon -->
+    <icon src="icons/ios/icon-Small-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="icons/ios/icon-Small-40@2x.png" gap:platform="ios" width="80" height="80" />
+
+    <!-- iPhone and iPod touch -->
+    <splash src="splashscreen/ios/Default.png" gap:platform="ios" width="320" height="480" />
+    <splash src="splashscreen/ios/Default@2x.png" gap:platform="ios" width="640" height="960" />
+
+    <!-- iPhone 5 / iPod Touch (5th Generation) -->
+    <splash src="splashscreen/ios/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
+
+    <!-- iPhone 6 -->
+    <splash src="splashscreen/ios/Default-667h@2x.png" gap:platform="ios" width="750" height="1334" />
+    <splash src="splashscreen/ios/Default-Portrait-736h@3x.png" gap:platform="ios" width="1242" height="2208" />
+    <!--<splash src="splashscreen/ios/Default-Landscape-736h@3x.png" gap:platform="ios" width="2208" height="1242" />-->
+
+    <!-- iPad -->
+    <splash src="splashscreen/ios/Default-Portrait.png" gap:platform="ios" width="768" height="1024" />
+    <splash src="splashscreen/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
+
+    <!-- Retina iPad -->
+    <splash src="splashscreen/ios/Default-Portrait@2x.png" gap:platform="ios" width="1536" height="2048" />
+    <splash src="splashscreen/ios/Default-Landscape@2x.png" gap:platform="ios" width="2048" height="1536" />
+
+  </platform>
   <platform name="android">
-    <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
-    <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
-    <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi"/>
-    <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi"/>
-    <icon src="resources/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi"/>
-    <icon src="resources/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
-    <splash src="resources/android/splash/drawable-land-ldpi-screen.png" density="land-ldpi"/>
-    <splash src="resources/android/splash/drawable-land-mdpi-screen.png" density="land-mdpi"/>
-    <splash src="resources/android/splash/drawable-land-hdpi-screen.png" density="land-hdpi"/>
-    <splash src="resources/android/splash/drawable-land-xhdpi-screen.png" density="land-xhdpi"/>
-    <splash src="resources/android/splash/drawable-land-xxhdpi-screen.png" density="land-xxhdpi"/>
-    <splash src="resources/android/splash/drawable-land-xxxhdpi-screen.png" density="land-xxxhdpi"/>
-    <splash src="resources/android/splash/drawable-port-ldpi-screen.png" density="port-ldpi"/>
-    <splash src="resources/android/splash/drawable-port-mdpi-screen.png" density="port-mdpi"/>
-    <splash src="resources/android/splash/drawable-port-hdpi-screen.png" density="port-hdpi"/>
-    <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
-    <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
-    <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
+    <icon src="icons/android/ldpi/psychic-source-icon.png" gap:density="ldpi"/>
+    <icon src="icons/android/mipmap-mdpi/psychic-source-icon.png" gap:density="mdpi"/>
+    <icon src="icons/android/mipmap-hdpi/psychic-source-icon.png" gap:density="hdpi"/>
+    <icon src="icons/android/mipmap-xhdpi/psychic-source-icon.png" gap:density="xhdpi"/>
+    <icon src="icons/android/mipmap-xxhdpi/psychic-source-icon.png" gap:density="xxhdpi"/>
+    <icon src="icons/android/mipmap-xxxhdpi/psychic-source-icon.png" gap:density="xxxhdpi"/>
+    <splash src="splashscreen/android/splash-land-LDPI.png" gap:qualifier="land-ldpi"/>
+    <splash src="splashscreen/android/splash-land-MDPI.png" gap:qualifier="land-mdpi"/>
+    <splash src="splashscreen/android/splash-land-HDPI.png" gap:qualifier="land-hdpi"/>
+    <splash src="splashscreen/android/splash-land-XHDPI.png" gap:qualifier="land-xhdpi"/>
+    <splash src="splashscreen/android/splash-land-XXHDPI.png" gap:qualifier="land-xxhdpi"/>
+    <splash src="splashscreen/android/splash-land-XXXHDPI.png" gap:qualifier="land-xxxhdpi"/>
+    <splash src="splashscreen/android/splash-port-LDPI.png" gap:qualifier="port-ldpi"/>
+    <splash src="splashscreen/android/splash-port-MDPI.png" gap:qualifier="port-mdpi"/>
+    <splash src="splashscreen/android/splash-port-HDPI.png" gap:qualifier="port-hdpi"/>
+    <splash src="splashscreen/android/splash-port-XHDPI.png" gap:qualifier="port-xhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXHDPI.png" gap:qualifier="port-xxhdpi"/>
+    <splash src="splashscreen/android/splash-port-XXXHDPI.png" gap:qualifier="port-xxxhdpi"/>
+    <splash src="screen.png" />
   </platform>
 </widget>

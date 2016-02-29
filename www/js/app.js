@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax'])
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters'])
 .run(function($rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
   setTimeout(function(){
     $cordovaSplashscreen.hide();
@@ -57,8 +57,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
   });
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
-  //$httpProvider.defaults.withCredentials = true;
   $ionicConfigProvider.navBar.alignTitle('center');
+  //$httpProvider.defaults.withCredentials = true;
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
   .state('app',{

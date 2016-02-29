@@ -1,14 +1,17 @@
 angular.module('PsychicSource.Authentication', [])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService){
   var auth = {
+    rememberMe: true,
     isAuthenticated: false,
     tokenName: 'token',
     emailOrPhone: '',
     membershipId: null,
     token: null,
     role: USER_ROLES.public_role,
-    loadUserCredentials: function(){
-      var data = $localstorage.getObject(auth.tokenName);
+    loadUserCredentials: function(data){
+      if(!data){
+        data = $localstorage.getObject(auth.tokenName);
+      }
       var token = data.access_token;
       if(token) {
         auth.useCredentials(data);
@@ -33,6 +36,9 @@ angular.module('PsychicSource.Authentication', [])
       $http.defaults.headers.common['Authorization'] = undefined;
       $localstorage.remove(auth.tokenName);
       $localstorage.remove('summary-'+auth.membershipId);
+      $localstorage.remove('preferences-'+auth.membershipId);
+      $localstorage.remove('call-'+auth.membershipId);
+
       auth.membershipId = null;
     },
     logout: function() {
@@ -46,10 +52,16 @@ angular.module('PsychicSource.Authentication', [])
         $rootScope.$broadcast('user:logout');
       },30);
     },
+    getRememberMe: function(){
+      return auth.rememberMe;
+    },
+    setRememberMe: function(remember) {
+      auth.rememberMe = remember;
+    },
 
     login: function(data) {
       return AjaxService.login(data).then(function(res){
-        auth.storeUserCredentials(res.data);
+        user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
         return res.code;
       }); 
     },
@@ -70,6 +82,8 @@ angular.module('PsychicSource.Authentication', [])
   auth.loadUserCredentials();
   return {
     refresh: auth.loadUserCredentials,
+    getRememberMe: auth.getRememberMe,
+    setRememberMe: auth.setRememberMe,
     login: auth.login,
     logout: auth.logout,
     isAuthorized : auth.isAuthorized,

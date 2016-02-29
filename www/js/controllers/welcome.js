@@ -2,6 +2,11 @@
 PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicLoading,$ionicPopup,AuthService, SummaryService){
   $rootScope.showFooter = false;
   $scope.data = {};
+  $scope.data.rememberMe = AuthService.getRememberMe();
+
+  $scope.changeRememberMe = function(){
+    AuthService.setRememberMe($scope.data.rememberMe);
+  };
 
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials...'});

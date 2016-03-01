@@ -47,6 +47,7 @@
       margin-right: 20px;
       margin-left:  10px;
       margin-top: 5px;
+      margin-bottom: 30px;
     }
     .icon{
       color:#bbb;
@@ -63,9 +64,10 @@
         .advisor-name {
           font-weight: bold;
         }
-        .advisor-availability {
+        .advisor-availability p {
           font-size:0.9em;
           color: #bbb;
+          white-space:normal;
         }
       }
     }

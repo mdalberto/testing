@@ -28,11 +28,13 @@
       </div>
       <div class="row item advisor-container" ng-show="calls.length" ng-repeat="call in calls">
         <div class="col col-50 col-center advisor-info">
-          <img class="profile-pic" width="40" height="50" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=50"/>
+          <div class="img-container">
+            <img class="profile-pic" width="40" height="50" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=50"/>
+          </div>
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
-            <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('M/D/YY h:mm a')}}</span>
+            <span class="advisor-availability"><strong><p>Next Availability:</p></strong>
+                <p>{{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('M/D/YY h:mm a')}}</p></span>
           </span>
         </div>
         <div class="col col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>

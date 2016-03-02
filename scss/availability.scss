@@ -5,6 +5,10 @@
     font-weight: bold;
   }
   h4 {
+    .no-decorations {
+      text-decoration:none;
+      color: #000;
+    }
     font-weight: normal;
   }
   .row,.item{

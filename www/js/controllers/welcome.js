@@ -35,7 +35,7 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ion
   $scope.sendNotificationId = function() {
     $ionicLoading.show({template: 'Updating device credentials...'});
     d = $q.defer();
-    var data = $localstorage.getObject(AuthService.sessionKey());
+    var data = AuthService.getCredentials(); //$localstorage.getObject(AuthService.sessionKey());
     if(data.registrationIdSent){
       return false;
     } else {

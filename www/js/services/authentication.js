@@ -1,6 +1,8 @@
 angular.module('PsychicSource.Authentication', [])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
+    credentials: null,
+    rememberMe: true,
     isAuthenticated: false,
     registrationIdSent: false,
     sessionKey: 'token',
@@ -19,12 +21,18 @@ angular.module('PsychicSource.Authentication', [])
       auth.updateCredentials(userData);
     },
     updateCredentials: function(userData){
-      var data = $localstorage.getObject(auth.sessionKey);
-      $.extend(data,userData);
-      $localstorage.setObject(auth.sessionKey,data);
-      auth.useCredentials(data);
+      if(auth.rememberMe){
+        var data = $localstorage.getObject(auth.sessionKey);
+        $.extend(data,userData);
+        $localstorage.setObject(auth.sessionKey,data);
+        auth.useCredentials(data);
+      } else {
+        $.extend(auth.credentials,userData);
+        auth.useCredentials(auth.credentials);
+      }
     },
     useCredentials: function(userData){
+      auth.credentials = userData;
       auth.isAuthenticated = true;
       auth.token = userData.access_token;
       auth.membershipId = userData.membershipId;
@@ -95,6 +103,7 @@ angular.module('PsychicSource.Authentication', [])
     refresh: auth.loadUserCredentials,
     login: auth.login,
     logout: auth.logout,
+    getCredentials: function(){ return auth.credentials; },
     sessionKey: function() { return auth.sessionKey;},
     isAuthorized : auth.isAuthorized,
     updateCredentials: auth.updateCredentials,

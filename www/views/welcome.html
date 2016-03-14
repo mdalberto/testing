@@ -33,7 +33,7 @@
       </div>
     
       <label class="toggle toggle-balanced remember-me">
-        <input type="checkbox" ng-model="rememberMe">
+        <input type="checkbox" ng-model="data.rememberMe" ng-change="changeRememberMe()">
         <div class="track">
           <div class="handle"></div>
         </div>
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="forgot-login col col-70 col-offset-15 text-center">
           <div>Forgot your login information? </div>
-          <a href="#" onclick="window.open('http://www.pyshicsource.com/forgot-information', '_system', 'location=yes'); return false;">CLICK HERE</a> or call <a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
+          <a href="#" href ng-click="external($event)" data-href="https://www.psychicsource.com/forgot-information">CLICK HERE</a> or call <a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
         </div>
       </div>
       <div class="padding">

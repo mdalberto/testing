@@ -1,8 +1,9 @@
 PsychicSource.constant("moment", moment);
 
-PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, $ionicPopup){
+PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, $ionicPopup,ConfigService){
   $scope.moment = new moment();
   $scope.calls = calls;
+  $scope.imagePath = ConfigService.assetUrlImages;
 
   $scope.refresh = function(){
     ReturnCallsService.getQueues().then(function(calls){

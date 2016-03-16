@@ -1,8 +1,8 @@
 angular.module('PsychicSource.Ajax', [])
-.factory('AjaxService',function($q,$http){
+.factory('AjaxService',function($q,$http,ConfigService){
 
   var ajaxHandler = {
-    baseUrl: 'http://localhost:1337/testcontentservice.vseinc.com/elapi/',
+    baseUrl: ConfigService.baseUrl,
     networkId: 2,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

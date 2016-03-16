@@ -1,5 +1,5 @@
 
-var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls','PsychicSource.Availability','ordinal','underscore','timer'])
+var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls','PsychicSource.Availability','PsychicSource.Config','ordinal','underscore','timer'])
 //.run(function(PushProcessingService) {
 //run once for the app
 //PushProcessingService.initialize();

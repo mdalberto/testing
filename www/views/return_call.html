@@ -20,7 +20,7 @@
       </div>
       <div class="row item advisor-container" ng-repeat="call in calls">
         <div class="col col-67 col-center advisor-info">
-          <img class="profile-pic" width="60" height="80" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=60"/>
+          <img class="profile-pic" width="60" height="80" ng-src="{{imagePath}}{{call.ExpertPhoto}}?width=60"/>
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
             <span class="advisor-availability"><strong>Next Availability:</strong> <br>

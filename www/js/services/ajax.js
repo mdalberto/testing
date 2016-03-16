@@ -2,7 +2,7 @@ angular.module('PsychicSource.Ajax', [])
 .factory('AjaxService',function($q,$http){
 
   var ajaxHandler = {
-    baseUrl: 'https://testapi.vseinc.com/',
+    baseUrl: 'http://localhost:1337/testcontentservice.vseinc.com/elapi/',
     networkId: 2,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

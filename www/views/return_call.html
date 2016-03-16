@@ -24,7 +24,7 @@
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
             <span class="advisor-availability"><strong>Next Availability:</strong> <br>
-              {{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('M/D/YYYY ha')}}</span>
+              {{call.ExpertNextLoginTime}}</span>
           </span>
         </div>
         <div class="col col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>

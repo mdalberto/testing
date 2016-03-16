@@ -9,6 +9,17 @@ angular.module('PsychicSource.Availability', [])
         countryCodes: availability.countryCodes
       }
     },
+    getTimeLeft: function(summary){
+      if(!summary.availability){
+        return $scope.date.timeLeft = "0 secs hour(s)";
+      }
+      var nyTimeObject = moment.tz(summary.availability, 'America/New_York').add(4,'hours');
+      var utcTimeObject = moment.utc();
+      var timeLeftHours = nyTimeObject.diff(utcTimeObject,'hours');
+      var timeLeftMinutes = nyTimeObject.diff(utcTimeObject,'minutes') % 60;
+      var timeLeft = timeLeftHours + ' hour(s) ' + timeLeftMinutes + ' minute(s)';
+      return timeLeft;
+    },
     getCountryCodesAndHours: function() {
       $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
@@ -56,6 +67,7 @@ angular.module('PsychicSource.Availability', [])
   };
   var result = {
     availabilityObj: availability.availabilityObj,
+    getTimeLeft: availability.getTimeLeft,
     getCountryCodesAndHours: availability.getCountryCodesAndHours,
     updateReturnCallProfile: availability.updateReturnCallProfile
   };

@@ -8,16 +8,12 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   $scope.times = {};
   $scope.times.phone = $scope.summary.phone;
   $scope.times.formattedPhone = null;
-  $scope.times.availableHours = moment.duration(parseInt($scope.summary.availabilityInSeconds,10),'seconds').format('h:mm');
-  if($scope.times.availableHours){
-    var hoursArr = $scope.times.availableHours.split(":");
-    $scope.times.hour = hoursArr[0];
-  }
-
+  $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
 
   $scope.afterPageRender = function(){
     $scope.setFormattedPhone();
     $scope.setFlag();
+    $scope.getTimeLeft($scope.summary);
   };
 
   $scope.setFormattedPhone = function(){
@@ -34,6 +30,10 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
     });
   })();
  
+  $scope.getTimeLeft = function(summary){
+    return $scope.times.availableHours = AvailabilityService.getTimeLeft(summary);
+  };
+
   $scope.update = function(){
     var hour;
     hour = moment.duration(parseInt($scope.times.hour,10),'hours').format('h:mm');
@@ -57,6 +57,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
         phone: String($scope.times.phone),
         countryId: countryId  
       });
+      $scope.getTimeLeft(SummaryService.summaryObj());
       $window.location.reload();
     });
     

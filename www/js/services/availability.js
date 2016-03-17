@@ -11,7 +11,7 @@ angular.module('PsychicSource.Availability', [])
     },
     getTimeLeft: function(summary){
       if(!summary.availability){
-        return $scope.date.timeLeft = "0 secs hour(s)";
+        return "0 secs hour(s)";
       }
       var nyTimeObject = moment.tz(summary.availability, 'America/New_York').add(4,'hours');
       var utcTimeObject = moment.utc();

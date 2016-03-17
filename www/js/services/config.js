@@ -9,14 +9,14 @@ angular.module('PsychicSource.Config', [])
         var config = {
           enableCorsProxy: false,
           baseUrl: 'https://testcontentservice.vseinc.com/elapi/',
-          assetUrl: 'http://psychicsource.com/',
+          assetUrl: 'http://testrm.psychicsource.com/',
         };
         return config; 
       case 'dev':
         var config = {
           enableCorsProxy: true,
           baseUrl: 'http://localhost:1337/testcontentservice.vseinc.com/elapi/',
-          assetUrl: 'http://testrm.psychicsource.com/',
+          assetUrl: 'http://psychicsource.com/',
         };
         return config;
       case 'rc':

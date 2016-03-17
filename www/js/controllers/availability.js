@@ -10,6 +10,13 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   $scope.times.formattedPhone = null;
   $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
 
+  $scope.refresh = function(){
+    SummaryService.getSummary().then(function(summary){
+       $scope.summary = summary;
+       $scope.getTimeLeft(summary);
+    });
+  };
+
   $scope.afterPageRender = function(){
     $scope.setFormattedPhone();
     $scope.setFlag();

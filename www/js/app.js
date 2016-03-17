@@ -94,6 +94,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     }
   })
   .state('app.member-home',{
+    cache: false,
     url: '/member_home',
     views: {
       'menuContent':{
@@ -113,6 +114,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     //controller: 'MemberHomeCtrl'
   })
   .state('app.availability',{
+    cache: false,
     url: '/availability',
     views: {
       'menuContent':{
@@ -131,6 +133,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     }
   })
   .state('app.return-call',{
+    cache: false,
     url: '/return_call',
     views: {
       'menuContent':{
@@ -149,6 +152,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     }
   })
   .state('app.preferences',{
+    cache: false,
     url: '/preferences',
     views: {
       'menuContent':{

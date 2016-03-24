@@ -7,37 +7,10 @@
   <br>
   <div>
     <ul class="list">
-      <li class="item item-toggle no-ellipsis">
-      Next in line to receive a Return Call
+      <li class="item item-toggle no-ellipsis" ng-repeat="setting in preferences">
+        {{setting.ContentTitle}}
       <label class="toggle toggle-balanced">                   
-        <input type="checkbox"> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle no-ellipsis">
-      Availability expires in 30 minutes
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox" checked> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle no-ellipsis">
-      Account balance below minimum for Return Call                      
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox"> 
-        <div class="track">  
-          <div class="handle"></div>                           
-        </div>               
-      </label>               
-      </li>                     
-      <li class="item item-toggle no-ellipsis">
-      Removed from Return Call Line
-      <label class="toggle toggle-balanced">                   
-        <input type="checkbox" checked> 
+        <input ng-model="setting.Preference" type="checkbox" ng-click="preferenceUpdated($index)"> 
         <div class="track">  
           <div class="handle"></div>                           
         </div>               

@@ -1,10 +1,9 @@
 
-var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax','PsychicSource.ReturnCalls','PsychicSource.Availability','PsychicSource.Config','ordinal','underscore','timer'])
-//.run(function(PushProcessingService) {
-//run once for the app
-//PushProcessingService.initialize();
-//}
-.run(function($rootScope, $state, AuthService,AUTH_EVENTS){
+var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore'])
+.run(function($rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  },5000);
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;
@@ -111,7 +110,6 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
       authorizedRoles: [USER_ROLES.member],
       showFooter: true
     }
-    //controller: 'MemberHomeCtrl'
   })
   .state('app.availability',{
     cache: false,
@@ -156,7 +154,13 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     url: '/preferences',
     views: {
       'menuContent':{
-        templateUrl: 'views/preferences.html'
+        templateUrl: 'views/preferences.html',
+        controller: 'PreferencesCtrl'
+      }
+    },
+    resolve: {
+      preferences: function(PreferencesService){
+        return PreferencesService.getPreferences();
       }
     },
     data: {

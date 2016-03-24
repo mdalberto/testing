@@ -31,7 +31,7 @@
   }
 
   .advisor-board-header {
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 15px 0;
   }
   .col.ellipsis { 
@@ -45,7 +45,9 @@
       border-radius: 8px;
       float:left;
       margin-right: 20px;
+      margin-left:  10px;
       margin-top: 5px;
+      margin-bottom: 30px;
     }
     .icon{
       color:#bbb;
@@ -58,17 +60,21 @@
       overflow: hidden; 
       .advisor-details {
         display: block;
-        padding: 15px 0;
+        padding-bottom: 15px;
         .advisor-name {
           font-weight: bold;
         }
-        .advisor-availability {
+        .advisor-availability p {
           font-size:0.9em;
           color: #bbb;
+          white-space:normal;
         }
       }
     }
   }
-
+  .empty-message {
+    font-weight: bold;
+    padding: 15px;
+  }
 }
 

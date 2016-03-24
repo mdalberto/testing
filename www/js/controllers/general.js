@@ -1,5 +1,6 @@
 PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
-  $scope.membershipId = AuthService.id;
+
+  $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
     AuthService.logout();
@@ -31,7 +32,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     }
   });
 
-   
+
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
     var alertPopup = $ionicPopup.alert({
       title: 'Unauthorized!',

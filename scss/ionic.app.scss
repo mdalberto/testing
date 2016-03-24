@@ -28,6 +28,8 @@ $psych_color_gradient_2:          #ffffff;
 $psych_color_gradient_3:          #fee6c6;
 $psych_color_gradient_4:          #fff6e5;
 
+$psych_color_nav_hambuger:        #666666;
+
 $button-psychic1-bg:              $psych_color_1 !default;
 $button-psychic1-text:            #eee !default;
 $button-psychic1-border:          darken($psych_color_1, 10%) !default;
@@ -165,7 +167,7 @@ button a {
 $footer-and-header-height: 64px;
 
 .button-clear.ion-navicon, .button-clear.back-button {
-  color: #666666;
+  color: $psych_color_nav_hambuger;
   line-height: $footer-and-header-height;
   height: $footer-and-header-height;
   font-size:1.5em;

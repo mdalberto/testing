@@ -46,6 +46,7 @@ angular.module('PsychicSource.Authentication', [])
         $rootScope.$broadcast('user:logout');
       },30);
     },
+
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         auth.storeUserCredentials(res.data);

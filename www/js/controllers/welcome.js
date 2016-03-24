@@ -22,7 +22,12 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$ionicL
   $scope.init = function(){
     var logoElem = document.getElementById('pslogo');
     logoElem.addEventListener('load',function(){
-      var logo = svgPanZoom('#pslogo');
+      var logo = svgPanZoom('#pslogo',{
+        panEnabled: false,
+        zoomEnabled: false,
+        dblClickZoomEnabled: false,
+        mouseWheelZoomEnabled: false
+      });
       logo.resize();
       logo.fit();
       logo.center();

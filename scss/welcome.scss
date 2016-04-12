@@ -15,6 +15,11 @@
     margin: auto;
     display: block;
   }
+  .logo-wrapper {
+    @media screen and (max-width: 365px){
+      margin-left: 20px;
+    } 
+  }
   h2.title {
     color: $psych-color-2;
     font-size: 1.5em;

@@ -38,9 +38,17 @@ $button-psychic1-active-border:   darken($psych_color_1, 10%) !default;
 
 $button-psychic2-bg:              $psych_color_2 !default;
 $button-psychic2-text:            black !default;
+$button-psychic2-text2:           white !default;
 $button-psychic2-border:          darken($psych_color_2, 10%) !default;
 $button-psychic2-active-bg:       darken($psych_color_2, 10%) !default;
 $button-psychic2-active-border:   darken($psych_color_2, 10%) !default;
+
+$button-psychic2-bg:              $psych_color_2 !default;
+$button-psychic2-text:            black !default;
+$button-psychic2-border:          darken($psych_color_2, 10%) !default;
+$button-psychic2-active-bg:       darken($psych_color_2, 10%) !default;
+$button-psychic2-active-border:   darken($psych_color_2, 10%) !default;
+
 
 $button-psychic3-bg:              $psych_color_3 !default;
 $button-psychic3-text:            #eee !default;
@@ -79,6 +87,7 @@ $bar-psychic1-active-border:      $button-psychic1-active-border !default;
 
 $bar-psychic2-bg:                 rgba($button-psychic2-bg, $bar-transparency) !default;
 $bar-psychic2-text:               $button-psychic2-text !default;
+$bar-psychic2-text2:              $button-psychic2-text2 !default;
 $bar-psychic2-border:             $button-psychic2-border !default;
 $bar-psychic2-active-bg:          $button-psychic2-active-bg !default;
 $bar-psychic2-active-border:      $button-psychic2-active-border !default;
@@ -104,6 +113,13 @@ $bar-psychic5-active-border:      $button-psychic5-active-border !default;
 
   &.bar-psychic2 {
     @include bar-style($bar-psychic2-bg, $bar-psychic2-border, $bar-psychic2-text);
+    &.bar-footer{
+      background-image: linear-gradient(180deg, $bar-psychic2-border, $bar-psychic2-border 50%, transparent 50%);
+    }
+  }
+  
+  &.bar-psychic2-light {
+    @include bar-style($bar-psychic2-bg, $bar-psychic2-border, $bar-psychic2-text2);
     &.bar-footer{
       background-image: linear-gradient(180deg, $bar-psychic2-border, $bar-psychic2-border 50%, transparent 50%);
     }
@@ -138,6 +154,11 @@ $bar-psychic5-active-border:      $button-psychic5-active-border !default;
   </button>
    */
 @include button-style($button-psychic2-bg, $button-psychic2-border,$button-psychic2-active-bg, $button-psychic2-active-border, $button-psychic2-text);
+@include button-clear($button-psychic2-bg);
+@include button-outline($button-psychic2-bg);
+}
+.button-psychic2-light {
+@include button-style($button-psychic2-bg, $button-psychic2-border,$button-psychic2-active-bg, $button-psychic2-active-border, $button-psychic2-text2);
 @include button-clear($button-psychic2-bg);
 @include button-outline($button-psychic2-bg);
 }
@@ -247,6 +268,9 @@ ion-content {
 }
 h3.title {
   margin-top: 10px;
+  color: $psych-color-2;
+}
+a {
   color: $psych-color-2;
 }
 

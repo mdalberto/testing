@@ -8,9 +8,9 @@ angular.module('PsychicSource.Push', [])
             senderID: ConfigService.gcmApiKey
         },
         ios: {
-            alert: "true",
-            badge: "true",
-            sound: "true",
+            alert: true,
+            badge: true,
+            sound: true,
             clearBadge: true
         }
       });

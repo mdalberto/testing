@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>PushNotification</name>
+<widget id="com.ionicframework.pushnotifications" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.9.4" android-versionCode="95">
+  <name>PsychicSource</name>
   <description>
-    Smartphone Innovation Project 
+    Psychic Source mobile app 
   </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
+  <author email="development@novotorium.com" href="http://www.novotorium.com/">
     Novotorium Team
   </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <access origin="tel:*" launch-external="yes"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -22,10 +23,13 @@
   <preference name="FadeSplashScreen" value="false"/>
   <preference name="FadeSplashScreenDuration" value="3000"/>
   <preference name="ShowSplashScreenSpinner" value="false"/> 
-  <plugin name="cordova-plugin-splashscreen" source="npm"/>
   <preference name="SplashScreenDelay" value="3000"/>
-  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm"/> 
-  <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+  <preference name="android-build-tool" value="gradle"/>
+  <preference name="StatusBarOverlaysWebView" value="false"/>
+  <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="3.2.0"/>
+  <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="1.2.1"/>
+  <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.2.1"/>
+  <gap:plugin name="phonegap-plugin-push" source="npm" version="1.4.5"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
@@ -100,5 +104,4 @@
     <splash src="splashscreen/android/splash-port-XXXHDPI.png" gap:qualifier="port-xxxhdpi"/>
     <splash src="screen.png" />
   </platform>
-  <access origin="tel:*" launch-external="yes" />
 </widget>

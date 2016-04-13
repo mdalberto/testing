@@ -66,10 +66,10 @@ $button-psychicbg1-active-bg:       darken($psych_color_bg_1, 10%) !default;
 $button-psychicbg1-active-border:   darken($psych_color_bg_1, 10%) !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path: "../bower_components/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
+@import "www/bower_components/ionic/scss/ionic";
 
 $bar-psychic1-bg:                 rgba($button-psychic1-bg, $bar-transparency) !default;
 $bar-psychic1-text:               $button-psychic1-text !default;
@@ -237,4 +237,5 @@ ion-content {
 @import "scss/become-member";
 @import "scss/preferences";
 @import "scss/member-home";
+@import "scss/availability";
 @import "scss/return-call";

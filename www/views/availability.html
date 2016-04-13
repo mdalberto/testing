@@ -1,0 +1,47 @@
+<ion-view title="Availability">
+  <ion-content class="padding has-footer availability-content">
+    <div class="text-center">
+      <h2 class="title">Edit Return Call Settings</h2>
+    </div>
+    <h4 class="no-decorations text-center" ng-if="showPhoneDropdown">Return Call Number: {{times.formattedPhone}}</h4>
+    <h4 class="text-center" >Availability: {{times.availableHours}} </h4>
+
+    <div class="padding list">
+      <form name="updatesettings" novalidate ng-submit="warnInvalid(updatesettings) && updatesettings.$valid && update()">
+      <div class="row item advisor-board-header">
+        <div class="col col-100">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"> Your Return Call Number </span>
+          </label>
+          <span class="tel-input-wrapper">
+          <input type="text" ng-if="showPhoneDropdown" international-phone-number utilsScript="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js" ng-model="times.phone">
+          </span>
+        </div>
+      </div>
+
+      <div class="row item advisor-board-header">
+        <div class="col"> 
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"> Availability </span> 
+          </label>
+            <div class="item item-input item-select">
+            <select ng-model="times.hour">
+              <option ng-repeat="option in hours" >{{option}}</option>
+            </select>
+            <span class="input-label"> hour(s) </span> 
+          </div>
+        </div>
+      </div>
+      <div class="row item advisor-board-header">
+        <div class="col text-right">
+        <button type="button" class="button button-light pull-right" ng-click="reset()">&nbsp;Cancel</button>
+        <button type="submit" class="button button-assertive right">&nbsp;Save changes</button>
+      </div>
+    </div>
+  </form>
+  </div>
+
+  </ion-content>
+</ion-view>
+
+

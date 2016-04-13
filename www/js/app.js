@@ -1,4 +1,4 @@
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore','PsychicSource.Push'])
+var PsychicSource = angular.module('PsychicSource', ['InternationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore','PsychicSource.Push','PsychicSource.Config'])
 .run(function($ionicPlatform,$rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
   setTimeout(function(){
     $cordovaSplashscreen.hide();
@@ -91,6 +91,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
   })
   .state('app.member-home',{
+    cache: false,
     url: '/member_home',
     views: {
       'menuContent':{
@@ -108,7 +109,27 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
       showFooter: true
     }
   })
+  .state('app.availability',{
+    cache: false,
+    url: '/availability',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/availability.html',
+        controller: 'AvailabilityCtrl'
+      }
+    },
+    resolve: {
+      availabilityObj: function(AvailabilityService){
+        return AvailabilityService.getCountryCodesAndHours();
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  })
   .state('app.return-call',{
+    cache: false,
     url: '/return_call',
     views: {
       'menuContent':{
@@ -127,6 +148,7 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     }
   })
   .state('app.preferences',{
+    cache: false,
     url: '/preferences',
     views: {
       'menuContent':{

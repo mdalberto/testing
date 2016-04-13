@@ -21,7 +21,7 @@
       <div class="row item advisor-container text-center" ng-hide="calls.length">
         <div class="col col-100 col-center empty-message">
           You are not in any Return Calls Lines
-          <a href="#" class="button button-block button-psychic2" onclick="window.open('https://www.psychicsource.com/our-psychics', '_system', 'location=yes'); return false;">
+          <a href="#" class="button button-block button-psychic2" href ng-click="external($event)" data-href="https://www.psychicsource.com/our-psychics">
               Get a Reading Now
           </a>
         </div>
@@ -29,12 +29,12 @@
       <div class="row item advisor-container" ng-show="calls.length" ng-repeat="call in calls">
         <div class="col col-50 col-center advisor-info">
           <div class="img-container">
-            <img class="profile-pic" width="40" height="50" ng-src="http://www.psychicsource.com/images/psychics/{{call.ExpertPhoto}}?width=50"/>
+            <img class="profile-pic" width="40" height="50" ng-src="{{imagePath}}{{call.ExpertPhoto}}?width=60"/>
           </div>
           <span class="advisor-details">
             <span class="advisor-name">{{call.ExpertName}}</span> <br>
             <span class="advisor-availability"><strong><p>Next Availability:</p></strong>
-                <p>{{moment.add(parseInt(call.AvailabilityTime,10),'seconds').format('M/D/YY h:mm a')}}</p></span>
+                <p>{{call.ExpertNextLoginTime}}</p></span>
           </span>
         </div>
         <div class="col col-center text-center advisor-position">{{call.MemberPosition | ordinal}}</div>

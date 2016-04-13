@@ -1,18 +1,12 @@
 angular.module('PsychicSource.Push', [])
 .factory('PushNotificationService',function($ionicPopup,$state,ConfigService){
   var push = {
-    badgeCount: 0,
     init: function() {
       var notificationHandler = PushNotification.init({
         android: {
             senderID: ConfigService.gcmApiKey
         },
-        ios: {
-            alert: true,
-            badge: true,
-            sound: true,
-            clearBadge: true
-        }
+        ios: { alert: true, badge: true, sound: true, clearBadge: true}
       });
 
       notificationHandler.on('notification', function(data) {
@@ -22,9 +16,6 @@ angular.module('PsychicSource.Push', [])
             // data.sound,
             // data.image,
             // data.additionalData
-        
-        var pendingToRead = (push.badgeCount > 0) ? (push.badgeCount + 1) : 1;
-        push.badgeCount = pendingToRead;
 
         var alertPopup = $ionicPopup.alert({
           title: data.title,
@@ -32,17 +23,17 @@ angular.module('PsychicSource.Push', [])
         });
         $state.go('app.member-home'); 
 
-        notificationHandler.setApplicationIconBadgeNumber(function() {
-             // console.log('success');
-        }, function() {
-             // console.log('error');
-        }, pendingToRead);
-
         notificationHandler.finish(function() {
           // console.log('finish successfully called');
         });
           
       });
+
+      notificationHandler.setApplicationIconBadgeNumber(function() {
+           // console.log('success');
+      }, function() {
+           // console.log('error');
+      }, 0);
 
       return notificationHandler; 
     }

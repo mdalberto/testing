@@ -1,14 +1,50 @@
 .welcome-content {
+  div.padding {
+    font-size: 18px;
+  }
   .or-separator {
     display:block;
     width:100%;
-    font-weight: bold;
+    font-size: 18px;
   }
   .list-inset {
     margin: 10px 10px;
   }
   .ps-logo {
+    height:5em;
     margin: auto;
     display: block;
+  }
+  h2.title {
+    color: $psych-color-2;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top:1em;
+    margin-bottom:2em;
+  }
+  .button.button-block {
+    color: #fffefe;
+    font-size:28px;
+  }
+  .button-large {
+    line-height: 30px;
+  }
+  .medium-font-size {
+    font-size: 110% !important;
+    padding:0;
+  }   
+  .remember-me-label {
+    font-size: 24px;
+  }
+  .forgot-login {
+    font-size: 18px;
+    & > div {
+      margin-bottom: 10px;
+    }
+    & > a {
+      font-weight: bold;
+      /*text-decoration:none;*/
+      color: black;
+    }
   }
 }

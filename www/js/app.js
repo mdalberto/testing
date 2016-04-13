@@ -1,6 +1,5 @@
-
-var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Push','PsychicSource.Ajax'])
-.run(function($$ionicPlatform,$ionicPopup, rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
+var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore','PsychicSource.Push'])
+.run(function($ionicPlatform,$rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
   setTimeout(function(){
     $cordovaSplashscreen.hide();
   },5000);
@@ -56,8 +55,8 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
   public_role: 'public_role'
 })
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
-  //$httpProvider.defaults.withCredentials = true;
   $ionicConfigProvider.navBar.alignTitle('center');
+  //$httpProvider.defaults.withCredentials = true;
   //$ionicConfigProvider.views.maxCache(0);
   $stateProvider
   .state('app',{
@@ -102,6 +101,24 @@ var PsychicSource = angular.module('PsychicSource', ['ionic','ionic.utils','ngCo
     resolve: {
       summary: function(SummaryService){
         return SummaryService.getSummary();
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  })
+  .state('app.return-call',{
+    url: '/return_call',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/return_call.html',
+        controller: 'ReturnCallCtrl'
+      }
+    },
+    resolve: {
+      calls: function(ReturnCallsService){
+        return ReturnCallsService.getQueues();
       }
     },
     data: {

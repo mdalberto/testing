@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
 
   $scope.membershipId = AuthService.id();
 
@@ -22,6 +22,14 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
   $scope.$on('$ionicView.beforeEnter',function(event,view){
     event.stopPropagation();
+    if(ionic.Platform.isIOS()){
+      $timeout(function(){
+        $('.bar-header').each(function(i,elem){
+          $(elem).find('.title').css('margin-top',0);
+          $(elem).find('.buttons-left').css('margin-top',0);
+        });
+      });
+    }
   });
 
 
@@ -40,6 +48,16 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
       template: 'Sorry, You have to login again.'
     });
   });
+
+  $scope.init = function(){
+    $scope.isAccount = function() { return $state.is('app.member-home'); };
+    $scope.isReturnCall = function() { return $state.is('app.return-call'); };
+    $scope.isAvailability = function() { return $state.is('app.availability'); };
+    $scope.isPreference = function() { return $state.is('app.preferences'); };
+  };
+
+
+  $scope.init();
 
 });
 

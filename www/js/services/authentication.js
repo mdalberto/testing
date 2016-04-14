@@ -78,7 +78,7 @@ angular.module('PsychicSource.Authentication', [])
         var push = PushNotificationService.init();
         push.on('registration', function(pushData) {
           var platform = ionic.Platform.platform();
-          auth.storeUserCredentials(res.data);
+          user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
           auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
           var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
           if(storePlatformId && storePlatformId === pushData.registrationId){

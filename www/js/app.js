@@ -65,6 +65,15 @@ var PsychicSource = angular.module('PsychicSource', ['InternationalPhoneNumber',
     templateUrl: "views/menu.html",
     controller: 'GeneralCtrl',
   })
+  .state('app.privacy_policy', {
+    url: '/privacy_policy',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/privacy_policy.html',
+        controller: 'PrivacyCtrl'
+      }
+    },
+  })
   .state('app.welcome', {
     url: '/welcome',
     views: {

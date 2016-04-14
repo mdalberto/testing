@@ -1,6 +1,6 @@
 .welcome-content {
   div.padding {
-    font-size: 18px;
+    font-size: 1.1em;
   }
   .or-separator {
     display:block;
@@ -15,12 +15,20 @@
     margin: auto;
     display: block;
   }
+  .logo-wrapper {
+    @media screen and (max-width: 365px){
+      margin-left: 0;
+    } 
+  }
   h2.title {
     color: $psych-color-2;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     margin-top:1em;
-    margin-bottom:2em;
+    margin-bottom:1em;
+  }
+  .subtitle {
+    font-size: 0.5em;
   }
   .button.button-block {
     color: #fffefe;
@@ -33,8 +41,12 @@
     font-size: 110% !important;
     padding:0;
   }   
+  .remember-me.toggle{
+    left: -6%;
+  }
   .remember-me-label {
-    font-size: 24px;
+    font-size: 1.3em;
+    margin-right: 8%;
   }
   .forgot-login {
     font-size: 18px;

@@ -1,6 +1,6 @@
 <ion-view title="Welcome">
   <ion-content class="padding welcome-content">
-    <div class="col-80 col-offset-10">
+    <div class="logo-wrapper col-80 col-offset-10">
       <object id="pslogo" type="image/svg+xml" class="ps-logo text-center" data="img/pslogo.svg"></object>
     </div>
     <div class="text-center">
@@ -18,7 +18,7 @@
       <span class="or-separator text-center">
         or<br>
       </span>
-      <div class="padding">Login with your Phone Number and PIN</div>
+      <div class="padding subtitle">Login with your Phone Number and PIN</div>
     <div class="list list-inset text-center">       
       <label class="item item-input">
         <input type="text" placeholder="Phone Number" ng-model="data.phone">  
@@ -32,7 +32,7 @@
         <h4 class="remember-me-label">Remember Me</h4>
       </div>
     
-      <label class="toggle toggle-balanced remember-me">
+      <label class="col col-10 toggle toggle-balanced remember-me">
         <input type="checkbox" ng-model="rememberMe">
         <div class="track">
           <div class="handle"></div>
@@ -44,12 +44,12 @@
       <div class="row">
         <div class="forgot-login col col-70 col-offset-15 text-center">
           <div>Forgot your login information? </div>
-          <a href="#" onclick="window.open('http://www.pyshicsource.com/forgot-information', '_system', 'location=yes'); return false;">CLICK HERE</a> or call <a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
+          <a href="#" onclick="window.open('http://www.pyshicsource.com/forgot-information', '_system', 'location=yes'); return false;">CLICK HERE</a><span class="break-line-when-small"></span> or call <span class="break-line-when-small"></span><a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
         </div>
       </div>
       <div class="padding">
         <button class="button button-large button-block button-psychic3 medium-font-size" menu-close ui-sref="app.become-member"> 
-          Not a Member? Create an Account
+          Not a Member? <span class="break-line-when-small"></span>Create an Account
         </button>
       </div>
   </ion-content>

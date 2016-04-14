@@ -232,6 +232,18 @@ ion-content {
     margin-top: 0px !important;
 }
 
+@media screen and (max-width :365px){
+  .break-line-when-small{
+    display: block;
+  }
+
+  .bar-header > .title {
+    font-size: 1.6em !important;
+  } 
+  .button.ion-navicon:before {
+    font-size: 2em !important;
+  }
+}
 
 @import "scss/welcome";
 @import "scss/become-member";

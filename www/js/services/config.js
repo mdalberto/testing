@@ -7,9 +7,10 @@ angular.module('PsychicSource.Config', [])
     switch(env){
       case 'test':
         var config = {
+          gcmApiKey: "117405771847",
           enableCorsProxy: false,
           baseUrl: 'https://testcontentservice.vseinc.com/elapi/',
-          assetUrl: 'http://testrm.psychicsource.com/',
+          assetUrl: 'http://psychicsource.com/',
         };
         return config; 
       case 'dev':
@@ -27,6 +28,7 @@ angular.module('PsychicSource.Config', [])
         }
       case 'production':
         var config = {
+          gcmApiKey: "766226653480",
           enableCorsProxy: false,
           baseUrl: 'https://contentservice.vseinc.com/elapi/',
           assetUrl: 'http://www.psychicsource.com/',
@@ -38,7 +40,8 @@ angular.module('PsychicSource.Config', [])
   }
   function getShared(config) {
     var shared = {
-      assetUrlImages: config.assetUrl + 'images/psychics/'
+      assetUrlImages: config.assetUrl + 'images/psychics/',
+      environment: environment
     }
     return shared;
   };

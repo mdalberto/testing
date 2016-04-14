@@ -1,17 +1,17 @@
 angular.module('PsychicSource.Ajax', [])
-.factory('AjaxService',function($q,$http){
-
+.factory('AjaxService',function($q,$http,ConfigService){
+  var mobilePlatforms = {android: 1, ios: 2};
   var ajaxHandler = {
-    baseUrl: 'https://testapi.vseinc.com/',
+    baseUrl: ConfigService.baseUrl,
     networkId: 2,
     headers: function(contentType){
-      contentType = typeof contentType !== 'undefined' ? contentType : 'application/json';
+      var contentType = typeof contentType !== 'undefined' ? contentType : 'application/json';
       return {
-        'Content-Type': contentType,
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Origin': '*',
-        'Pragma': 'no-cache',
-        'Cache-Control': 'no-cache'
+      'Content-Type': contentType,
+      'Access-Control-Allow-Credentials': true,
+      'Access-Control-Allow-Origin': '*',
+      'Pragma': 'no-cache',
+      'Cache-Control': 'no-cache'
       };
     },
     login: function(data){
@@ -35,7 +35,32 @@ angular.module('PsychicSource.Ajax', [])
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/summary',
         header: ajaxHandler.headers(),
-      });
+        });
+    },
+    sendNotificationId: function(data){
+      var mobileOS = mobilePlatforms[data.platform];
+      var counter = 0;
+      var queryResults = $q.defer();
+      var query = function() {
+        $http({
+          method: 'POST',
+          cache: false,
+          url: ajaxHandler.baseUrl + 'member/v1/' + data.membershipId + '/registersnsdevice/' + mobileOS,
+          header: ajaxHandler.headers(),
+          data: {registrationId: data.platformId}
+          }).success(function(result){
+           queryResults.resolve(result); 
+          }).error(function(err){
+            if(counter < 3) {
+              query();
+              counterr++;
+            } else {
+              queryResults.reject(err);
+            }
+          });
+      };
+      query();
+      return queryResults.promise; 
     },
     getPreferences: function(id){
       return $http({
@@ -53,6 +78,48 @@ angular.module('PsychicSource.Ajax', [])
         header: ajaxHandler.headers(),
         data: JSON.stringify(preferences)
       });      
+    },
+    getReturnCallQueues: function(id){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/ReturnCalls',
+        header: ajaxHandler.headers
+      });
+    },
+    deleteReturnCall: function(membershipId,advisorId){
+      return $http({
+        method: 'DELETE',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + membershipId + '/DeleteReturnCall/' + advisorId,
+        header: ajaxHandler.headers
+      });
+    },
+    getCountryCodes: function(){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'domain/countrycodes',
+        header: ajaxHandler.headers
+      });
+    },
+    getReturnCallAvailabilityHours: function(){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'domain/returncallavailabilityhours',
+        header: ajaxHandler.headers
+      });
+    },
+    updateReturnCallProfile: function(data){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/UpdateReturnCallProfile',
+        header: $.extend(ajaxHandler.headers, {'Content-Type': 'application/json'}),
+        data: data
+      });
+
     }
   };
   return ajaxHandler;

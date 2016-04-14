@@ -19,6 +19,12 @@
         <ion-item ng-show="isLoggedIn()" menu-close href="#/app/member_home">   
           My Account                  
         </ion-item>                                 
+        <ion-item ng-show="isLoggedIn()" menu-close href="#/app/return_call">   
+          Return Call Line                  
+        </ion-item>                                 
+        <ion-item ng-show="isLoggedIn()" menu-close href="#/app/availability">   
+          Your Availability                  
+        </ion-item>                                 
         <ion-item ng-hide="isLoggedIn()" menu-close href="#/app/become_member">   
           Create an Account
         </ion-item>                                 
@@ -30,6 +36,9 @@
         </ion-item>                                 
         <ion-item menu-close>   
           Privacy Policy
+        </ion-item>                                 
+        <ion-item href ng-click="external($event)" data-href="https://www.psychicsource.com">   
+          PS Website
         </ion-item>                                 
         <ion-item ng-show="isLoggedIn()" menu-close ng-click="logout()">   
           Logout

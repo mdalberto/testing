@@ -21,6 +21,11 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   };
 
   $scope.$on('$ionicView.beforeEnter',function(event,view){
+    if(view.stateName === 'app.privacy-policy' && $scope.isLoggedIn()){
+      $rootScope.showFooter = true;
+    } else if(view.stateName === 'app.privacy-policy'){
+      $rootScope.showFooter = false;
+    }
     event.stopPropagation();
     if(ionic.Platform.isIOS()){
       $timeout(function(){

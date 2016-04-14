@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.pushnotifications" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" versionCode="1">
-  <name>PushNotification</name>
+  <name>PsychicSource</name>
   <description>
-    Smartphone Innovation Project 
+    Psychic Source mobile app 
   </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
+  <author email="development@novotorium.com" href="http://novotorium.com/">
     Novotorium Team
   </author>
   <content src="index.html"/>

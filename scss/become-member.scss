@@ -5,4 +5,14 @@
   .highlighted-text {
     color: $psych-color-2;
   }
+  .button.button-block {
+    color: #fffefe;
+    font-size:28px;
+  }
+  .button-large {
+    line-height: 35px;
+    min-height: inherit;
+    padding-top:8px;
+    padding-bottom:8px;
+  }
 }

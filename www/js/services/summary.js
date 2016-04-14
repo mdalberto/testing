@@ -7,24 +7,39 @@ angular.module('PsychicSource.Summary', [])
     balance: null,
     callCount: null,
     availableUntil: null,
+    availabilityTime: null,
     numberOfNotifications: null,
+    phone: null,
+    countryId: null,
     storeUserSummary: function(userData){
       $localstorage.setObject(summary.prefixKey + AuthService.id(),userData);
       summary.loadUserSummary();
+    },
+    updateUserSummary: function(userData){
+      var data = $localstorage.getObject(summary.prefixKey + AuthService.id());
+      $.extend(data,userData);
+      $localstorage.setObject(summary.prefixKey + AuthService.id(),data);
+      summary.loadUserSummary(data);
     },
     loadUserSummary: function(){
       var info_summary = $localstorage.getObject(summary.prefixKey + AuthService.id());
       summary.balance = info_summary.Balance;
       summary.callCount = info_summary.ReturnCallQueueCount;
       summary.availableUntil = info_summary.AvailableUntil;
+      summary.availabilityTime = info_summary.AvailabilityTime;
       summary.numberOfNotifications = info_summary.NumberOfNotifications;
+      summary.countryId = info_summary.CountryId;
+      summary.phone = info_summary.Phone;
     },
     summaryObj: function(){
       return {
         balance: summary.balance,
         callCount: summary.callCount,
         availability: summary.availableUntil,
-        notifications: summary.numberOfNotifications
+        availabilityInSeconds: summary.availabilityTime,
+        notifications: summary.numberOfNotifications,
+        countryId: summary.countryId,
+        phone: summary.phone
       }
     },
     getSummary: function() {
@@ -56,8 +71,10 @@ angular.module('PsychicSource.Summary', [])
     callCount: function(){return summary.callCount},
     availability: function(){return summary.availableUntil},
     notifications: function(){return summary.numberOfNotifications},
+    phone: function(){return summary.phone},
     summaryObj: summary.summaryObj,
-    getSummary: summary.getSummary
+    getSummary: summary.getSummary,
+    updateUserSummary: summary.updateUserSummary
   };
   return result;
 });

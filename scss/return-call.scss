@@ -1,0 +1,89 @@
+.return-call-content{
+
+  .col-offset-5 {
+    margin-left: 5%;
+   }
+
+  .col.col-90.text-right{
+    margin:auto;
+    a{
+      font-size: 20px;
+      font-weight: bold;
+      color: $psych-color-2;
+      vertical-align: super;
+    }
+    i {
+      font-size: 36px;
+    }
+  }
+  h2.title {
+    color: $psych-color-2;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  i.ion-chevron-right{
+    color:#ccc;
+  }
+
+  .badge.badge-balanced {
+    margin-right: 15px;
+  }
+
+  .advisor-board-header {
+    font-size: 1.2em;
+    padding: 15px 0;
+  }
+  .col.ellipsis { 
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .advisor-container {
+    padding: 10px 0;
+    .profile-pic {
+      border-radius: 8px;
+      float:left;
+      margin-right: 20px;
+      margin-left:  10px;
+      margin-top: 5px;
+      margin-bottom: 30px;
+    }
+    .icon{
+      color:#bbb;
+    } 
+    .advisor-position,.ion-close-circled{
+      font-size: 1em;
+    }
+    .advisor-info {
+      text-overflow: ellipsis;
+      overflow: hidden; 
+      .advisor-details {
+        display: block;
+        padding-bottom: 15px;
+        .advisor-name {
+          font-weight: bold;
+        }
+        .advisor-availability p {
+          font-size:0.9em;
+          color: #bbb;
+          white-space:normal;
+        }
+      }
+    }
+  }
+  .empty-message {
+    a {
+      font-weight: bold;
+    }
+    padding: 15px;
+  }
+  .item {
+    .no-ellipsis {
+      overflow: hidden;
+      text-overflow: inherit;
+      white-space: normal;
+    }
+  }
+}
+

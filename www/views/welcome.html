@@ -30,8 +30,8 @@
         <h4 class="remember-me-label">Remember Me</h4>
       </div>
     
-      <label class="col col-10 toggle toggle-balanced remember-me">
-        <input type="checkbox" ng-model="rememberMe">
+      <label class="toggle toggle-balanced remember-me">
+        <input type="checkbox" ng-model="data.rememberMe" ng-change="changeRememberMe()">
         <div class="track">
           <div class="handle"></div>
         </div>

@@ -10,9 +10,11 @@ angular.module('PsychicSource.Authentication', [])
     membershipId: null,
     token: null,
     role: USER_ROLES.public_role,
-    loadUserCredentials: function(){
-      var data = $localstorage.getObject(auth.sessionKey);
-      var token = data.access_token;
+    loadUserCredentials: function(data){
+      if(!data){
+        data = $localstorage.getObject(auth.tokenName);
+      }
+      var token = (data && data.access_token) ? data.access_token : null;
       if(token) {
         auth.useCredentials(data);
       }
@@ -47,6 +49,9 @@ angular.module('PsychicSource.Authentication', [])
       $http.defaults.headers.common['Authorization'] = undefined;
       $localstorage.remove(auth.sessionKey);
       $localstorage.remove('summary-'+auth.membershipId);
+      $localstorage.remove('preferences-'+auth.membershipId);
+      $localstorage.remove('call-'+auth.membershipId);
+
       auth.membershipId = null;
     },
     logout: function() {
@@ -59,6 +64,12 @@ angular.module('PsychicSource.Authentication', [])
         $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
         $rootScope.$broadcast('user:logout');
       },30);
+    },
+    getRememberMe: function(){
+      return auth.rememberMe;
+    },
+    setRememberMe: function(remember) {
+      auth.rememberMe = remember;
     },
 
     login: function(data) {
@@ -101,6 +112,8 @@ angular.module('PsychicSource.Authentication', [])
   auth.loadUserCredentials();
   return {
     refresh: auth.loadUserCredentials,
+    getRememberMe: auth.getRememberMe,
+    setRememberMe: auth.setRememberMe,
     login: auth.login,
     logout: auth.logout,
     getCredentials: function(){ return auth.credentials; },

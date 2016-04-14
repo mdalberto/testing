@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.9.4" android-versionCode="95">
+<widget id="com.vse.psychicsource" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="0.0.9" android-versionCode="9">
   <name>PsychicSource</name>
   <description>
-    Psychic Source mobile app 
+    Official PsychicSource Mobile App
   </description>
   <author email="development@novotorium.com" href="http://www.novotorium.com/">
     Novotorium Team
@@ -22,7 +22,7 @@
   <preference name="SplashMaintainAspectRatio" value="true|false" />
   <preference name="FadeSplashScreen" value="false"/>
   <preference name="FadeSplashScreenDuration" value="3000"/>
-  <preference name="ShowSplashScreenSpinner" value="false"/> 
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="android-build-tool" value="gradle"/>
   <preference name="StatusBarOverlaysWebView" value="false"/>

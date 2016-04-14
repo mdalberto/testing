@@ -1,4 +1,4 @@
-var PsychicSource = angular.module('PsychicSource', ['InternationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore','PsychicSource.Push','PsychicSource.Config'])
+var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber','ionic','ionic.utils','ngCordova','PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Preferences','PsychicSource.Ajax','PsychicSource.Filters','PsychicSource.ReturnCalls','ordinal','underscore','PsychicSource.Push','PsychicSource.Config'])
 .run(function($ionicPlatform,$rootScope, $state, AuthService,AUTH_EVENTS, $cordovaSplashscreen){
   setTimeout(function(){
     $cordovaSplashscreen.hide();

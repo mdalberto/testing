@@ -12,7 +12,7 @@ angular.module('PsychicSource.Authentication', [])
     role: USER_ROLES.public_role,
     loadUserCredentials: function(data){
       if(!data){
-        data = $localstorage.getObject(auth.tokenName);
+        data = $localstorage.getObject(auth.sessionKey);
       }
       var token = (data && data.access_token) ? data.access_token : null;
       if(token) {

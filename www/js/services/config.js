@@ -1,7 +1,7 @@
 angular.module('PsychicSource.Config', [])
 .factory('ConfigService', ['$window', function($window,_) {
 
-  var environment = 'production';
+  var environment = 'test';
 
   function getConfigObject(env){
     switch(env){

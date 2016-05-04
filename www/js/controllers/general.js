@@ -70,7 +70,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
         if(res){
           var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
         }
-      }); 
+      });
     };
 
   $scope.init();

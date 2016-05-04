@@ -7,11 +7,11 @@ angular.module('PsychicSource.Ajax', [])
     headers: function(contentType){
       var contentType = typeof contentType !== 'undefined' ? contentType : 'application/json';
       return {
-      'Content-Type': contentType,
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Origin': '*',
-      'Pragma': 'no-cache',
-      'Cache-Control': 'no-cache'
+        'Content-Type': contentType,
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Origin': '*',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache'
       };
     },
     login: function(data){
@@ -35,7 +35,24 @@ angular.module('PsychicSource.Ajax', [])
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/summary',
         header: ajaxHandler.headers(),
-        });
+      });
+    },
+    getPreferences: function(id){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
+        header: ajaxHandler.headers(),
+      });
+    },
+    savePreferences: function(id,preferences){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
+        header: ajaxHandler.headers(),
+        data: JSON.stringify(preferences)
+      });      
     },
     sendNotificationId: function(data){
       var mobileOS = mobilePlatforms[data.platform];
@@ -60,31 +77,14 @@ angular.module('PsychicSource.Ajax', [])
           });
       };
       query();
-      return queryResults.promise; 
-    },
-    getPreferences: function(id){
-      return $http({
-        method: 'GET',
-        cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
-        header: ajaxHandler.headers(),
-      });
-    },
-    savePreferences: function(id,preferences){
-      return $http({
-        method: 'POST',
-        cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
-        header: ajaxHandler.headers(),
-        data: JSON.stringify(preferences)
-      });      
+      return queryResults.promise;
     },
     getReturnCallQueues: function(id){
       return $http({
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + id + '/ReturnCalls',
-        header: ajaxHandler.headers
+        header: ajaxHandler.headers()
       });
     },
     deleteReturnCall: function(membershipId,advisorId){
@@ -92,7 +92,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'DELETE',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/' + membershipId + '/DeleteReturnCall/' + advisorId,
-        header: ajaxHandler.headers
+        header: ajaxHandler.headers()
       });
     },
     getCountryCodes: function(){
@@ -100,7 +100,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'domain/countrycodes',
-        header: ajaxHandler.headers
+        header: ajaxHandler.headers()
       });
     },
     getReturnCallAvailabilityHours: function(){
@@ -108,7 +108,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'GET',
         cache: false,
         url: ajaxHandler.baseUrl + 'domain/returncallavailabilityhours',
-        header: ajaxHandler.headers
+        header: ajaxHandler.headers()
       });
     },
     updateReturnCallProfile: function(data){
@@ -116,7 +116,7 @@ angular.module('PsychicSource.Ajax', [])
         method: 'POST',
         cache: false,
         url: ajaxHandler.baseUrl + 'member/v1/UpdateReturnCallProfile',
-        header: $.extend(ajaxHandler.headers, {'Content-Type': 'application/json'}),
+        header: ajaxHandler.headers(),
         data: data
       });
 

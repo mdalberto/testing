@@ -82,4 +82,7 @@
         <splash src="screen.png" />
     </platform>
     <plugin name="ionic-plugin-keyboard" spec="~2.1.0" />
+    <plugin name="phonegap-plugin-push" spec="1.6.3">
+      <variable name="SENDER_ID" value="117405771847" />
+    </plugin>
 </widget>

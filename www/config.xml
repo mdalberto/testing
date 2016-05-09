@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.3.9" android-versionCode="139">
+<widget id="com.ionicframework.pushnotifications" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.4.7" android-versionCode="147">
   <name>PsychicSource Test</name>
   <description>
     Official PsychicSource Mobile App
@@ -29,9 +29,7 @@
   <gap:plugin name="cordova-plugin-splashscreen" source="npm" version="3.2.0"/>
   <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="1.2.1"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.2.1"/>
-  <gap:plugin name="phonegap-plugin-push" source="npm" version="1.4.5">
-    <variable name="SENDER_ID" value="117405771847" />
-  </gap:plugin>
+  <gap:plugin name="phonegap-plugin-push" source="npm" version="1.4.5" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

@@ -8,6 +8,11 @@ create_www_zip()
   else
     vim www/config.xml -c "%s/Official PsychicSource Mobile App/$app_description/g | x"
   fi
+  if [ -z ${app_id+x} ]; then
+    echo "Using default id"
+  else
+    vim www/config.xml -c "%s/com.vse.psychicsource/$app_id/g | x"
+  fi
   cd www &&
   zip -r ../www.zip * &&
   cd .. &&

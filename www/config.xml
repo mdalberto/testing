@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.pushnotifications" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.0.4" android-versionCode="104">
+<widget id="com.vse.psychicsource" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.5.6" android-versionCode="156">
   <name>PsychicSource Test</name>
   <description>
-    Official PsychicSource Mobile App 
+    Official PsychicSource Mobile App
   </description>
   <author email="development@novotorium.com" href="http://www.novotorium.com/">
     Novotorium Team
@@ -22,7 +22,7 @@
   <preference name="SplashMaintainAspectRatio" value="true|false"/>
   <preference name="FadeSplashScreen" value="false"/>
   <preference name="FadeSplashScreenDuration" value="3000"/>
-  <preference name="ShowSplashScreenSpinner" value="false"/> 
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="android-build-tool" value="gradle"/>
   <preference name="StatusBarOverlaysWebView" value="false"/>
@@ -42,9 +42,13 @@
     <preference name="SplashScreenHeight" value="300"/>
   </platform>
   <platform name="ios">
+    <icon src="icons/ios/icon.png" gap:platform="ios" width="57" height="57"/>
+    <icon src="icon.png" gap:platform="ios" width="57" height="57"/>
     <icon src="icons/ios/icon-60@3x.png" gap:platform="ios" width="180" height="180"/>
+    <icon src="icons/ios/icon-57.png" gap:platform="ios" width="57" height="57"/>
     <icon src="icons/ios/icon-60.png" gap:platform="ios" width="60" height="60"/>
     <icon src="icons/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120"/>
+    <icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72"/>
     <icon src="icons/ios/icon-76.png" gap:platform="ios" width="76" height="76"/>
     <icon src="icons/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152"/>
     <icon src="icons/ios/icon-Small.png" gap:platform="ios" width="29" height="29"/>

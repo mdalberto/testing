@@ -1,5 +1,4 @@
 PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
-
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -7,9 +6,9 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   };
 
   $scope.$on('user:logout:complete',function(){
-    $scope.logout();       
+    $scope.logout();
   });
-  
+
   $scope.$on('user:logout',function(event){
     $ionicLoading.hide();
     $rootScope.showFooter = false;
@@ -37,7 +36,6 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     }
   });
 
-
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
     var alertPopup = $ionicPopup.alert({
       title: 'Unauthorized!',
@@ -61,6 +59,18 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     $scope.isPreference = function() { return $state.is('app.preferences'); };
   };
 
+  $scope.external = function($event){
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'You are about to leave the app and go to PsychicSource Website',
+      template: 'Are you sure that you want to do this?'
+    });
+
+    confirmPopup.then(function(res){
+      if(res){
+        var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
+      }
+    });
+  };
 
   $scope.external = function($event){
       var confirmPopup = $ionicPopup.confirm({
@@ -72,7 +82,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
         if(res){
           var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
         }
-      }); 
+      });
     };
 
   $scope.init();

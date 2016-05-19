@@ -24,7 +24,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   };
 
   $scope.setFormattedPhone = function(){
-    $scope.times.formattedPhone = $('input[international-phone-number').val();
+    $scope.times.formattedPhone = $('input[international-phone-number]').val();
   };
 
   $scope.setFlag = function(){

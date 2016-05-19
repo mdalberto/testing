@@ -12,7 +12,7 @@ angular.module('PsychicSource.Config', [])
           baseUrl: 'https://testcontentservice.vseinc.com/elapi/',
           assetUrl: 'http://psychicsource.com/',
         };
-        return config; 
+        return config;
       case 'dev':
         var config = {
           enableCorsProxy: true,
@@ -36,7 +36,7 @@ angular.module('PsychicSource.Config', [])
         return config;
       default:
         return {};
-    } 
+    }
   }
   function getShared(config) {
     var shared = {

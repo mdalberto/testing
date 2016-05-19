@@ -1,5 +1,4 @@
-PsychicSource.controller('PrivacyCtrl',function($scope,$ionicScrollDelegate){
-  
+PsychicSource.controller('PrivacyCtrl',function($scope,$ionicScrollDelegate,$timeout){
   $scope.registerEventListeners = function(){
     $scope.scrollToTop();
   };
@@ -10,6 +9,11 @@ PsychicSource.controller('PrivacyCtrl',function($scope,$ionicScrollDelegate){
     });
   };
 
+  $scope.scrollTo= function(){
+   $timeout(function(){
+     $ionicScrollDelegate.anchorScroll(true);
+   },200);
+  };
 
   $scope.registerEventListeners();
 

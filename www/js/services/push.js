@@ -26,7 +26,6 @@ angular.module('PsychicSource.Push', [])
         notificationHandler.finish(function() {
           // console.log('finish successfully called');
         });
-          
       });
 
       notificationHandler.setApplicationIconBadgeNumber(function() {
@@ -35,7 +34,7 @@ angular.module('PsychicSource.Push', [])
            // console.log('error');
       }, 0);
 
-      return notificationHandler; 
+      return notificationHandler;
     }
   };
 

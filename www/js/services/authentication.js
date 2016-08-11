@@ -75,6 +75,12 @@ angular.module('PsychicSource.Authentication', [])
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         d = $q.defer();
+        var platform = ionic.Platform.platform();
+        if(typeof PushNotification !== "defined"){
+          user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
+          d.resolve(false);
+          return d.promise;
+        }
         var push = PushNotificationService.init();
         push.on('registration', function(pushData) {
           var platform = ionic.Platform.platform();
@@ -89,7 +95,7 @@ angular.module('PsychicSource.Authentication', [])
         });
 
         push.on('error', function(e) {
-          d.reject(e);   
+          d.reject(e);
           alert(e);
         });
         return d.promise;

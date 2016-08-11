@@ -56,6 +56,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     $scope.isAccount = function() { return $state.is('app.member-home'); };
     $scope.isReturnCall = function() { return $state.is('app.return-call'); };
     $scope.isAvailability = function() { return $state.is('app.availability'); };
+    $scope.isFavs = function() { return $state.is('app.favs'); };
     $scope.isPreference = function() { return $state.is('app.preferences'); };
   };
 

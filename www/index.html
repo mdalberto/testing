@@ -68,6 +68,9 @@
         <a class="tab-item" ng-class="{ 'is-active': isAvailability() }" ui-sref="app.availability" ui-sref-opts="{reload: true, notify: true}" >
           <i class="icon ion-clock"><span>Availability</span></i>
         </a>
+        <a class="tab-item" ng-class="{ 'is-active': isFavs() }" ui-sref="app.favs" ui-sref-opts="{reload: true, notify: true}" >
+          <i class="icon ion-heart"><span>Favs</span></i>
+        </a>
         <a class="tab-item" ng-class="{ 'is-active': isPreference() }" ui-sref="app.preferences" ui-sref-opts="{reload: true, notify: true}" >
           <i class="icon ion-gear-a"><span>Notifications</span></i>
         </a>

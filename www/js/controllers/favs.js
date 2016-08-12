@@ -12,12 +12,20 @@ PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService)
   };
 
   $scope.availableIM = function(fav){
-    var css_class = fav.IsOnIM === true ? 'font-green' : 'font-red';
-    return css_class;
+    if(fav.ServiceAvailable && fav.IsOnIM && fav.IMStatusID === 2 && !fav.OnPhoneConference){
+      return 'font-green';
+    }
+    else{
+      return 'font-red';
+    }
   };
   $scope.availablePhone = function(fav){
-    var css_class = fav.IsOnPhone === true ? 'font-green' : 'font-red';
-    return css_class;
+    if(fav.ServiceAvailable && fav.IsOnPhone && fav.IsPhoneLogin && !fav.OnPhoneConference){
+      return 'font-green';
+    }
+    else{
+      return 'font-red';
+    }
   };
 
 });

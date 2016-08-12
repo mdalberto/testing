@@ -18,7 +18,7 @@ angular.module('PsychicSource.Preferences', [])
         preferences.storeUserPreferences(res.data);
         $ionicLoading.hide();
         d.resolve(preferences.settings);
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
@@ -26,8 +26,8 @@ angular.module('PsychicSource.Preferences', [])
           var alertPopup = $ionicPopup.alert({
             title: 'Error',
             template: 'Error while retrieving account information'
-          });  
-          d.reject(err);                             
+          });
+          d.reject(err);
         }
       });
       return d.promise;

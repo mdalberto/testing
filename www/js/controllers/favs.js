@@ -1,13 +1,17 @@
-PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService, AjaxService, AuthService, $ionicLoading){
+PsychicSource.controller('FavsCtrl',function($rootScope, $scope, FavsService, ConfigService, AjaxService, AuthService, $ionicLoading, $ionicPopup){
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
     //$ionicLoading.show({template: 'Loading Favorite Advisors...'});
-    $scope.favs = null
-    AjaxService.getFavorites(AuthService.id(),$scope.preferences).then(function(res){
-      $ionicLoading.hide();
+    $scope.favs = null;
+    AjaxService.getFavorites(AuthService.id()).then(function(res){
+      //$ionicLoading.hide();
       $scope.favs = res.data;
     }, function(error){
+      if(error.status === 401){
+        $rootScope.$broadcast('user:logout:complete');
+        return;
+      }
       //$ionicLoading.hide();
       var alertPopup = $ionicPopup.alert({
         title: 'Update operation failed! (2)',
@@ -18,11 +22,38 @@ PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService,
   $scope.refresh();
 
   $scope.remove = function(index){
-    FavsService.remove(index);
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Favorite Advisors',
+      template: '<center>Are you sure you want to remove this Advisor?</center>'
+    });
+
+    confirmPopup.then(function(res){
+      if(res){
+        selectedAdvisor = $scope.favs[index];
+        advisor = {
+          "FavoriteAdvisorId":selectedAdvisor.FavoriteAdvisorId,
+          "AdvisorId":selectedAdvisor.AdvisorId,
+          "Notes":"removed from mobile app",
+          "active":false,
+          "isAlert":true};
+          AjaxService.saveFavorite(AuthService.id(), advisor).then(function(res){
+            $scope.favs = res.data;
+          }, function(error){
+            if(error.status === 401){
+              $rootScope.$broadcast('user:logout:complete');
+              return;
+            }
+            var alertPopup = $ionicPopup.alert({
+              title: 'Update operation failed! (2)',
+              template: 'Please verify you are connected to the internet'
+            });
+          });
+      }
+    });
   };
 
   $scope.availableIM = function(fav){
-    if(fav.ServiceAvailable && fav.IsOnIM && fav.IMStatusID === 2 && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable==1 && fav.IsOnIM && fav.IMStatusID === 1 && !fav.OnPhoneConference){
       return 'font-green';
     }
     else{
@@ -30,7 +61,7 @@ PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService,
     }
   };
   $scope.availablePhone = function(fav){
-    if(fav.ServiceAvailable && fav.IsOnPhone && fav.IsPhoneLogin && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable==1 && fav.IsOnPhone && fav.IsPhoneLogIn && !fav.OnPhoneConference){
       return 'font-green';
     }
     else{

@@ -40,10 +40,10 @@
           <div class='col-50'>
             <div class='row'>
               <a class='col-33 text-center' ng-href="{{profileUrl}}{{fav.AdvisorId}}">
-                <i class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
+                <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
               </a>
               <a class='col-33 text-center' ng-href="{{profileUrl}}{{fav.AdvisorId}}">
-                <i class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
+                <i ng-show='fav.IsOnIM' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
               </a>
               <div class='col-33 text-center'>
                 <a ng-click='remove($index)'>

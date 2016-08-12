@@ -12,7 +12,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
           $rootScope.showFooter = next.data.showFooter;
         }
         $state.go(next,{},{reload: true});
-        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        $rootScope.$broadcast('user:logout:complete');
       } else {
         if('data' in next){
           $rootScope.showFooter = next.data.showFooter;

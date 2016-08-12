@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -18,6 +18,12 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   $scope.isLoggedIn = function(){
     return AuthService.isAuthenticated();
   };
+
+  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+    if($ionicSideMenuDelegate.isOpen()){
+      $ionicSideMenuDelegate.toggleLeft();
+    }
+  });
 
   $scope.$on('$ionicView.beforeEnter',function(event,view){
     if(view.stateName === 'app.privacy-policy' && $scope.isLoggedIn()){

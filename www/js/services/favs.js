@@ -10,7 +10,7 @@ angular.module('PsychicSource.Favs', [])
     "AdvisorPhoto":"7343.jpg",
     "IsLogIn":false,
     "Status":"Not Logged In",
-    "IsOnIM":false,
+    "IsOnIM":true,
     "IMStatusID":0,
     "IsOnPhone":true,
     "LogInStatusID":7,

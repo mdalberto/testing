@@ -1,5 +1,6 @@
 PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService){
   $scope.imagePath = ConfigService.assetUrlImages;
+  $scope.profileUrl = ConfigService.profileUrl;
   $scope.favs = FavsService.all();
 
   $scope.refresh = function(){

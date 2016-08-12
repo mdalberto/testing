@@ -2,24 +2,27 @@
   .row{
     align-items: center;
   }
-  .icon{
+  .icon {
     font-size: 40px;
   }
-  .icon.ion-close-circled{
+  .icon.ion-close-circled {
     color: #c0c0c0;
     font-size: 24px;
   }
-  .font-red{
+  .font-red {
     color: #C04547;
   }
-  .font-green{
+  .font-green {
     color: #75AA38;
   }
-  p{
+  a {
+    text-decoration: none;
+  }
+  p {
     font-weight: bolder;
     color: black;
   }
-  img{
+  img {
     margin-right: 18px;
     margin-left: auto;
     display: block;

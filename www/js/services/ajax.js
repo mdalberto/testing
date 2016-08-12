@@ -45,7 +45,7 @@ angular.module('PsychicSource.Ajax', [])
       return $http({
         method: 'POST',
         cache: false,
-        url: ajaxHandler.baseUrl + 'member/v2/' + id + '/' + ajaxHandler.networkId + '/savefavoriteadvisor',
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savefavoriteadvisor',
         headers: ajaxHandler.headers(),
         data: favorite
       });
@@ -62,7 +62,7 @@ angular.module('PsychicSource.Ajax', [])
       return $http({
         method: 'POST',
         cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
+        url: ajaxHandler.baseUrl + 'member/v2/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
         headers: ajaxHandler.headers(),
         data: JSON.stringify(preferences)
       });      

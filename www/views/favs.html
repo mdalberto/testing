@@ -7,7 +7,8 @@
         <a href="" class="padding" ng-click="refresh()">Refresh</a>
       </div>
     </div>
-    <div class="padding list">
+    <ion-spinner icon="ios" ng-show="favs == null"></ion-spinner>
+    <div class="padding list" ng-hide="favs == null">
       <div class="row item advisor-board-header" ng-show="favs.length">
         <div class="col col-80"></div>
         <div class="col text-center ellipsis">Delete</div>

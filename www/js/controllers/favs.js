@@ -3,6 +3,7 @@ PsychicSource.controller('FavsCtrl',function($scope, FavsService, ConfigService,
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
     //$ionicLoading.show({template: 'Loading Favorite Advisors...'});
+    $scope.favs = null
     AjaxService.getFavorites(AuthService.id(),$scope.preferences).then(function(res){
       $ionicLoading.hide();
       $scope.favs = res.data;

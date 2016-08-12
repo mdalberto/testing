@@ -1,4 +1,4 @@
-PsychicSource.controller('FavsCtrl',function($rootScope, $scope, FavsService, ConfigService, AjaxService, AuthService, $ionicLoading, $ionicPopup){
+PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, $ionicPopup){
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){

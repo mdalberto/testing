@@ -1,7 +1,6 @@
-//angular.module('starter.services', [])
 angular.module('PsychicSource.Favs', [])
 .factory('FavsService', function(){
-  var favs= [
+  var favsOrig = [
     {
     "FavoriteAdvisorId":4704,
     "isFavoriteActive":true,
@@ -57,8 +56,11 @@ angular.module('PsychicSource.Favs', [])
     "ServiceAvailable":1
     },
   ];
+  var favs = JSON.parse(JSON.stringify(favsOrig));
   return {
     all: function(){
+      favs = JSON.parse(JSON.stringify(favsOrig));
+      //Here we can do the http load
       return favs;
     },
     remove: function(fav) {

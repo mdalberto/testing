@@ -41,6 +41,15 @@ angular.module('PsychicSource.Ajax', [])
         headers: ajaxHandler.headers(),
       });
     },
+    saveFavorite: function(id, favorite){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savefavoriteadvisor',
+        headers: ajaxHandler.headers(),
+        data: favorite
+      });
+    },
     getFavorites: function(id){
       return $http({
         method: 'GET',

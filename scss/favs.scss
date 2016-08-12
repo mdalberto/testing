@@ -30,8 +30,11 @@
   font-size: 20px;
   font-weight: bold;
   color: $psych-color-2;
-  vertical-align: super;
+  a {
+    vertical-align: super;
+  }
   i {
     font-size: 36px;
+    color: black;
   }
 }

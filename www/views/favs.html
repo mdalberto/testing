@@ -2,7 +2,7 @@
   <ion-content class="padding has-footer favs-content">
     <h3 class="title no-ellipsis text-center">Your Favorite Advisors List</h3>
     <div class="row">
-      <div class="col col-90 text-right refresh">
+      <div class="col col-100 text-right refresh">
         <i class="ion-android-refresh"></i>
         <a href="" class="padding" ng-click="refresh()">Refresh</a>
       </div>
@@ -46,7 +46,9 @@
                 <i class="icon ion-chatbubble font-green"></i>
               </div>
               <div class='col-33 text-center'>
-                <i class="icon ion-close-circled"></i>
+                <a ng-click='remove($index)'>
+                  <i class="icon ion-close-circled"></i>
+                </a>
               </div>
             </div>
           </div>

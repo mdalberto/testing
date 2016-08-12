@@ -145,6 +145,10 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
         templateUrl: 'views/favs.html',
         controller: 'FavsCtrl'
       }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
     }
   })
   .state('app.return-call',{

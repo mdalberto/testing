@@ -21,7 +21,7 @@ angular.module('PsychicSource.ReturnCalls', [])
         calls.storeReturnCallsInfo(res.data);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
@@ -29,8 +29,8 @@ angular.module('PsychicSource.ReturnCalls', [])
           var alertPopup = $ionicPopup.alert({
             title: 'Error',
             template: '(2) Error while retrieving account information'
-          });  
-          d.reject(err);   
+          });
+          d.reject(err);
         }
       });
       return d.promise;
@@ -42,7 +42,7 @@ angular.module('PsychicSource.ReturnCalls', [])
         calls.storeReturnCallsInfo(data);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
@@ -50,8 +50,8 @@ angular.module('PsychicSource.ReturnCalls', [])
           var alertPopup = $ionicPopup.alert({
             title: 'Error',
             template: '(2) Error while retrieving account information'
-          });  
-          d.reject(err);   
+          });
+          d.reject(err);
         }
       });
       return d.promise;

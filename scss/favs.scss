@@ -1,0 +1,37 @@
+.fav {
+  .row{
+    align-items: center;
+  }
+  .icon{
+    font-size: 40px;
+  }
+  .icon.ion-close-circled{
+    color: #c0c0c0;
+    font-size: 24px;
+  }
+  .font-red{
+    color: #C04547;
+  }
+  .font-green{
+    color: #75AA38;
+  }
+  p{
+    font-weight: bolder;
+    color: black;
+  }
+  img{
+    margin-right: 18px;
+    margin-left: auto;
+    display: block;
+    border-radius: 15px;
+  }
+}
+.refresh {
+  font-size: 20px;
+  font-weight: bold;
+  color: $psych-color-2;
+  vertical-align: super;
+  i {
+    font-size: 36px;
+  }
+}

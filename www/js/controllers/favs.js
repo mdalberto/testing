@@ -53,7 +53,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   };
 
   $scope.availableIM = function(fav){
-    if(fav.ServiceAvailable==1 && fav.IsOnIM && fav.IMStatusID === 1 && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable==2 && fav.IsOnIM && fav.IMStatusID === 1 && !fav.OnPhoneConference){
       return 'font-green';
     }
     else{
@@ -61,7 +61,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
     }
   };
   $scope.availablePhone = function(fav){
-    if(fav.ServiceAvailable==1 && fav.IsOnPhone && fav.IsPhoneLogIn && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable==2 && fav.IsOnPhone && fav.IsPhoneLogIn && !fav.OnPhoneConference){
       return 'font-green';
     }
     else{

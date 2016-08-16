@@ -11,9 +11,15 @@
   }
   .font-red {
     color: #C04547;
+    rect {
+      fill: #C04547;
+    }
   }
   .font-green {
     color: #75AA38;
+    rect {
+      fill: #75AA38;
+    }
   }
   a {
     text-decoration: none;
@@ -27,6 +33,32 @@
     margin-left: auto;
     display: block;
     border-radius: 15px;
+  }
+  .legend {
+    i {
+    font-size: 16px;
+   }
+    div {
+      div {
+        margin-top: -5px;
+      }
+    }
+    font-size: 13px;
+    .col-50 {
+      padding: 10px 10px 5px 15px;
+    }
+    .icon {
+      color: inherit;
+      display: inline-block;
+      vertical-align: -.26em;
+      line-height: 13px;
+      height: 13px;
+      width: 13px;
+      fill: currentColor;
+    }
+    .text {
+      vertical-align: -webkit-baseline-middle;
+    }
   }
 }
 .refresh {

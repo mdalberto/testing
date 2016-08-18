@@ -2,17 +2,14 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
-    //$ionicLoading.show({template: 'Loading Favorite Advisors...'});
     $scope.favs = null;
     AjaxService.getFavorites(AuthService.id()).then(function(res){
-      //$ionicLoading.hide();
       $scope.favs = res.data;
     }, function(error){
       if(error.status === 401){
         $rootScope.$broadcast('user:logout:complete');
         return;
       }
-      //$ionicLoading.hide();
       var alertPopup = $ionicPopup.alert({
         title: 'Update operation failed! (2)',
         template: 'Please verify you are connected to the internet'

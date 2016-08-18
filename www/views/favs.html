@@ -40,12 +40,12 @@
           </div>
           <div class='col-50'>
             <div class='row'>
-              <div class='col-33 text-center'>
+              <a class='col-33 text-center' ng-href="tel:1.800.965.3049">
                 <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
-              </div>
-              <div class='col-33 text-center'>
+              </a>
+              <a class='col-33 text-center' ng-href="{{profileUrl}}{{fav.AdvisorId}}">
                 <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
-              </div>
+              </a>
               <div class='col-33 text-center'>
                 <a ng-click='remove($index)'>
                   <i class="icon ion-close-circled"></i>

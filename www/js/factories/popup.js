@@ -1,5 +1,5 @@
-angular.module('PsychicSource.Secured', [])
-.factory('SecuredPopups', [
+angular.module('PsychicSource.Popup', [])
+.factory('Popup', [
   '$ionicPopup',
   '$q',
   function ($ionicPopup, $q) {

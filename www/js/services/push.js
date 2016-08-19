@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Push', [])
-.factory('PushNotificationService',function($ionicPopup,$state,ConfigService,SecuredPopups){
+.factory('PushNotificationService',function($ionicPopup,$state,ConfigService,Popup){
   var push = {
     init: function() {
       var notificationHandler = PushNotification.init({
@@ -17,7 +17,7 @@ angular.module('PsychicSource.Push', [])
             // data.image,
             // data.additionalData
 
-        var alertPopup = SecuredPopups.show('alert', {
+        var alertPopup = Popup.show('alert', {
           title: data.title,
           template: data.message
         });

@@ -19,7 +19,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     return AuthService.isAuthenticated();
   };
 
-  $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+  $rootScope.$on('$stateChangeSuccess', function(){
     if($ionicSideMenuDelegate.isOpen()){
       $ionicSideMenuDelegate.toggleLeft();
     }

@@ -10,8 +10,8 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
         $rootScope.$broadcast('user:logout:complete');
         return;
       }
-      var alertPopup = $ionicPopup.alert({
-        title: 'Update operation failed! (2)',
+      $ionicPopup.alert({
+        title: 'Update operation failed!',
         template: 'Please verify you are connected to the internet'
       });
     });
@@ -40,8 +40,8 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
               $rootScope.$broadcast('user:logout:complete');
               return;
             }
-            var alertPopup = $ionicPopup.alert({
-              title: 'Update operation failed! (2)',
+            $ionicPopup.alert({
+              title: 'Update operation failed!',
               template: 'Please verify you are connected to the internet'
             });
           });

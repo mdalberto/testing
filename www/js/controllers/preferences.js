@@ -5,15 +5,14 @@ PsychicSource.controller('PreferencesCtrl',function($scope, $ionicLoading, $ioni
   $ionicLoading.show({template: 'Updating Setting...'});
   AjaxService.savePreferences(AuthService.id(),$scope.preferences).then(function(res){
     PreferencesService.getPreferences().then(function(preferences){
-      $ionicLoading.hide(); 
+      $ionicLoading.hide();
       $scope.preferences = preferences;
-    }, function(err2){                                       
+    }, function(err2){
       $ionicLoading.hide();
       var alertPopup = $ionicPopup.alert({
         title: 'Update operation failed! (2)',
         template: 'Please verify you are connected to the internet'
       });
-                                             
     });
   },function(err){
     $ionicLoading.hide();

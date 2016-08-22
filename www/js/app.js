@@ -12,7 +12,7 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
           $rootScope.showFooter = next.data.showFooter;
         }
         $state.go(next,{},{reload: true});
-        $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+        $rootScope.$broadcast('user:logout:complete');
       } else {
         if('data' in next){
           $rootScope.showFooter = next.data.showFooter;
@@ -130,6 +130,20 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     resolve: {
       availabilityObj: function(AvailabilityService){
         return AvailabilityService.getCountryCodesAndHours();
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  })
+  .state('app.favs',{
+    cache: false,
+    url: '/favs',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/favs.html',
+        controller: 'FavsCtrl'
       }
     },
     data: {

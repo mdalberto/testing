@@ -233,7 +233,7 @@ div.button-psychicbg1 {
     font-size: 2em;
     margin-top: 0.25em;
     span {
-      font-size:14px;
+      font-size:12px;
       clear:both;
       display:block;
       position: relative;
@@ -272,6 +272,7 @@ ion-content {
 @import "scss/member-home";
 @import "scss/availability";
 @import "scss/return-call";
+@import "scss/favs";
 
 .item.no-ellipsis {
   overflow: hidden;
@@ -285,5 +286,11 @@ h3.title {
 a {
   color: $psych-color-2;
 }
-
-
+.spinner svg{
+  width: 5em;
+  height: 5em;
+  fill: $psych-color-2;
+  stroke: $psych-color-2;
+  margin: auto;
+  display: block;
+}

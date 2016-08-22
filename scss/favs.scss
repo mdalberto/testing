@@ -1,0 +1,55 @@
+[nav-view-transition][nav-view-direction] {
+background-color: #fcf2e1;
+}
+.fav {
+  .row{
+    align-items: center;
+  }
+  .icon {
+    font-size: 24px;
+  }
+  .icon.ion-close-circled {
+    color: #c0c0c0;
+    font-size: 24px;
+  }
+  .font-red {
+    color: #C04547;
+  }
+  .font-green {
+    color: #75AA38;
+  }
+  a {
+    text-decoration: none;
+  }
+  p {
+    font-weight: bolder;
+    color: black;
+  }
+  img {
+    margin-right: 18px;
+    margin-left: auto;
+    display: block;
+    border-radius: 15px;
+  }
+}
+.favs-content {
+  .empty-message {
+    white-space: initial;
+    a {
+      font-weight: bold;
+    }
+    padding: 25px 15px 15px 15px;
+  }
+}
+.refresh {
+  font-size: 20px;
+  font-weight: bold;
+  color: $psych-color-2;
+  a {
+    vertical-align: super;
+  }
+  i {
+    font-size: 36px;
+    color: black;
+  }
+}

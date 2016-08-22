@@ -1,0 +1,60 @@
+<ion-view title="Favorite Advisors">
+  <ion-content class="padding has-footer favs-content">
+    <h3 class="title no-ellipsis text-center">My Favorite Advisors</h3>
+    <div class="row">
+      <div class="col col-100 text-right refresh">
+        <i class="ion-android-refresh"></i>
+        <a href="" class="padding" ng-click="refresh()">Refresh</a>
+      </div>
+    </div>
+    <ion-spinner icon="ios" ng-show="favs == null"></ion-spinner>
+    <div class="padding list" ng-hide="favs == null">
+      <div class="row item advisor-board-header" ng-show="favs.length">
+        <div class="col col-80"></div>
+        <div class="col text-center ellipsis">Delete</div>
+      </div>
+      <div class="row item advisor-container text-center" ng-hide="favs.length">
+        <div class="col col-100 col-center empty-message no-ellipsis">
+            You have not selected any Favorite Advisors
+          <a href="#" class="button button-block button-psychic2-light" href ng-click="external($event)" data-href="http://www.psychicsource.com/favorite-advisors">
+            Learn More
+          </a>
+        </div>
+      </div>
+      <div class='fav' ng-show="favs.length">
+        <div class='row item' ng-repeat="fav in favs">
+          <div class='col col-50'>
+            <div class='row'>
+              <div class='col-50'>
+                <img class="profile-pic" width="50" height="50" ng-src="{{imagePath}}{{fav.AdvisorPhoto}}?width=60">
+              </div>
+              <div class='col-50'>
+                <p>
+                {{fav.AdvisorName}}
+                </p>
+                <p>
+                x{{fav.AdvisorExtension}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class='col-50'>
+            <div class='row'>
+              <a class='col-33 text-center' ng-href="tel:1.800.965.3049">
+                <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
+              </a>
+              <a class='col-33 text-center' ng-href="{{profileUrl}}{{fav.AdvisorId}}">
+                <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
+              </a>
+              <div class='col-33 text-center'>
+                <a ng-click='remove($index)'>
+                  <i class="icon ion-close-circled"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

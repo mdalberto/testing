@@ -1,4 +1,4 @@
-PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,$ionicPopup,AuthService, SummaryService, AjaxService, $localstorage){
+PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,Popup,AuthService, SummaryService, AjaxService, $localstorage){
   $rootScope.showFooter = false;
   $scope.data = {};
   $scope.callNowNumber = ionic.Platform.isAndroid() ? "8669040177" : "8668842981";
@@ -30,7 +30,7 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ion
       }
     },function(err){
       $ionicLoading.hide();
-      var alertPopup = $ionicPopup.alert({
+      Popup.show('alert', {
         title: 'Login failed!',
         template: 'Please check your credentials!'
       });
@@ -52,7 +52,7 @@ PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ion
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
             template: '(2) Error while updating device information'
           });

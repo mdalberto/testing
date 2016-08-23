@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,Popup){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -37,7 +37,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   });
 
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event){
-    var alertPopup = $ionicPopup.alert({
+    Popup.show('alert', {
       title: 'Unauthorized!',
       template: 'You are not allowed to access this resource.'
     });
@@ -46,7 +46,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event){
     AuthService.logout();
     $state.go('app.welcome');
-    var alertPopup = $ionicPopup.alert({
+    Popup.show('alert', {
       title: 'Session Lost!',
       template: 'Sorry, You have to login again.'
     });
@@ -60,7 +60,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   };
 
   $scope.external = function($event){
-    var confirmPopup = $ionicPopup.confirm({
+    var confirmPopup = Popup.show('confirm', {
       title: 'You are about to leave the app and go to PsychicSource Website',
       template: 'Are you sure that you want to do this?'
     });
@@ -71,19 +71,6 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
       }
     });
   };
-
-  $scope.external = function($event){
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'You are about to leave the app and go to PsychicSource Website',
-        template: 'Are you sure that you want to do this?'
-      });
-
-      confirmPopup.then(function(res){
-        if(res){
-          var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
-        }
-      });
-    };
 
   $scope.init();
 

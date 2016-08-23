@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Summary', [])
-.factory('SummaryService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
+.factory('SummaryService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
   var summary = {
     prefixKey: 'summary-',
     token: null,
@@ -49,16 +49,16 @@ angular.module('PsychicSource.Summary', [])
         summary.storeUserSummary(res.data);
         $ionicLoading.hide();
         d.resolve(summary.summaryObj());
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
-            template: '(2) Error while retrieving account information'
-          });  
-          d.reject(err);   
+            template: 'Error while retrieving account information'
+          });
+          d.reject(err);
         }
       });
       return d.promise;

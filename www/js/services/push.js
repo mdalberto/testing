@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Push', [])
-.factory('PushNotificationService',function($ionicPopup,$state,ConfigService,Popup){
+.factory('PushNotificationService',function($state,ConfigService,Popup){
   var push = {
     init: function() {
       var notificationHandler = PushNotification.init({
@@ -17,11 +17,11 @@ angular.module('PsychicSource.Push', [])
             // data.image,
             // data.additionalData
 
-        var alertPopup = Popup.show('alert', {
+        Popup.show('alert', {
           title: data.title,
           template: data.message
         });
-        $state.go('app.member-home'); 
+        $state.go('app.member-home');
 
         notificationHandler.finish(function() {
           // console.log('finish successfully called');
@@ -37,7 +37,6 @@ angular.module('PsychicSource.Push', [])
       return notificationHandler;
     }
   };
-
   return push;
 });
 

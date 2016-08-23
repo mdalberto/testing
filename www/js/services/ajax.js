@@ -65,7 +65,7 @@ angular.module('PsychicSource.Ajax', [])
         url: ajaxHandler.baseUrl + 'member/v2/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
         headers: ajaxHandler.headers(),
         data: JSON.stringify(preferences)
-      });      
+      });
     },
     sendNotificationId: function(data){
       var mobileOS = mobilePlatforms[data.platform];

@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$ionicPopup,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,Popup){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,Popup){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){

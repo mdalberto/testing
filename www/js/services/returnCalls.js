@@ -1,5 +1,5 @@
 angular.module('PsychicSource.ReturnCalls', [])
-.factory('ReturnCallsService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
+.factory('ReturnCallsService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
   var calls = {
     prefixKey: 'calls-',
     role: USER_ROLES.public_role,
@@ -21,16 +21,16 @@ angular.module('PsychicSource.ReturnCalls', [])
         calls.storeReturnCallsInfo(res.data);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
-            template: '(2) Error while retrieving account information'
-          });  
-          d.reject(err);   
+            template: 'Error while retrieving account information'
+          });
+          d.reject(err);
         }
       });
       return d.promise;
@@ -42,21 +42,19 @@ angular.module('PsychicSource.ReturnCalls', [])
         calls.storeReturnCallsInfo(data);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
-            template: '(2) Error while retrieving account information'
-          });  
-          d.reject(err);   
+            template: 'Error while retrieving account information'
+          });
+          d.reject(err);
         }
       });
       return d.promise;
-
-
     }
   };
   calls.loadReturnCallsSummary();
@@ -68,4 +66,3 @@ angular.module('PsychicSource.ReturnCalls', [])
   };
   return result;
 });
-

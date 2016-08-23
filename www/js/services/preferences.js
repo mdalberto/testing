@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Preferences', [])
-.factory('PreferencesService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
+.factory('PreferencesService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
   var preferences = {
     prefixKey: 'preferences-',
     settings: null,
@@ -18,16 +18,16 @@ angular.module('PsychicSource.Preferences', [])
         preferences.storeUserPreferences(res.data);
         $ionicLoading.hide();
         d.resolve(preferences.settings);
-      },function(err){                                           
+      },function(err){
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
             template: 'Error while retrieving account information'
-          });  
-          d.reject(err);                             
+          });
+          d.reject(err);
         }
       });
       return d.promise;

@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,Popup){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate,Popup){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -18,6 +18,12 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   $scope.isLoggedIn = function(){
     return AuthService.isAuthenticated();
   };
+
+  $rootScope.$on('$stateChangeSuccess', function(){
+    if($ionicSideMenuDelegate.isOpen()){
+      $ionicSideMenuDelegate.toggleLeft();
+    }
+  });
 
   $scope.$on('$ionicView.beforeEnter',function(event,view){
     if(view.stateName === 'app.privacy-policy' && $scope.isLoggedIn()){
@@ -56,6 +62,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     $scope.isAccount = function() { return $state.is('app.member-home'); };
     $scope.isReturnCall = function() { return $state.is('app.return-call'); };
     $scope.isAvailability = function() { return $state.is('app.availability'); };
+    $scope.isFavs = function() { return $state.is('app.favs'); };
     $scope.isPreference = function() { return $state.is('app.preferences'); };
   };
 

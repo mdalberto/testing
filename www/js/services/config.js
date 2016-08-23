@@ -41,6 +41,7 @@ angular.module('PsychicSource.Config', [])
   function getShared(config) {
     var shared = {
       assetUrlImages: config.assetUrl + 'images/psychics/',
+      profileUrl: config.assetUrl + 'our-psychic/profile?id=',
       environment: environment
     }
     return shared;

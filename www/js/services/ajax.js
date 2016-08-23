@@ -37,7 +37,24 @@ angular.module('PsychicSource.Ajax', [])
       return $http({
         method: 'GET',
         cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
+        url: ajaxHandler.baseUrl + 'member/v2/' + id + '/' + ajaxHandler.networkId + '/getnotificationpreferences',
+        headers: ajaxHandler.headers(),
+      });
+    },
+    saveFavorite: function(id, favorite){
+      return $http({
+        method: 'POST',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savefavoriteadvisor',
+        headers: ajaxHandler.headers(),
+        data: favorite
+      });
+    },
+    getFavorites: function(id){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/getfavoriteadvisors',
         headers: ajaxHandler.headers(),
       });
     },
@@ -45,7 +62,7 @@ angular.module('PsychicSource.Ajax', [])
       return $http({
         method: 'POST',
         cache: false,
-        url: ajaxHandler.baseUrl + 'member/v1/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
+        url: ajaxHandler.baseUrl + 'member/v2/' + id + '/' + ajaxHandler.networkId + '/savenotificationpreferences',
         headers: ajaxHandler.headers(),
         data: JSON.stringify(preferences)
       });

@@ -5,38 +5,36 @@
     </div>
     <h3 class="title text-center no-ellipsis">To Get Started Please Login</h3>
     <div class="padding">Login with your Email and Password</div>
-    <div class="list list-inset text-center">       
+    <div class="list list-inset text-center">
       <label class="item item-input">
-        <input type="text" placeholder="Email Address" ng-model="data.email"> 
+        <input type="text" id="email" placeholder="Email Address" ng-model="data.email">
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="data.password">
+        <input type="password" id="password" placeholder="Password" ng-model="data.password">
       </label>
     </div>
       <span class="or-separator text-center">
         or<br>
       </span>
       <div class="padding subtitle">Login with your Phone Number and PIN</div>
-    <div class="list list-inset text-center">       
+    <div class="list list-inset text-center">
       <label class="item item-input">
-        <input type="text" placeholder="Phone Number" ng-model="data.phone">  
+        <input type="text" id="phonenumber" placeholder="Phone Number" ng-model="data.phone">
       </label>
       <label class="item item-input">
-        <input type="password" placeholder="4 Digit PIN" ng-model="data.pin" maxlength="4">
+        <input type="password" id="pin" placeholder="4 Digit PIN" ng-model="data.pin" maxlength="4">
       </label>
     </div> 
     <div class="row">
       <div class="col col-80 text-right">
         <h4 class="remember-me-label">Remember Me</h4>
       </div>
-    
       <label class="toggle toggle-balanced remember-me">
         <input type="checkbox" ng-model="data.rememberMe" ng-change="changeRememberMe()">
         <div class="track">
           <div class="handle"></div>
         </div>
       </label>
-    
     </div>
     <div class="padding"><button class="button button-large button-block button-psychic2" ng-click="login(data)">Login</button></div>
       <div class="row">
@@ -46,10 +44,9 @@
         </div>
       </div>
       <div class="padding">
-        <button class="button button-large button-block button-psychic3 medium-font-size" menu-close ui-sref="app.become-member"> 
+        <button class="button button-large button-block button-psychic3 medium-font-size" menu-close ui-sref="app.become-member">
           Not a Member? <span class="break-line-when-small"></span>Create an Account
         </button>
       </div>
   </ion-content>
 </ion-view>
-

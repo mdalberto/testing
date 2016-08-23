@@ -75,25 +75,35 @@ angular.module('PsychicSource.Authentication', [])
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         d = $q.defer();
-        var push = PushNotificationService.init();
-        push.on('registration', function(pushData) {
-          var platform = ionic.Platform.platform();
-          user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
-          auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
-          var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
-          if(storePlatformId && storePlatformId === pushData.registrationId){
-            d.resolve(false);
-          } else {
-            d.resolve(pushData.registrationId);
-          }
-        });
+        var platform = ionic.Platform.platform();
+        try {
+          var push = PushNotificationService.init();
+          push.on('registration', function(pushData) {
+            var platform = ionic.Platform.platform();
+            user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
+            auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
+            var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
+            if(storePlatformId && storePlatformId === pushData.registrationId){
+              d.resolve(false);
+            } else {
+              d.resolve(pushData.registrationId);
+            }
+          });
 
-        push.on('error', function(e) {
-          d.reject(e);   
-          alert(e);
-        });
-        return d.promise;
-      }); 
+          push.on('error', function(e) {
+            d.reject(e);
+            alert(e);
+          });
+          return d.promise;
+        }
+        catch(err)
+        {
+          console.log("Loading Browser Version without Notifications");
+          user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
+          d.resolve(false);
+          return d.promise;
+        }
+      });
     },
     isAuthorized: function(authorizedRoles){
       if(!angular.isArray(authorizedRoles)){

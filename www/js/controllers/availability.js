@@ -1,7 +1,6 @@
-
-PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$ionicPopup,$window){
+PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$window,Popup){
   $scope.showPhoneDropdown = true;
-	$scope.hours = availabilityObj.hours;
+  $scope.hours = availabilityObj.hours;
   $scope.countryCodes = availabilityObj.countryCodes;
   SummaryService.info_member();
   $scope.summary = SummaryService.summaryObj();
@@ -36,7 +35,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
       return obj.CountryID === $scope.summary.countryId;
     });
   })();
- 
+
   $scope.getTimeLeft = function(summary){
     return $scope.times.availableHours = AvailabilityService.getTimeLeft(summary);
   };
@@ -62,12 +61,11 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
       SummaryService.updateUserSummary({
         availabilityTime: $scope.times.hour * 3600,
         phone: String($scope.times.phone),
-        countryId: countryId  
+        countryId: countryId
       });
       $scope.getTimeLeft(SummaryService.summaryObj());
       $window.location.reload();
     });
-    
   };
 
   $scope.getCountryCodeSelected = function(){
@@ -86,35 +84,20 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   $scope.reset = function(){
     $ionicLoading.show({template: 'Reseting Info...'});
     $window.location.reload();
-    //$scope.times.phone = SummaryService.phone();    
-    //$scope.showPhoneDropdown = false;
-    //if($scope.times.availableHours){
-      //var hoursArr = $scope.times.availableHours.split(":");
-      //$scope.times.hour = hoursArr[0];
-    //}
-    //$scope.setCountryObj();
-    //$timeout(function(){ 
-      //$timeout(function(){
-        //$scope.afterPageRender();
-        //$ionicLoading.hide();
-      //},500);
-      //$scope.showPhoneDropdown = true;
-    //},500);
   };
 
   $timeout(function(){
     $scope.afterPageRender();
     $('ul.country-list').wrap("<ion-scroll direction='y'></ion-scroll>");
   },500);
-  
+
   $scope.warnInvalid = function(form){
     if(!form.$valid){
-        var alertPopup = $ionicPopup.alert({
+        Popup.show('alert', {
           title: 'Invalid Phone Number',
           template: 'Please verify your country code and phone number'
-        });  
+        });
     }
     return form.$valid;
   };
 });
-

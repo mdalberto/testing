@@ -1,4 +1,4 @@
-PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, $ionicPopup){
+PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, Popup){
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
@@ -10,8 +10,8 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
         $rootScope.$broadcast('user:logout:complete');
         return;
       }
-      var alertPopup = $ionicPopup.alert({
-        title: 'Update operation failed! (2)',
+      Popup.show('alert', {
+        title: 'Update operation failed!',
         template: 'Please verify you are connected to the internet'
       });
     });
@@ -19,7 +19,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   $scope.refresh();
 
   $scope.remove = function(index){
-    var confirmPopup = $ionicPopup.confirm({
+    var confirmPopup = Popup.show('confirm', {
       title: 'Favorite Advisors',
       template: '<center>Are you sure you want to remove this Advisor?</center>'
     });
@@ -40,8 +40,8 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
               $rootScope.$broadcast('user:logout:complete');
               return;
             }
-            var alertPopup = $ionicPopup.alert({
-              title: 'Update operation failed! (2)',
+            Popup.show('alert', {
+              title: 'Update operation failed!',
               template: 'Please verify you are connected to the internet'
             });
           });

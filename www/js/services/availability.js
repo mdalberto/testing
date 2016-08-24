@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Availability', [])
-.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,$ionicPopup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,SummaryService){
+.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,SummaryService){
   var availability = {
     hours: null,
     countryCodes: null,
@@ -36,11 +36,11 @@ angular.module('PsychicSource.Availability', [])
         $ionicLoading.hide();
         d.resolve(availability.availabilityObj());
       },function(err){
-        var alertPopup = $ionicPopup.alert({
+        Popup.show('alert', {
           title: 'Error',
-          template: '(2) Error while retrieving country codes or return call availability hours'
-        });  
-        d.reject(err);   
+          template: 'Error while retrieving country codes or return call availability hours'
+        });
+        d.reject(err);
       });
       return d.promise;
     },
@@ -55,11 +55,11 @@ angular.module('PsychicSource.Availability', [])
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
         } else {
-          var alertPopup = $ionicPopup.alert({
+          Popup.show('alert', {
             title: 'Error',
-            template: '(2) Error while saving return call profile settings'
-          });  
-          d.reject(err);   
+            template: 'Error while saving return call profile settings'
+          });
+          d.reject(err);
         }
       });
       return d.promise;
@@ -73,4 +73,3 @@ angular.module('PsychicSource.Availability', [])
   };
   return result;
 });
-

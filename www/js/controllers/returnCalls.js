@@ -1,6 +1,5 @@
 PsychicSource.constant("moment", moment);
-
-PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, $ionicPopup,ConfigService){
+PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, Popup, ConfigService){
   $scope.moment = new moment();
   $scope.calls = calls;
   $scope.imagePath = ConfigService.assetUrlImages;
@@ -13,7 +12,7 @@ PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCal
 
   $scope.remove = function($index){
     queueToBeRemoved = $scope.calls[$index];
-    var confirmPopup = $ionicPopup.confirm({
+    var confirmPopup = Popup.show('confirm', {
       title: 'Remove Confirmation',
       template: "Are you sure you want to remove yourself from " + queueToBeRemoved.ExpertName  + "'s line?"
     });

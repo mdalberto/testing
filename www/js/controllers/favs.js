@@ -67,4 +67,3 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   };
 
 });
-

@@ -16,7 +16,7 @@
       <div class="row item advisor-container text-center" ng-hide="favs.length">
         <div class="col col-100 col-center empty-message no-ellipsis">
             You have not selected any Favorite Advisors
-          <a href="#" class="button button-block button-psychic2-light" href ng-click="external($event)" data-href="http://www.psychicsource.com/favorite-advisors">
+          <a class="button button-block button-psychic2-light" ng-click="external($event)" data-href="http://www.psychicsource.com/favorite-advisors">
             Learn More
           </a>
         </div>
@@ -43,7 +43,7 @@
               <a class='col-33 text-center' ng-href="tel:1.800.965.3049">
                 <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
               </a>
-              <a class='col-33 text-center' ng-href="{{profileUrl}}{{fav.AdvisorId}}">
+              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}">
                 <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
               </a>
               <div class='col-33 text-center'>

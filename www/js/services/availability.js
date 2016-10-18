@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Availability', [])
-.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,SummaryService){
+.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,CommonService,SummaryService,$filter){
   var availability = {
     hours: null,
     countryCodes: null,
@@ -54,7 +54,17 @@ angular.module('PsychicSource.Availability', [])
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
-        } else {
+        }
+        else if(typeof(err.data) === 'object' &&
+                typeof(err.data.ReturnCallStatusId) === 'number' &&
+                err.data.ReturnCallStatusId == 6){
+          Popup.show('alert', {
+            title: 'SORRY',
+            template: 'To reset your availability and maintain your position in all Return Call line(s), a $10 account minimum is required. To add dollars now call <'+$filter('phonenumber')(CommonService.callNowNumber())+'.>'
+          });
+          d.reject(err);
+        }
+        else {
           Popup.show('alert', {
             title: 'Error',
             template: 'Error while saving return call profile settings'

@@ -1,7 +1,7 @@
-PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,Popup,AuthService, SummaryService, AjaxService, $localstorage){
+PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,Popup,AuthService, SummaryService, AjaxService, CommonService, $localstorage){
   $rootScope.showFooter = false;
   $scope.data = {};
-  $scope.callNowNumber = ionic.Platform.isAndroid() ? "8669040177" : "8668842981";
+  $scope.callNowNumber = CommonService.callNowNumber();
   $scope.data.rememberMe = AuthService.getRememberMe();
 
   $scope.changeRememberMe = function(){

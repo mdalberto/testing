@@ -60,7 +60,7 @@ angular.module('PsychicSource.Availability', [])
                 err.data.ReturnCallStatusId == 6){
           Popup.show('alert', {
             title: 'SORRY',
-            template: 'To reset your availability and maintain your position in all Return Call line(s), a $10 account minimum is required. To add dollars now call <'+$filter('phonenumber')(CommonService.callNowNumber())+'.>'
+            template: 'To reset your availability and maintain your position in all Return Call line(s), a $'+CommonService.minimumBalance+' account minimum is required. To add dollars now call <'+$filter('phonenumber')(CommonService.callNowNumber())+'.>'
           });
           d.reject(err);
         }

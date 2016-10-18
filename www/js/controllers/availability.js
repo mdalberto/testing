@@ -1,4 +1,4 @@
-PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$window,Popup){
+PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, AvailabilityService, availabilityObj, SummaryService,$timeout,_,$state,$ionicLoading,$window,Popup,CommonService){
   $scope.showPhoneDropdown = true;
   $scope.hours = availabilityObj.hours;
   $scope.countryCodes = availabilityObj.countryCodes;
@@ -8,6 +8,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   $scope.times.phone = $scope.summary.phone;
   $scope.times.formattedPhone = null;
   $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
+  CommonService.getMinimumBalance();
 
   $scope.refresh = function(){
     SummaryService.getSummary().then(function(summary){

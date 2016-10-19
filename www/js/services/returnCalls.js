@@ -1,5 +1,5 @@
 angular.module('PsychicSource.ReturnCalls', [])
-.factory('ReturnCallsService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService){
+.factory('ReturnCallsService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,CommonService){
   var calls = {
     prefixKey: 'calls-',
     role: USER_ROLES.public_role,
@@ -17,8 +17,12 @@ angular.module('PsychicSource.ReturnCalls', [])
     getQueues: function() {
       $ionicLoading.show({template: 'Loading...'});
       d = $q.defer();
-      AjaxService.getReturnCallQueues(AuthService.id()).then(function(res){
-        calls.storeReturnCallsInfo(res.data);
+      $q.all([
+        AjaxService.getReturnCallQueues(AuthService.id()),
+        AjaxService.getReturnCallSettings()
+      ]).then(function(res){
+        calls.storeReturnCallsInfo(res[0].data);
+        CommonService.setMinimumBalance(res[1]);
         $ionicLoading.hide();
         d.resolve(calls.callsObj());
       },function(err){

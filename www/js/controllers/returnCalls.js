@@ -1,5 +1,5 @@
 PsychicSource.constant("moment", moment);
-PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, Popup, ConfigService, CommonService){
+PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnCallsService, calls, _, Popup, ConfigService, CommonService){
   $scope.moment = new moment();
   $scope.calls = calls;
   $scope.imagePath = ConfigService.assetUrlImages;

@@ -1,8 +1,9 @@
 PsychicSource.constant("moment", moment);
-PsychicSource.controller('ReturnCallCtrl',function($scope,AuthService, ReturnCallsService, calls, _, Popup, ConfigService){
+PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnCallsService, calls, _, Popup, ConfigService, CommonService){
   $scope.moment = new moment();
   $scope.calls = calls;
   $scope.imagePath = ConfigService.assetUrlImages;
+  $scope.minimumBalance = CommonService.minimumBalance;
 
   $scope.refresh = function(){
     ReturnCallsService.getQueues().then(function(calls){

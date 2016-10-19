@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Availability', [])
-.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,SummaryService){
+.factory('AvailabilityService', function($q, $state, $rootScope, $timeout, Popup, $ionicLoading, $ionicHistory, $localstorage, USER_ROLES, AuthService, AjaxService, CommonService, SummaryService, $filter){
   var availability = {
     hours: null,
     countryCodes: null,
@@ -27,12 +27,14 @@ angular.module('PsychicSource.Availability', [])
       $q.all([
         AjaxService.getCountryCodes(),
         AjaxService.getReturnCallAvailabilityHours(),
-        AjaxService.getSummary(AuthService.id())
+        AjaxService.getSummary(AuthService.id()),
+        AjaxService.getReturnCallSettings()
       ])
       .then(function(responses){
         availability.countryCodes = responses[0].data;
         availability.hours = responses[1].data;
         SummaryService.updateUserSummary(responses[2].data);
+        CommonService.setMinimumBalance(responses[3]);
         $ionicLoading.hide();
         d.resolve(availability.availabilityObj());
       },function(err){
@@ -55,7 +57,17 @@ angular.module('PsychicSource.Availability', [])
         $ionicLoading.hide();
         if(err.status === 401){
           $rootScope.$broadcast('user:logout:complete');
-        } else {
+        }
+        else if(typeof(err.data) === 'object' &&
+                typeof(err.data.ReturnCallStatusId) === 'number' &&
+                err.data.ReturnCallStatusId == 6){
+          Popup.show('alert', {
+            title: 'SORRY',
+            template: 'To reset your availability and maintain your position in all Return Call lines, a $'+CommonService.minimumBalance+' account minimum is required. To add dollars now call <a href=tel:'+CommonService.callNowNumber()+'>'+$filter('phonenumber')(CommonService.callNowNumber())+'</a>.'
+          });
+          d.reject(err);
+        }
+        else {
           Popup.show('alert', {
             title: 'Error',
             template: 'Error while saving return call profile settings'

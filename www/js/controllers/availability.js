@@ -8,7 +8,7 @@ PsychicSource.controller('AvailabilityCtrl',function($scope,AuthService, Availab
   $scope.times.phone = $scope.summary.phone;
   $scope.times.formattedPhone = null;
   $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
-  CommonService.getMinimumBalance();
+  $scope.minimumBalance = CommonService.minimumBalance;
 
   $scope.refresh = function(){
     SummaryService.getSummary().then(function(summary){

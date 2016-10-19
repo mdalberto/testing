@@ -8,10 +8,8 @@ angular.module('PsychicSource.Common', [])
       else
         return "8668842981";
     },
-   getMinimumBalance: function() {
-      AjaxService.getReturnCallSettings().then(function(res){
-        commonHandler.minimumBalance = parseFloat(res.data.minPurchasedBalance).toPrecision();
-      });
+   setMinimumBalance: function(data) {
+      commonHandler.minimumBalance = parseFloat(data.data.minPurchasedBalance).toPrecision();
     }
   };
   return commonHandler;

@@ -27,12 +27,14 @@ angular.module('PsychicSource.Availability', [])
       $q.all([
         AjaxService.getCountryCodes(),
         AjaxService.getReturnCallAvailabilityHours(),
-        AjaxService.getSummary(AuthService.id())
+        AjaxService.getSummary(AuthService.id()),
+        AjaxService.getReturnCallSettings()
       ])
       .then(function(responses){
         availability.countryCodes = responses[0].data;
         availability.hours = responses[1].data;
         SummaryService.updateUserSummary(responses[2].data);
+        CommonService.setMinimumBalance(responses[3]);
         $ionicLoading.hide();
         d.resolve(availability.availabilityObj());
       },function(err){

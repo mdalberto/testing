@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Common', [])
-.factory('CommonService',function($q,$http,AjaxService){
+.factory('CommonService', function($q, $http, AjaxService){
   var commonHandler = {
     minimumBalance: null,
     callNowNumber: function(){

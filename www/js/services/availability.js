@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Availability', [])
-.factory('AvailabilityService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,CommonService,SummaryService,$filter){
+.factory('AvailabilityService', function($q, $state, $rootScope, $timeout, Popup, $ionicLoading, $ionicHistory, $localstorage, USER_ROLES, AuthService, AjaxService, CommonService, SummaryService, $filter){
   var availability = {
     hours: null,
     countryCodes: null,

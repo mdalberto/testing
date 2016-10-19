@@ -1,4 +1,4 @@
-PsychicSource.controller('WelcomeCtrl',function($scope,$rootScope,$state,$q,$ionicLoading,Popup,AuthService, SummaryService, AjaxService, CommonService, $localstorage){
+PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q, $ionicLoading, Popup, AuthService, SummaryService, AjaxService, CommonService, $localstorage){
   $rootScope.showFooter = false;
   $scope.data = {};
   $scope.callNowNumber = CommonService.callNowNumber();

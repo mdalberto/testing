@@ -1,5 +1,5 @@
 angular.module('PsychicSource.ReturnCalls', [])
-.factory('ReturnCallsService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$localstorage,USER_ROLES, AuthService,AjaxService,CommonService){
+.factory('ReturnCallsService', function($q, $state, $rootScope, $timeout, Popup, $ionicLoading, $ionicHistory, $localstorage, USER_ROLES, AuthService, AjaxService, CommonService){
   var calls = {
     prefixKey: 'calls-',
     role: USER_ROLES.public_role,

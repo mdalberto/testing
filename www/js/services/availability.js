@@ -36,6 +36,7 @@ angular.module('PsychicSource.Availability', [])
         $ionicLoading.hide();
         d.resolve(availability.availabilityObj());
       },function(err){
+        $ionicLoading.hide();
         Popup.show('alert', {
           title: 'Error',
           template: 'Error while retrieving country codes or return call availability hours'

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.vse.psychicsource" version="0.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.6.3" android-versionCode="1565">
+<widget id="com.vse.psychicsource" version="0.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" ios-CFBundleVersion="1.6.4" android-versionCode="1566">
   <name>PsychicSource Test</name>
   <description>
     Official PsychicSource Mobile App

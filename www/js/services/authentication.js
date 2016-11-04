@@ -114,11 +114,10 @@ angular.module('PsychicSource.Authentication', ['ionic'])
           push.on('registration', function(pushData) {
             var platform = ionic.Platform.platform();
             user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
-            auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
-            var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
-            if(storePlatformId && storePlatformId === pushData.registrationId){
+            if(data.platformId && data.platformId === pushData.registrationId){
               d.resolve(false);
             } else {
+              auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
               d.resolve(pushData.registrationId);
             }
           });

@@ -1,4 +1,4 @@
-angular.module('PsychicSource.Authentication', [])
+angular.module('PsychicSource.Authentication', ['ionic'])
 .factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
     credentials: null,
@@ -10,13 +10,21 @@ angular.module('PsychicSource.Authentication', [])
     membershipId: null,
     token: null,
     role: USER_ROLES.public_role,
+    autoLogin: function(){
+      data = $localstorage.getObject(auth.sessionKey);
+      if(auth.loadUserCredentials(data)){
+        auth.initPushNotificationService();
+      }
+    },
     loadUserCredentials: function(data){
       if(!data){
         data = $localstorage.getObject(auth.sessionKey);
       }
+
       var token = (data && data.access_token) ? data.access_token : null;
       if(token) {
         auth.useCredentials(data);
+        return true;
       }
     },
     storeUserCredentials: function(userData){
@@ -71,7 +79,43 @@ angular.module('PsychicSource.Authentication', [])
     setRememberMe: function(remember) {
       auth.rememberMe = remember;
     },
+    initPushNotificationService: function(){
+      ionic.Platform.ready(function() {
+        var push = PushNotificationService.init();
+        push.on('registration', function(pushData) {
+           var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
+           var platform = ionic.Platform.platform();
 
+           if(currentRegistrationId && currentRegistrationId !== pushData.registrationId){
+            var credentials = {platform: platform, platformId: pushData.registrationId};
+
+            auth.updateCredentials(credentials);
+            auth.sendRegistrationId();
+           }
+        });
+      });
+    },
+    sendRegistrationId: function(){
+      $ionicLoading.show({template: 'Updating device credentials...'});
+      d = $q.defer();
+      var data = AuthService.getCredentials();
+        AjaxService.sendNotificationId(data).then(function(res){
+          $ionicLoading.hide();
+          d.resolve(res);
+        },function(err){
+          $ionicLoading.hide();
+          if(err.status === 401){
+            $rootScope.$broadcast('user:logout:complete');
+          } else {
+            Popup.show('alert', {
+              title: 'Error',
+              template: '(2) Error while updating device information'
+            });
+            d.reject(err);
+          }
+        });
+      return d.promise;
+    },
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         d = $q.defer();
@@ -117,9 +161,8 @@ angular.module('PsychicSource.Authentication', [])
       }
       return (auth.isAuthenticated && authorizedRoles.indexOf(auth.role) !== -1);
     }
-
   };
-  auth.loadUserCredentials();
+  auth.autoLogin();
   return {
     refresh: auth.loadUserCredentials,
     getRememberMe: auth.getRememberMe,

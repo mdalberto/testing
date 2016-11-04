@@ -96,25 +96,14 @@ angular.module('PsychicSource.Authentication', ['ionic'])
       });
     },
     sendRegistrationId: function(){
-      $ionicLoading.show({template: 'Updating device credentials...'});
-      d = $q.defer();
-      var data = AuthService.getCredentials();
-        AjaxService.sendNotificationId(data).then(function(res){
-          $ionicLoading.hide();
-          d.resolve(res);
+      var data = auth.credentials;
+      AjaxService.sendNotificationId(data).then(function(res){
+          // This is transparent to the user, but if it fails it will logout the user.
         },function(err){
-          $ionicLoading.hide();
-          if(err.status === 401){
-            $rootScope.$broadcast('user:logout:complete');
-          } else {
-            Popup.show('alert', {
-              title: 'Error',
-              template: '(2) Error while updating device information'
-            });
-            d.reject(err);
-          }
-        });
-      return d.promise;
+          alert("Error: Updating credentials failed");
+          $rootScope.$broadcast('user:logout:complete');
+        }
+      );
     },
     login: function(data) {
       return AjaxService.login(data).then(function(res){

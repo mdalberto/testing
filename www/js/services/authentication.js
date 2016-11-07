@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', ['ionic'])
-.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
+.factory('AuthService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
     credentials: null,
     rememberMe: true,
@@ -91,6 +91,7 @@ angular.module('PsychicSource.Authentication', ['ionic'])
 
             auth.updateCredentials(credentials);
             auth.sendRegistrationId();
+            $localstorage.set('platformId-' + auth.membershipId, pushData.registrationId);
            }
         });
       });
@@ -100,7 +101,10 @@ angular.module('PsychicSource.Authentication', ['ionic'])
       AjaxService.sendNotificationId(data).then(function(res){
           // This is transparent to the user, but if it fails it will logout the user.
         },function(err){
-          alert("Error: Updating credentials failed");
+          Popup.show('alert', {
+            title: 'Error',
+            template: 'Error: Updating credentials failed'
+          });
           $rootScope.$broadcast('user:logout:complete');
         }
       );
@@ -114,7 +118,8 @@ angular.module('PsychicSource.Authentication', ['ionic'])
           push.on('registration', function(pushData) {
             var platform = ionic.Platform.platform();
             user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
-            if(data.platformId && data.platformId === pushData.registrationId){
+            var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
+            if(currentRegistrationId && currentRegistrationId === pushData.registrationId){
               d.resolve(false);
             } else {
               auth.updateCredentials({platform: platform, platformId: pushData.registrationId});

@@ -83,7 +83,7 @@ angular.module('PsychicSource.Ajax', [])
           }).error(function(err){
             if(counter < 3) {
               query();
-              counterr++;
+              counter++;
             } else {
               queryResults.reject(err);
             }

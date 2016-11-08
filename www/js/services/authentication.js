@@ -1,5 +1,5 @@
-angular.module('PsychicSource.Authentication', [])
-.factory('AuthService',function($q,$state,$rootScope,$timeout,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
+angular.module('PsychicSource.Authentication', ['ionic'])
+.factory('AuthService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
   var auth = {
     credentials: null,
     rememberMe: true,
@@ -10,13 +10,21 @@ angular.module('PsychicSource.Authentication', [])
     membershipId: null,
     token: null,
     role: USER_ROLES.public_role,
+    autoLogin: function(){
+      data = $localstorage.getObject(auth.sessionKey);
+      if(auth.loadUserCredentials(data)){
+        auth.initPushNotificationService();
+      }
+    },
     loadUserCredentials: function(data){
       if(!data){
         data = $localstorage.getObject(auth.sessionKey);
       }
+
       var token = (data && data.access_token) ? data.access_token : null;
       if(token) {
         auth.useCredentials(data);
+        return true;
       }
     },
     storeUserCredentials: function(userData){
@@ -71,7 +79,36 @@ angular.module('PsychicSource.Authentication', [])
     setRememberMe: function(remember) {
       auth.rememberMe = remember;
     },
+    initPushNotificationService: function(){
+      ionic.Platform.ready(function() {
+        var push = PushNotificationService.init();
+        push.on('registration', function(pushData) {
+           var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
+           var platform = ionic.Platform.platform();
 
+           if(currentRegistrationId && currentRegistrationId !== pushData.registrationId){
+            var credentials = {platform: platform, platformId: pushData.registrationId};
+
+            auth.updateCredentials(credentials);
+            auth.sendRegistrationId();
+            $localstorage.set('platformId-' + auth.membershipId, pushData.registrationId);
+           }
+        });
+      });
+    },
+    sendRegistrationId: function(){
+      var data = auth.credentials;
+      AjaxService.sendNotificationId(data).then(function(res){
+          // This is transparent to the user, but if it fails it will logout the user.
+        },function(err){
+          Popup.show('alert', {
+            title: 'Error',
+            template: 'Error: Updating credentials failed'
+          });
+          $rootScope.$broadcast('user:logout:complete');
+        }
+      );
+    },
     login: function(data) {
       return AjaxService.login(data).then(function(res){
         d = $q.defer();
@@ -81,11 +118,11 @@ angular.module('PsychicSource.Authentication', [])
           push.on('registration', function(pushData) {
             var platform = ionic.Platform.platform();
             user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
-            auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
-            var storePlatformId = $localstorage.get('platformId-'+auth.membershipId);
-            if(storePlatformId && storePlatformId === pushData.registrationId){
+            var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
+            if(currentRegistrationId && currentRegistrationId === pushData.registrationId){
               d.resolve(false);
             } else {
+              auth.updateCredentials({platform: platform, platformId: pushData.registrationId});
               d.resolve(pushData.registrationId);
             }
           });
@@ -117,9 +154,8 @@ angular.module('PsychicSource.Authentication', [])
       }
       return (auth.isAuthenticated && authorizedRoles.indexOf(auth.role) !== -1);
     }
-
   };
-  auth.loadUserCredentials();
+  auth.autoLogin();
   return {
     refresh: auth.loadUserCredentials,
     getRememberMe: auth.getRememberMe,

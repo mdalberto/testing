@@ -13,7 +13,7 @@ angular.module('PsychicSource.Availability', [])
       if(!summary.availability){
         return "0 secs hour(s)";
       }
-      var availableUntil = moment.tz(summary.availability, 'MM/DD/YYYY H:m:S A', 'America/New_York');
+      var availableUntil = moment.tz(summary.availability, 'MM/DD/YYYY h:m:s A', 'America/New_York');
       var currentNYTime = moment.tz('America/New_York');
       var timeLeftHours = availableUntil.diff(currentNYTime,'hours');
       var timeLeftMinutes = availableUntil.diff(currentNYTime,'minutes') % 60;

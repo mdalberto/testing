@@ -46,7 +46,6 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
     hour = moment.duration(parseInt($scope.times.hour,10),'hours').format('h:mm');
     if(hour){
       var hoursArr = hour.split(":");
-      $scope.times.availableHours = hour;
       $scope.times.hour = hoursArr[0];
     }
     $scope.times.countryObj = _.find($scope.countryCodes,function(obj){

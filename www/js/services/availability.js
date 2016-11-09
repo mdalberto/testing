@@ -13,10 +13,13 @@ angular.module('PsychicSource.Availability', [])
       if(!summary.availability){
         return "0 secs hour(s)";
       }
-      var nyTimeObject = moment.tz(summary.availability, 'America/New_York').add(4,'hours');
-      var utcTimeObject = moment.utc();
-      var timeLeftHours = nyTimeObject.diff(utcTimeObject,'hours');
-      var timeLeftMinutes = nyTimeObject.diff(utcTimeObject,'minutes') % 60;
+      var availableUntil = moment.tz(summary.availability, 'MM/DD/YYYY h:m:s A', 'America/New_York');
+      var currentNYTime = moment.tz('America/New_York');
+      var timeLeftHours = availableUntil.diff(currentNYTime,'hours');
+      var timeLeftMinutes = availableUntil.diff(currentNYTime,'minutes') % 60;
+      if(timeLeftHours < 0 || timeLeftMinutes < 0) {
+        timeLeftHours = timeLeftMinutes = 0;
+      }
       var timeLeft = timeLeftHours + ' hour(s) ' + timeLeftMinutes + ' minute(s)';
       return timeLeft;
     },

@@ -32,6 +32,7 @@
     <param name="SENDER_ID" value="117405771847"/>
   </gap:plugin>
   <plugin name="cordova-plugin-inappbrowser" spec="~1.4.0"/>
+  <plugin name="cordova-plugin-tag-manager" source="npm"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

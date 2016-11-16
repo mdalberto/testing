@@ -3,6 +3,15 @@ var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber',
     setTimeout(function(){
     $cordovaSplashscreen.hide();
   },5000);
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+    var tagManager = cordova.require('com.jareddickson.cordova.tag-manager.TagManager');
+    var trackingId = 'GTM-MVD9D37';
+    var intervalPeriod = 30; // seconds
+    tagManager.init(null, null, trackingId, intervalPeriod);
+    tagManager.trackEvent(null, null, 'Link', 'Click', 'Call (800) 123-1234', -1);
+    tagManager.dispatch();
+  }
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;

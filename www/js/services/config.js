@@ -13,7 +13,8 @@ angular.module('PsychicSource.Config', [])
           assetUrl: 'http://psychicsource.com/',
           gaTrackingId: 'UA-87400817-1',
           gtmAndroidContainer: 'GTM-MVD9D37',
-          gtmiOSContainer: 'GTM-K7M7ZVN'
+          gtmiOSContainer: 'GTM-K7M7ZVN',
+          debug: true
         };
         return config;
       case 'dev':

@@ -6,7 +6,6 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
     init:  function(){
       var intervalPeriod = 30; // seconds
       var trackingId;
-      Logger.log("Waiting for device ready...");
       if(ionic.Platform.isIOS()){
         trackingId = ConfigService.gtmiOSContainer;
       }else if(ionic.Platform.isAndroid()){
@@ -17,12 +16,13 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
         return;
       }
       document.addEventListener("deviceready", onDeviceReady.bind(this), false);
+      Logger.log("Waiting for device ready...");
       function onDeviceReady(){
         this.tagManager = cordova.require('com.jareddickson.cordova.tag-manager.TagManager');
         this.tagManager.init(Logger.success, Logger.error, trackingId, intervalPeriod);
         Logger.log("GTM intialized");
 
-        //Workaround to track the first view when the app opensthis.
+        //Workaround to track the first view when the app opens.
         this.trackPage($ionicHistory.currentView().url);
       }
     },

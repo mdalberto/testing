@@ -26,16 +26,15 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
         this.trackPage($ionicHistory.currentView().url);
       }
     },
-    event:  function(){
+    trackEvent:  function(category, action, label, value){
       if(this.tagManagerUnsupported()) return;
       data = {
           'userId': '1338',
-          'dimension1':'4000',
           'event': 'interaction',
-          'target': 'event categorie11',
-          'action': 'event action11',
-          'target-properties': 'event label11',
-          'value': '50000',
+          'target': category,
+          'action': action,
+          'target-properties': label,
+          'value': value,
       };
       this.tagManager.pushEvent(Logger.success, Logger.error, data);
       this.flush();
@@ -43,10 +42,9 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
     trackPage: function(url){
       if(this.tagManagerUnsupported()) return;
       data = {
+          'userId': '1338',
           'event': 'content-view',
           'content-name': url,
-          'userId': '1338',
-          'dimension1':'4000',
       };
       this.tagManager.pushEvent(Logger.success, Logger.error, data);
       this.flush();

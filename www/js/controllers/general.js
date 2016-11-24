@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate,Popup){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate,Popup,GTM){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -74,7 +74,8 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
     confirmPopup.then(function(res){
       if(res){
-        var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
+        GTM.trackEvent('Links', 'open', $event.currentTarget.dataset.href, 1);
+        window.open($event.currentTarget.dataset.href,'_system','location=yes');
       }
     });
   };

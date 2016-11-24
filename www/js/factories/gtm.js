@@ -5,6 +5,7 @@
     var GTM = {
       plugin: null,
       debugger: Logger,
+      data: {},
       tagManagerUnsupported: function(){return this.plugin === null;},
       init:  function(){
         var intervalPeriod = 30; // seconds
@@ -32,27 +33,38 @@
       trackEvent:  function(category, action, label, value){
         if(this.tagManagerUnsupported()) { return; }
         var data = {
-          'userId': '1338',
           'event': 'interaction',
           'target': category,
           'action': action,
           'target-properties': label,
           'value': value,
         };
-        this.plugin.pushEvent(Logger.success, Logger.error, data);
-        this.flush();
+        GTM.pushEvent(data);
       },
       trackPage: function(url){
         if(this.tagManagerUnsupported()) { return; }
         var data = {
-          'userId': '1338',
           'event': 'content-view',
           'content-name': url,
         };
+        GTM.pushEvent(data);
+      },
+      pushEvent(data){
+        angular.extend(data, GTM.data);
+        Logger.log(`pusEvent - data: ${data}`);
         this.plugin.pushEvent(Logger.success, Logger.error, data);
         this.flush();
       },
+      startSession: function(userId){
+        if(this.tagManagerUnsupported()) { return; }
+        Logger.log(`setUserId - userId: ${userId}`);
+        GTM.data = {'userId': userId};
+      },
+      endSession: function(){
+        GTM.data = {};
+      },
       flush: function(){
+        if(this.tagManagerUnsupported()) { return; }
         this.plugin.dispatch();
       }
     };

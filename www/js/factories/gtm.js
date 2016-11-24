@@ -38,6 +38,7 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
           'value': '50000',
       };
       this.tagManager.pushEvent(Logger.success, Logger.error, data);
+      this.flush();
     },
     trackPage: function(url){
       if(this.tagManagerUnsupported()) return;
@@ -48,6 +49,7 @@ module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHist
           'dimension1':'4000',
       };
       this.tagManager.pushEvent(Logger.success, Logger.error, data);
+      this.flush();
     },
     flush: function(){
       this.tagManager.dispatch();

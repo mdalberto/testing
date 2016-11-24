@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Authentication', ['ionic'])
-.factory('AuthService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService){
+.factory('AuthService',function($q,$state,$rootScope,$timeout,Popup,$ionicLoading,$ionicHistory,$http,$localstorage,USER_ROLES,AjaxService,PushNotificationService,GTM){
   var auth = {
     credentials: null,
     rememberMe: true,
@@ -65,6 +65,7 @@ angular.module('PsychicSource.Authentication', ['ionic'])
     logout: function() {
       $ionicLoading.show({template:'Logging out....'});
       auth.destroyUserCredentials();
+      GTM.endSession();
       $timeout(function(){
         $ionicLoading.hide();
         $ionicHistory.clearCache();
@@ -85,6 +86,7 @@ angular.module('PsychicSource.Authentication', ['ionic'])
         push.on('registration', function(pushData) {
            var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
            var platform = ionic.Platform.platform();
+           GTM.startSession(auth.membershipId);
 
            if(currentRegistrationId && currentRegistrationId !== pushData.registrationId){
             var credentials = {platform: platform, platformId: pushData.registrationId};
@@ -119,6 +121,7 @@ angular.module('PsychicSource.Authentication', ['ionic'])
             var platform = ionic.Platform.platform();
             user_loaded = auth.rememberMe ? auth.storeUserCredentials(res.data) : auth.loadUserCredentials(res.data);
             var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
+            GTM.startSession(auth.membershipId);
             if(currentRegistrationId && currentRegistrationId === pushData.registrationId){
               d.resolve(false);
             } else {

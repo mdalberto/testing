@@ -3,8 +3,9 @@
   module = angular.module('PsychicSource.GTM', []);
   module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHistory){
     var GTM = {
+      plugin: null,
       debugger: Logger,
-      tagManagerUnsupported: function(){return typeof this.tagManager === 'undefined';},
+      tagManagerUnsupported: function(){return this.plugin === null;},
       init:  function(){
         var intervalPeriod = 30; // seconds
         var trackingId;
@@ -20,8 +21,8 @@
         document.addEventListener("deviceready", onDeviceReady, false);
         Logger.log("Waiting for device ready...");
         function onDeviceReady(){
-          GTM.tagManager = cordova.require('com.jareddickson.cordova.tag-manager.TagManager');
-          GTM.tagManager.init(Logger.success, Logger.error, trackingId, intervalPeriod);
+          GTM.plugin = cordova.require('com.jareddickson.cordova.tag-manager.TagManager');
+          GTM.plugin.init(Logger.success, Logger.error, trackingId, intervalPeriod);
           Logger.log("GTM intialized");
 
           //Workaround to track the first view when the app opens.
@@ -38,7 +39,7 @@
           'target-properties': label,
           'value': value,
         };
-        this.tagManager.pushEvent(Logger.success, Logger.error, data);
+        this.plugin.pushEvent(Logger.success, Logger.error, data);
         this.flush();
       },
       trackPage: function(url){
@@ -48,11 +49,11 @@
           'event': 'content-view',
           'content-name': url,
         };
-        this.tagManager.pushEvent(Logger.success, Logger.error, data);
+        this.plugin.pushEvent(Logger.success, Logger.error, data);
         this.flush();
       },
       flush: function(){
-        this.tagManager.dispatch();
+        this.plugin.dispatch();
       }
     };
 

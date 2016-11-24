@@ -14,6 +14,7 @@ angular.module('PsychicSource.Authentication', ['ionic'])
       data = $localstorage.getObject(auth.sessionKey);
       if(auth.loadUserCredentials(data)){
         auth.initPushNotificationService();
+        GTM.startSession(auth.membershipId);
       }
     },
     loadUserCredentials: function(data){
@@ -86,7 +87,6 @@ angular.module('PsychicSource.Authentication', ['ionic'])
         push.on('registration', function(pushData) {
            var currentRegistrationId = $localstorage.get('platformId-'+auth.membershipId);
            var platform = ionic.Platform.platform();
-           GTM.startSession(auth.membershipId);
 
            if(currentRegistrationId && currentRegistrationId !== pushData.registrationId){
             var credentials = {platform: platform, platformId: pushData.registrationId};

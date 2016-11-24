@@ -51,7 +51,7 @@
       },
       pushEvent(data){
         angular.extend(data, GTM.data);
-        Logger.log(`pusEvent - data: ${data}`);
+        Logger.log(`pushEvent - data: ${JSON.stringify(data)}`);
         this.plugin.pushEvent(Logger.success, Logger.error, data);
         this.flush();
       },

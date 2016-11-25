@@ -78,11 +78,6 @@ PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q,
     },false)
   };
 
-  $scope.callNow = function(){
-    GTM.trackEvent('Calls', 'call', $scope.callNowNumber, 1);
-    window.open('tel:' + $scope.callNowNumber, '_system', 'location=yes');
-    return false;
-  };
-
+  $scope.callNow = CommonService.callNow;
   $scope.init();
 });

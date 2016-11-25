@@ -4,7 +4,6 @@
   module.factory("GTM", function(Logger, ConfigService, $ionicPlatform, $ionicHistory){
     var GTM = {
       plugin: null,
-      debugger: Logger,
       data: {},
       tagManagerUnsupported: function(){return this.plugin === null;},
       init:  function(){

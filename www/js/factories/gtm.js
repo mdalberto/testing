@@ -56,7 +56,6 @@
         this.flush();
       },
       startSession: function(userId){
-        if(this.tagManagerUnsupported()) { return; }
         Logger.log(`setUserId - userId: ${userId}`);
         GTM.data = {'userId': userId};
       },

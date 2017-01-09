@@ -26,7 +26,10 @@
           Logger.log("GTM intialized");
 
           //Workaround to track the first view when the app opens.
-          GTM.trackPage($ionicHistory.currentView().url);
+          //BTW this is only executed when the user is logged out.
+          if($ionicHistory.currentView() !== null){
+            GTM.trackPage($ionicHistory.currentView().url);
+          }
         }
       },
       trackEvent:  function(category, action, label, value){

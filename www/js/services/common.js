@@ -12,11 +12,11 @@ angular.module('PsychicSource.Common', [])
       commonHandler.minimumBalance = parseFloat(data.data.minPurchasedBalance).toPrecision();
     },
     externalNoPrompt: function($event){
-      GTM.trackEvent('LinkNoPrompt', 'open', $event.currentTarget.dataset.href, 1);
+      GTM.trackEvent('linknoprompt', 'open', $event.currentTarget.dataset.href, 1);
       window.open($event.currentTarget.dataset.href,'_system','location=yes');
     },
     callNow: function(){
-      GTM.trackEvent('Calls', 'call', this.callNowNumber, 1);
+      GTM.trackEvent('calls', 'call', this.callNowNumber, 1);
       window.open('tel:' + this.callNowNumber, '_system', 'location=yes');
       return false;
     },

@@ -12,7 +12,7 @@ angular.module('PsychicSource.Push', [])
       notificationHandler.on('notification', function(data) {
         if(data.additionalData !== null &&
            (data.additionalData.coldstart === true || data.additionalData.foreground === false)){
-              GTM.trackEvent('app', 'open', 'from notification', 1);
+              GTM.trackEvent('from notifications', 'click', data.message, 1);
         }
 
         Popup.show('alert', {

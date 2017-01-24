@@ -27,7 +27,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
     confirmPopup.then(function(res){
       if(res){
         selectedAdvisor = $scope.favs[index];
-        GTM.trackEvent('favoriteadvisors', 'remove', selectedAdvisor.AdvisorId, 1);
+        GTM.trackEvent('favorite advisors remove', 'click', selectedAdvisor.AdvisorName + ' x' + selectedAdvisor.AdvisorExtension, 1);
         advisor = {
           "FavoriteAdvisorId":selectedAdvisor.FavoriteAdvisorId,
           "AdvisorId":selectedAdvisor.AdvisorId,

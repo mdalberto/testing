@@ -74,7 +74,15 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
     confirmPopup.then(function(res){
       if(res){
-        GTM.trackEvent('links', 'open', $event.currentTarget.dataset.href, 1);
+        var event_category = 'links';
+        var event_action = 'click';
+        var event_label = $event.currentTarget.dataset.href;
+
+        if(typeof($event.currentTarget.dataset.eventCategory) !== undefined){
+          event_category = $event.currentTarget.dataset.eventCategory;
+        }
+
+        GTM.trackEvent(event_category, event_action, event_label, 1);
         window.open($event.currentTarget.dataset.href,'_system','location=yes');
       }
     });

@@ -74,15 +74,15 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
     confirmPopup.then(function(res){
       if(res){
-        var event_category = 'links';
-        var event_action = 'click';
-        var event_label = $event.currentTarget.dataset.href;
-
         if(typeof($event.currentTarget.dataset.eventCategory) !== undefined){
-          event_category = $event.currentTarget.dataset.eventCategory;
+          var event_category = $event.currentTarget.dataset.eventCategory;
+          var event_action = 'click';
+          var event_label = $event.currentTarget.dataset.href;
+
+          //Only track links that were on the spec
+          GTM.trackEvent(event_category, event_action, event_label, 1);
         }
 
-        GTM.trackEvent(event_category, event_action, event_label, 1);
         window.open($event.currentTarget.dataset.href,'_system','location=yes');
       }
     });

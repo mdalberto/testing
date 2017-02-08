@@ -67,8 +67,15 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   };
 
   $scope.external = function($event){
+    var title = 'You are about to leave the app and go to PsychicSource Website';
+    var regex = /http(.*)psychicsource.com(.*)$/i
+
+    if($event.currentTarget.dataset.href.match(regex) === null){
+      title = 'You are about to leave the PsychicSource App';
+    }
+
     var confirmPopup = Popup.show('confirm', {
-      title: 'You are about to leave the app and go to PsychicSource Website',
+      title: title,
       template: 'Are you sure that you want to do this?'
     });
 

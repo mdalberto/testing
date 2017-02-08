@@ -112,10 +112,10 @@ angular.module('PsychicSource.Authentication', ['ionic'])
       );
     },
     login: function(data) {
-      GTM.trackEvent('login', 'click', 'welcome screen', 1);
       return AjaxService.login(data).then(function(res){
-        d = $q.defer();
         var platform = ionic.Platform.platform();
+        d = $q.defer();
+        GTM.trackEvent('login', 'click', 'welcome screen', 1);
         try {
           var push = PushNotificationService.init();
           push.on('registration', function(pushData) {

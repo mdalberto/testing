@@ -81,7 +81,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
     confirmPopup.then(function(res){
       if(res){
-        if(typeof($event.currentTarget.dataset.eventCategory) !== undefined){
+        if(typeof($event.currentTarget.dataset.eventCategory) !== 'undefined'){
           var event_category = $event.currentTarget.dataset.eventCategory;
           var event_action = 'click';
           var event_label = $event.currentTarget.dataset.href;

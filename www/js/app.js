@@ -1,8 +1,12 @@
-var PsychicSource = angular.module('PsychicSource', ['internationalPhoneNumber', 'ionic', 'ionic.utils', 'ngCordova', 'PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax', 'PsychicSource.ReturnCalls', 'PsychicSource.Availability', 'PsychicSource.Preferences', 'PsychicSource.Push', 'ordinal', 'underscore', 'PsychicSource.Filters', 'PsychicSource.Config', 'PsychicSource.Popup', 'PsychicSource.Common'])
-.run(function($ionicPlatform,$ionicPopup,$cordovaSplashscreen,$rootScope, $state, AuthService,AUTH_EVENTS){
+var requires = ['internationalPhoneNumber', 'ionic', 'ionic.utils', 'ngCordova', 'PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax', 'PsychicSource.ReturnCalls', 'PsychicSource.Availability', 'PsychicSource.Preferences', 'PsychicSource.Push', 'ordinal', 'underscore', 'PsychicSource.Filters', 'PsychicSource.Config', 'PsychicSource.Popup', 'PsychicSource.Common', 'PsychicSource.GTM', 'PsychicSource.Logger'];
+var PsychicSource = angular.module('PsychicSource', requires)
+.run(function($ionicPlatform,$ionicPopup,$cordovaSplashscreen,$rootScope, $state, GTM, AuthService,AUTH_EVENTS){
     setTimeout(function(){
     $cordovaSplashscreen.hide();
   },5000);
+  $rootScope.$on('$stateChangeSuccess',function(event,next,nextParams,fromState){
+    GTM.trackPage(next.url);
+  });
   $rootScope.$on('$stateChangeStart',function(event,next,nextParams,fromState){
     if ('data' in next && 'authorizedRoles' in next.data) {
       var authorizedRoles = next.data.authorizedRoles;

@@ -1,5 +1,5 @@
 angular.module('PsychicSource.Push', [])
-.factory('PushNotificationService',function($state,ConfigService,Popup){
+.factory('PushNotificationService', function($state, ConfigService, Popup, GTM){
   var push = {
     init: function() {
       var notificationHandler = PushNotification.init({
@@ -10,12 +10,10 @@ angular.module('PsychicSource.Push', [])
       });
 
       notificationHandler.on('notification', function(data) {
-            // data.message,
-            // data.title,
-            // data.count,
-            // data.sound,
-            // data.image,
-            // data.additionalData
+        if(data.additionalData !== null &&
+           (data.additionalData.coldstart === true || data.additionalData.foreground === false)){
+              GTM.trackEvent('from notifications', 'click', data.message, 1);
+        }
 
         Popup.show('alert', {
           title: data.title,

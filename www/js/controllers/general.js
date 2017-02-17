@@ -1,4 +1,4 @@
-PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate,Popup){
+PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionicLoading,$ionicHistory,$state,$ionicPlatform,$rootScope,AuthService,AUTH_EVENTS,$ionicPlatform,$timeout,$ionicSideMenuDelegate,Popup,GTM){
   $scope.membershipId = AuthService.id();
 
   $scope.logout = function(){
@@ -67,14 +67,30 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   };
 
   $scope.external = function($event){
+    var title = 'You are about to leave the app and go to PsychicSource Website';
+    var regex = /http(.*)psychicsource.com(.*)$/i
+
+    if($event.currentTarget.dataset.href.match(regex) === null){
+      title = 'You are about to leave the PsychicSource App';
+    }
+
     var confirmPopup = Popup.show('confirm', {
-      title: 'You are about to leave the app and go to PsychicSource Website',
+      title: title,
       template: 'Are you sure that you want to do this?'
     });
 
     confirmPopup.then(function(res){
       if(res){
-        var ref = window.open($event.currentTarget.dataset.href,'_system','location=yes');
+        if(typeof($event.currentTarget.dataset.eventCategory) !== 'undefined'){
+          var event_category = $event.currentTarget.dataset.eventCategory;
+          var event_action = 'click';
+          var event_label = $event.currentTarget.dataset.href;
+
+          //Only track links that were on the spec
+          GTM.trackEvent(event_category, event_action, event_label, 1);
+        }
+
+        window.open($event.currentTarget.dataset.href,'_system','location=yes');
       }
     });
   };

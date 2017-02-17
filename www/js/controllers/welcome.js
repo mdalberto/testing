@@ -1,4 +1,4 @@
-PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q, $ionicLoading, Popup, AuthService, SummaryService, AjaxService, CommonService, $localstorage){
+PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q, $ionicLoading, Popup, AuthService, SummaryService, AjaxService, CommonService, $localstorage, GTM){
   $rootScope.showFooter = false;
   $scope.data = {};
   $scope.callNowNumber = CommonService.callNowNumber();
@@ -78,10 +78,6 @@ PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q,
     },false)
   };
 
-  $scope.callNow = function(){
-    window.open('tel:' + $scope.callNowNumber, '_system', 'location=yes');
-    return false;
-  };
-
+  $scope.callNow = CommonService.callNow;
   $scope.init();
 });

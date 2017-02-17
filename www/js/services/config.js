@@ -11,6 +11,10 @@ angular.module('PsychicSource.Config', [])
           enableCorsProxy: false,
           baseUrl: 'https://testcontentservice.vseinc.com/elapi/',
           assetUrl: 'http://psychicsource.com/',
+          gaTrackingId: 'UA-87400817-1',
+          gtmAndroidContainer: 'GTM-MVD9D37',
+          gtmiOSContainer: 'GTM-K7M7ZVN',
+          debug: true
         };
         return config;
       case 'dev':
@@ -32,6 +36,9 @@ angular.module('PsychicSource.Config', [])
           enableCorsProxy: false,
           baseUrl: 'https://contentservice.vseinc.com/elapi/',
           assetUrl: 'http://www.psychicsource.com/',
+          gaTrackingId: 'UA-1433166-15',
+          gtmAndroidContainer: 'GTM-N89RS6L',
+          gtmiOSContainer: 'GTM-KJHSCRH'
         }
         return config;
       default:

@@ -64,7 +64,7 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
         countryId: countryId
       });
       $scope.getTimeLeft(SummaryService.summaryObj());
-      $window.location.reload();
+      $state.go($state.current, {}, {reload: true});
     });
   };
 
@@ -83,7 +83,7 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
 
   $scope.reset = function(){
     $ionicLoading.show({template: 'Reseting Info...'});
-    $window.location.reload();
+    $state.go($state.current, {}, {reload: true});
   };
 
   $timeout(function(){

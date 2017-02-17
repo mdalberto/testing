@@ -1,4 +1,4 @@
-PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, Popup){
+PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, Popup, GTM){
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
@@ -27,6 +27,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
     confirmPopup.then(function(res){
       if(res){
         selectedAdvisor = $scope.favs[index];
+        GTM.trackEvent('favorite advisors remove', 'click', selectedAdvisor.AdvisorName + ' x' + selectedAdvisor.AdvisorExtension, 1);
         advisor = {
           "FavoriteAdvisorId":selectedAdvisor.FavoriteAdvisorId,
           "AdvisorId":selectedAdvisor.AdvisorId,

@@ -1,5 +1,5 @@
 PsychicSource.constant("moment", moment);
-PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnCallsService, calls, _, Popup, ConfigService, CommonService){
+PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnCallsService, calls, _, Popup, ConfigService, CommonService, GTM){
   $scope.moment = new moment();
   $scope.calls = calls;
   $scope.imagePath = ConfigService.assetUrlImages;
@@ -20,6 +20,7 @@ PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnC
 
     confirmPopup.then(function(res) {
       if(res) {
+        GTM.trackEvent('return call remove', 'click', queueToBeRemoved.ExpertName + ' x' + queueToBeRemoved.ExpertExtension, 1);
         ReturnCallsService.deleteReturnCall(_.without($scope.calls,queueToBeRemoved),queueToBeRemoved.ExpertId).then(function(calls){
           $scope.calls = calls;
         });

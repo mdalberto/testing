@@ -64,19 +64,22 @@ angular.module('PsychicSource.Availability', [])
         else if(typeof(err.data) === 'object' &&
                 typeof(err.data.ReturnCallStatusId) === 'number' &&
                 err.data.ReturnCallStatusId == 6){
-          Popup.show('alert', {
-            title: 'SORRY',
-            template: "<center>To reset your availability and maintain your position in all Return Call lines, a $"+CommonService.minimumBalance+" account minimum is required. To add dollars call<br/> <a href=tel:"+CommonService.callNowNumber()+">"+$filter('phonenumber')(CommonService.callNowNumber())+"</a><br/> or visit <br/><a href=# onClick=\"window.open('http://PsychicSource.com','_blank','location=yes');return false;\">PsychicSource.com</a></center>"
-          });
-          d.reject(err);
-        }
-        else {
-          Popup.show('alert', {
-            title: 'Error',
-            template: 'Error while saving return call profile settings'
-          });
-          d.reject(err);
-        }
+                  $rootScope.external = CommonService.externalNoPrompt;
+                  $rootScope.callNow = CommonService.callNow;
+                  Popup.show('alert', {
+                    scope: $rootScope,
+                    title: 'SORRY',
+                    template: "<center>To reset your availability and maintain your position in all Return Call lines, a $"+CommonService.minimumBalance+" account minimum is required. To add dollars call<br/> <a href=# ng-click='callNow()'>"+$filter('phonenumber')(CommonService.callNowNumber())+"</a><br/> or visit <br/><a href=# data-href='http://psychicsource.com' ng-click='external($event)'>PsychicSource.com</a></center>"
+                  });
+                  d.reject(err);
+                }
+                else {
+                  Popup.show('alert', {
+                    title: 'Error',
+                    template: 'Error while saving return call profile settings'
+                  });
+                  d.reject(err);
+                }
       });
       return d.promise;
     }

@@ -19,6 +19,7 @@ angular.module('PsychicSource.Config', [])
         return config;
       case 'dev':
         var config = {
+          gcmApiKey: "117405771847",
           enableCorsProxy: false,
           baseUrl: 'https://devapi.vseinc.com/',
           assetUrl: 'http://psychicsource.com/',
@@ -30,6 +31,7 @@ angular.module('PsychicSource.Config', [])
         return config;
       case 'rc':
         var config = {
+          gcmApiKey: "117405771847",
           enableCorsProxy: false,
           baseUrl: 'https://rcapi.vseinc.com/',
           assetUrl: 'http://www.psychicsource.com/',

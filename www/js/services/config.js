@@ -9,7 +9,7 @@ angular.module('PsychicSource.Config', [])
         var config = {
           gcmApiKey: "117405771847",
           enableCorsProxy: false,
-          baseUrl: 'https://testcontentservice.vseinc.com/elapi/',
+          baseUrl: 'https://testapi.vseinc.com/',
           assetUrl: 'http://psychicsource.com/',
           gaTrackingId: 'UA-87400817-1',
           gtmAndroidContainer: 'GTM-MVD9D37',
@@ -19,22 +19,26 @@ angular.module('PsychicSource.Config', [])
         return config;
       case 'dev':
         var config = {
-          enableCorsProxy: true,
-          baseUrl: 'http://localhost:1337/testcontentservice.vseinc.com/elapi/',
+          enableCorsProxy: false,
+          baseUrl: 'https://devapi.vseinc.com/',
           assetUrl: 'http://psychicsource.com/',
+          gaTrackingId: 'UA-87400817-1',
+          gtmAndroidContainer: 'GTM-MVD9D37',
+          gtmiOSContainer: 'GTM-K7M7ZVN',
+          debug: true
         };
         return config;
       case 'rc':
         var config = {
           enableCorsProxy: false,
-          baseUrl: 'https://rccontentservice.vseinc.com/elapi/',
+          baseUrl: 'https://rcapi.vseinc.com/',
           assetUrl: 'http://www.psychicsource.com/',
         }
       case 'production':
         var config = {
           gcmApiKey: "766226653480",
           enableCorsProxy: false,
-          baseUrl: 'https://contentservice.vseinc.com/elapi/',
+          baseUrl: 'https://api.vseinc.com/',
           assetUrl: 'http://www.psychicsource.com/',
           gaTrackingId: 'UA-1433166-15',
           gtmAndroidContainer: 'GTM-N89RS6L',

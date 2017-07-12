@@ -51,15 +51,40 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   };
 
   $scope.availableIM = function(fav){
-    if(fav.ServiceAvailable==2 && fav.IsOnIM && fav.IMStatusID === 1 && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable === 2 &&
+       fav.IsOnIM &&
+       fav.IMStatusID === 1 &&
+       !fav.OnPhoneConference &&
+       !fav.OnVideoConference
+      ){
       return 'font-green';
     }
     else{
       return 'font-red';
     }
   };
+
   $scope.availablePhone = function(fav){
-    if(fav.ServiceAvailable==2 && fav.IsOnPhone && fav.IsPhoneLogIn && !fav.OnPhoneConference){
+    if(fav.ServiceAvailable === 2 &&
+       fav.IsOnPhone &&
+       fav.IsPhoneLogIn &&
+       !fav.OnPhoneConference &&
+       !fav.OnVideoConference
+      ){
+      return 'font-green';
+    }
+    else{
+      return 'font-red';
+    }
+  };
+
+  $scope.availableVideo = function(fav){
+    if(fav.ServiceAvailable === 2 &&
+       fav.IsOnVideo &&
+       fav.IsVideoLogIn &&
+       !fav.OnPhoneConference &&
+       !fav.OnVideoConference
+      ){
       return 'font-green';
     }
     else{

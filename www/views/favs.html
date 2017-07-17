@@ -42,6 +42,9 @@
               <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}">
                 <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
               </a>
+              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}">
+                <i ng-show='fav.IsVideoLogIn && fav.ServiceAvailable !== 0' class="icon ion-ios-videocam" ng-class='availableVideo(fav)'></i>
+              </a>
               <div class='col-33 text-center'>
                 <a ng-click='remove($index)'>
                   <i class="icon ion-close-circled"></i>
@@ -77,6 +80,12 @@
                 <i class="icon ion-chatbubble"></i>
               </span>
               <span class="text">Chat Psychics</span>
+            </div>
+            <div>
+              <span class="">
+                <i class="icon ion-ios-videocam"></i>
+              </span>
+              <span class="text">Video Psychics</span>
             </div>
           </div>
         </div>

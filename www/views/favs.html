@@ -39,10 +39,10 @@
               <a class='col-33 text-center' ng-href="tel:1.800.965.3049">
                 <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
               </a>
-              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}">
+              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors chat'>
                 <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
               </a>
-              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}">
+              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors video'>
                 <i ng-show='fav.IsVideoLogIn && fav.ServiceAvailable !== 0' class="icon ion-ios-videocam" ng-class='availableVideo(fav)'></i>
               </a>
               <div class='col-33 text-center'>

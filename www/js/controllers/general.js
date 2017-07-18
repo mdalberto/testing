@@ -68,7 +68,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
 
   $scope.external = function($event){
     var title = 'You are about to leave the app and go to PsychicSource Website';
-    var regex = /http(.*)psychicsource.com(.*)$/i
+    var regex = /http(.*)psychicsource.com(.*)$/i;
 
     if($event.currentTarget.dataset.href.match(regex) === null){
       title = 'You are about to leave the PsychicSource App';
@@ -85,6 +85,10 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
           var event_category = $event.currentTarget.dataset.eventCategory;
           var event_action = 'click';
           var event_label = $event.currentTarget.dataset.href;
+          if($event.currentTarget.dataset.eventCategory === 'favorite advisors chat' ||
+            $event.currentTarget.dataset.eventCategory === 'favorite advisors video'){
+              event_label = event_label.split("?")[0];
+            }
 
           //Only track links that were on the spec
           GTM.trackEvent(event_category, event_action, event_label, 1);

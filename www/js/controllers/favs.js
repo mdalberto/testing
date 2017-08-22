@@ -1,4 +1,4 @@
-PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, Popup, GTM){
+PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, AjaxService, AuthService, $ionicLoading, Popup, GTM, CommonService){
   $scope.imagePath = ConfigService.assetUrlImages;
   $scope.profileUrl = ConfigService.profileUrl;
   $scope.refresh = function(){
@@ -48,6 +48,21 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
           });
       }
     });
+  };
+
+  $scope.video_external = function(event){
+    if( ionic.Platform.isIOS )
+    {
+      var major_version = parseInt(ionic.Platform.version().toString().split('.')[0]);
+      if(major_version <= 10){
+        Popup.show('alert', {
+          template: 'Sorry, video readings are not supported on iOS devices, but are coming soon. Please try another device.',
+          buttons: [ { text: 'Close', type: 'button-positive' } ]
+        });
+        return;
+      }
+    }
+    CommonService.external(event);
   };
 
   $scope.availableIM = function(fav){

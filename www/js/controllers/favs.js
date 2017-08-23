@@ -51,7 +51,7 @@ PsychicSource.controller('FavsCtrl',function($rootScope, $scope, ConfigService, 
   };
 
   $scope.video_external = function(event){
-    if( ionic.Platform.isIOS )
+    if( ionic.Platform.isIOS() )
     {
       var major_version = parseInt(ionic.Platform.version().toString().split('.')[0]);
       if(major_version <= 10){

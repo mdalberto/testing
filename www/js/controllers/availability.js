@@ -5,10 +5,31 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   SummaryService.info_member();
   $scope.summary = SummaryService.summaryObj();
   $scope.times = {};
-  $scope.times.phone = $scope.summary.phone;
   $scope.times.formattedPhone = null;
   $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
   $scope.minimumBalance = CommonService.minimumBalance;
+
+  isInternationalNumber = function (number){
+    return number.length > 10
+  }
+
+  countryCallingCode = function(){
+    return $scope.countryCodes[$scope.summary.countryId-1].CountryCallingCode;
+  }
+
+  $scope.countryCode = function(){
+    return $scope.countryCodes[$scope.summary.countryId-1].CountryCode;
+  }
+
+  $scope.times.phone = function(){
+    if(isInternationalNumber($scope.summary.phone)){
+      var internationalCode = '011' + countryCallingCode();
+
+      return $scope.summary.phone.substring(internationalCode.length);
+    } else {
+      return $scope.summary.phone;
+    }
+  }();
 
   $scope.refresh = function(){
     SummaryService.getSummary().then(function(summary){
@@ -19,16 +40,18 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
 
   $scope.afterPageRender = function(){
     $scope.setFormattedPhone();
-    $scope.setFlag();
     $scope.getTimeLeft($scope.summary);
   };
 
   $scope.setFormattedPhone = function(){
-    $scope.times.formattedPhone = $('input[international-phone-number]').val();
-  };
+    if(isInternationalNumber($scope.summary.phone)){
+      var internationalCode = '+(011' + countryCallingCode() + ') ';
 
-  $scope.setFlag = function(){
-    $('.selected-flag').find('.iti-flag').removeClass().addClass('iti-flag').addClass($scope.times.countryObj.CountryCode.toLowerCase());
+      var number = $scope.summary.phone.substring(internationalCode.length-4);
+      $scope.times.formattedPhone = internationalCode + number;
+    } else {
+      $scope.times.formattedPhone = $('input[international-phone-number]').val();
+    }
   };
 
   ($scope.setCountryObj =  function(){

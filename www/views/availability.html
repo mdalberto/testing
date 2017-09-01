@@ -12,7 +12,7 @@
             <span class="input-label"> Your Return Call Number </span>
           </label>
           <span class="tel-input-wrapper">
-            <input id='phone' type="text" ng-if="showPhoneDropdown" international-phone-number utils-script="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js" default-country='{{countryCode()}}' ng-model="times.phone">
+            <input id='phone' type="text" ng-if="showPhoneDropdown" international-phone-number utils-script="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js" preferred-countries='us, ca' default-country='{{defaultCountry()}}' only-countries='{{onlyCountries()}}' ng-model="times.phone">
           </span>
         </div>
       </div>

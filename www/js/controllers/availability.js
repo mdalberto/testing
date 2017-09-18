@@ -23,8 +23,8 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
 
   isSpecialInternationalNumber = function (countryId, phone){
     countryCode = countryCallingCode();
-    if(phone.indexOf('011') > -1
-        && !(phone.indexOf('011'+countryCode) > -1))
+    if(phone.indexOf('011') === 0
+        && !(phone.indexOf('011'+countryCode) === 0))
     {
       return true
     }

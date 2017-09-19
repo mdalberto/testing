@@ -55,7 +55,10 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   }
 
   $scope.times.phone = function(){
-    if(isInternationalNumber($scope.summary.countryId, $scope.summary.phone)){
+    if($scope.summary.phone === null){
+      return '';
+    }
+    else if(isInternationalNumber($scope.summary.countryId, $scope.summary.phone)){
       var internationalCode = '011' + countryCallingCode();
 
       return $scope.summary.phone.substring(internationalCode.length);
@@ -72,8 +75,10 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   };
 
   $scope.afterPageRender = function(){
-    $scope.setFormattedPhone();
-    $scope.getTimeLeft($scope.summary);
+    if($scope.summary.phone !== null){
+      $scope.setFormattedPhone();
+      $scope.getTimeLeft($scope.summary);
+    }
   };
 
   $scope.setFormattedPhone = function(){

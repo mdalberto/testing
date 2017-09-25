@@ -42,16 +42,20 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
     return true
   }
 
-  $scope.onlyCountries = function() {
-    return $scope.countryCodes.map(function(c) { return c.CountryCode }).join(',')
+  onlyCountriesList = function() {
+    return $scope.countryCodes.map(function(c) {
+      if(c.CountryCallingCode !== null){
+        return c.CountryCode
+      }
+    }).filter(n => n)
   }
 
-  $scope.defaultCountry = function(){
+  defaultCountry = function(){
     if($scope.summary.countryId === 0) {
-      return 'us'
+      return "us"
     }
     countryData = findCountryById($scope.summary.countryId)
-    return countryData.CountryCode;
+    return countryData.CountryCode
   }
 
   $scope.times.phone = function(){
@@ -75,6 +79,11 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   };
 
   $scope.afterPageRender = function(){
+    $("#phone").intlTelInput({
+      onlyCountries: onlyCountriesList(),
+      preferredCountries: ['us', 'ca'],
+      defaultCountry: defaultCountry()
+    });
     if($scope.summary.phone !== null){
       $scope.setFormattedPhone();
       $scope.getTimeLeft($scope.summary);
@@ -93,7 +102,7 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
       $scope.times.formattedPhone = internationalCode + number;
     }
     else {
-      $scope.times.formattedPhone = 1+$('input[international-phone-number]').val();
+      $scope.times.formattedPhone = 1+$("#phone").val();
     }
   };
 
@@ -155,15 +164,28 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   $timeout(function(){
     $scope.afterPageRender();
     $('ul.country-list').wrap("<ion-scroll direction='y'></ion-scroll>");
-  },500);
+  }, 500);
+
+  isValidUSNumber = function(number, countryId){
+    return (countryId === 1 || countryId === 2) && number.length === 10
+  }
+
+  isValidInternationalNumber = function(number, countryId){
+    return (countryId !== 1 && countryId !== 2) &&
+    (4 < number.length && number.length < 14)
+  }
 
   $scope.warnInvalid = function(form){
-    if(!form.$valid){
-        Popup.show('alert', {
-          title: 'Invalid Phone Number',
-          template: 'Please verify your country code and phone number'
-        });
+    var number = $("#phone").val().replace(/[^0-9]/g, "");
+    var countryId = $scope.getCountryIdFromCode($scope.getCountryCodeSelected());
+    if(isValidUSNumber(number, countryId) ||
+       isValidInternationalNumber(number, countryId)){
+      return form.$valid;
+    } else {
+      Popup.show('alert', {
+        title: 'Invalid Phone Number',
+        template: 'Please verify your country code and phone number'
+      });
     }
-    return form.$valid;
   };
 });

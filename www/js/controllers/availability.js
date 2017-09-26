@@ -47,7 +47,9 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
       if(c.CountryCallingCode !== null){
         return c.CountryCode
       }
-    }).filter(n => n)
+    }).filter(function(n) {
+      return n
+    })
   }
 
   defaultCountry = function(){

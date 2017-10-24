@@ -5,10 +5,73 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   SummaryService.info_member();
   $scope.summary = SummaryService.summaryObj();
   $scope.times = {};
-  $scope.times.phone = $scope.summary.phone;
   $scope.times.formattedPhone = null;
   $scope.times.hour = String($scope.summary.availabilityInSeconds / 3600);
   $scope.minimumBalance = CommonService.minimumBalance;
+
+  findCountryById = function(id){
+    countryData = _.find($scope.countryCodes, function(country){
+      return country.CountryID === id
+    })
+    return countryData
+  }
+
+  countryCallingCode = function(){
+    countryData = findCountryById($scope.summary.countryId)
+    return countryData.CountryCallingCode;
+  }
+
+  isSpecialInternationalNumber = function (countryId, phone){
+    countryCode = countryCallingCode();
+    if(phone.indexOf('011') === 0
+        && !(phone.indexOf('011'+countryCode) === 0))
+    {
+      return true
+    }
+    return false;
+  }
+
+  isInternationalNumber = function (countryId, phone){
+    countryCode = countryCallingCode();
+    if (countryId === 1
+        || countryId === 2
+        || !(phone.indexOf('011'+countryCode) > -1))
+    {
+      return false
+    }
+    return true
+  }
+
+  onlyCountriesList = function() {
+    return $scope.countryCodes.map(function(c) {
+      if(c.CountryCallingCode !== null){
+        return c.CountryCode
+      }
+    }).filter(function(n) {
+      return n
+    })
+  }
+
+  defaultCountry = function(){
+    if($scope.summary.countryId === 0) {
+      return "us"
+    }
+    countryData = findCountryById($scope.summary.countryId)
+    return countryData.CountryCode
+  }
+
+  $scope.times.phone = function(){
+    if($scope.summary.phone === null){
+      return '';
+    }
+    else if(isInternationalNumber($scope.summary.countryId, $scope.summary.phone)){
+      var internationalCode = '011' + countryCallingCode();
+
+      return $scope.summary.phone.substring(internationalCode.length);
+    } else {
+      return $scope.summary.phone;
+    }
+  }();
 
   $scope.refresh = function(){
     SummaryService.getSummary().then(function(summary){
@@ -18,17 +81,31 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   };
 
   $scope.afterPageRender = function(){
-    $scope.setFormattedPhone();
-    $scope.setFlag();
-    $scope.getTimeLeft($scope.summary);
+    $("#phone").intlTelInput({
+      onlyCountries: onlyCountriesList(),
+      preferredCountries: ['us', 'ca'],
+      defaultCountry: defaultCountry()
+    });
+    if($scope.summary.phone !== null){
+      $scope.setFormattedPhone();
+      $scope.getTimeLeft($scope.summary);
+    }
   };
 
   $scope.setFormattedPhone = function(){
-    $scope.times.formattedPhone = $('input[international-phone-number]').val();
-  };
+    if(isInternationalNumber($scope.summary.countryId, $scope.summary.phone)){
+      var internationalCode = '+(011' + countryCallingCode() + ') ';
 
-  $scope.setFlag = function(){
-    $('.selected-flag').find('.iti-flag').removeClass().addClass('iti-flag').addClass($scope.times.countryObj.CountryCode.toLowerCase());
+      var number = $scope.summary.phone.substring(internationalCode.length-4);
+      $scope.times.formattedPhone = internationalCode + number;
+    } else if(isSpecialInternationalNumber($scope.summary.countryId, $scope.summary.phone)){
+      var internationalCode = '+(011' + countryCallingCode() + ') ';
+      var number = $scope.summary.phone.substring(3); // Strips 011
+      $scope.times.formattedPhone = internationalCode + number;
+    }
+    else {
+      $scope.times.formattedPhone = 1+$("#phone").val();
+    }
   };
 
   ($scope.setCountryObj =  function(){
@@ -89,15 +166,28 @@ PsychicSource.controller('AvailabilityCtrl', function($scope, AuthService, Avail
   $timeout(function(){
     $scope.afterPageRender();
     $('ul.country-list').wrap("<ion-scroll direction='y'></ion-scroll>");
-  },500);
+  }, 500);
+
+  isValidUSNumber = function(number, countryId){
+    return (countryId === 1 || countryId === 2) && number.length === 10
+  }
+
+  isValidInternationalNumber = function(number, countryId){
+    return (countryId !== 1 && countryId !== 2) &&
+    (4 < number.length && number.length < 14)
+  }
 
   $scope.warnInvalid = function(form){
-    if(!form.$valid){
-        Popup.show('alert', {
-          title: 'Invalid Phone Number',
-          template: 'Please verify your country code and phone number'
-        });
+    var number = $("#phone").val().replace(/[^0-9]/g, "");
+    var countryId = $scope.getCountryIdFromCode($scope.getCountryCodeSelected());
+    if(isValidUSNumber(number, countryId) ||
+       isValidInternationalNumber(number, countryId)){
+      return form.$valid;
+    } else {
+      Popup.show('alert', {
+        title: 'Invalid Phone Number',
+        template: 'Please verify your country code and phone number'
+      });
     }
-    return form.$valid;
   };
 });

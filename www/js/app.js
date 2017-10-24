@@ -1,4 +1,4 @@
-var requires = ['internationalPhoneNumber', 'ionic', 'ionic.utils', 'ngCordova', 'PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax', 'PsychicSource.ReturnCalls', 'PsychicSource.Availability', 'PsychicSource.Preferences', 'PsychicSource.Push', 'ordinal', 'underscore', 'PsychicSource.Filters', 'PsychicSource.Config', 'PsychicSource.Popup', 'PsychicSource.Common', 'PsychicSource.GTM', 'PsychicSource.Logger'];
+var requires = ['ionic', 'ionic.utils', 'ngCordova', 'PsychicSource.Authentication', 'PsychicSource.Summary', 'PsychicSource.Ajax', 'PsychicSource.ReturnCalls', 'PsychicSource.Availability', 'PsychicSource.Preferences', 'PsychicSource.Push', 'ordinal', 'underscore', 'PsychicSource.Filters', 'PsychicSource.Config', 'PsychicSource.Popup', 'PsychicSource.Common', 'PsychicSource.GTM', 'PsychicSource.Logger'];
 var PsychicSource = angular.module('PsychicSource', requires)
 .run(function($ionicPlatform,$ionicPopup,$cordovaSplashscreen,$rootScope, $state, GTM, AuthService,AUTH_EVENTS){
     setTimeout(function(){

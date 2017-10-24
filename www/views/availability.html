@@ -12,7 +12,7 @@
             <span class="input-label"> Your Return Call Number </span>
           </label>
           <span class="tel-input-wrapper">
-          <input type="text" ng-if="showPhoneDropdown" international-phone-number utilsScript="bower_components/intl-tel-input/lib/libphonenumber/build/utils.js" ng-model="times.phone">
+            <input id='phone' type="text" ng-if="showPhoneDropdown" ng-model="times.phone">
           </span>
         </div>
       </div>
@@ -41,5 +41,3 @@
   To speak with an advisor and hold your place in all Return Call lines, a ${{minimumBalance}} account minimum is required.
   </ion-content>
 </ion-view>
-
-

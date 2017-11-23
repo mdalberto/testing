@@ -36,16 +36,16 @@
           </div>
           <div class='col-50'>
             <div class='row'>
-              <a class='col-33 text-center' ng-href="tel:1.800.965.3049">
+              <a class='col-25 text-center' ng-href="tel:1.800.965.3049">
                 <i ng-show='fav.IsPhoneLogIn' class="icon ion-ios-telephone" ng-class='availablePhone(fav)'></i>
               </a>
-              <a class='col-33 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors chat'>
+              <a class='col-25 text-center' ng-click="external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors chat'>
                 <i ng-hide='fav.IMStatusID==0' class="icon ion-chatbubble" ng-class='availableIM(fav)'></i>
               </a>
-              <a class='col-33 text-center' ng-click="video_external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors video'>
+              <a class='col-25 text-center' ng-click="video_external($event)" ng-attr-data-href="{{profileUrl}}{{fav.AdvisorId}}" data-event-category='favorite advisors video'>
                 <i ng-show='fav.IsVideoLogIn && fav.ServiceAvailable !== 0' class="icon ion-ios-videocam" ng-class='availableVideo(fav)'></i>
               </a>
-              <div class='col-33 text-center'>
+              <div class='col-25 text-center'>
                 <a ng-click='remove($index)'>
                   <i class="icon ion-close-circled"></i>
                 </a>

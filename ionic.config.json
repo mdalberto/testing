@@ -1,6 +1,8 @@
 {
   "name": "PushNotifications",
-  "app_id": "",
+  "integrations": {
+    "cordova": {}
+  },
   "gulpStartupTasks": [
     "sass",
     "watch"

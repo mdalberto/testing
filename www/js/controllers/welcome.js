@@ -3,11 +3,25 @@ PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q,
   $scope.data = {};
   $scope.callNowNumber = CommonService.callNowNumber();
   $scope.data.rememberMe = AuthService.getRememberMe();
-
+$scope.LoginType="Email";
   $scope.changeRememberMe = function(){
     AuthService.setRememberMe($scope.data.rememberMe);
   };
 
+  $scope.showPhoneLoginWindow=function(){
+alert("showPhoneLoginWindow");
+    $scope.LoginType="Phone";
+    $("#collapseOne").removeClass("in");
+    $("#collapseTwo").addClass("in");
+    
+  };
+  $scope.showEmailLoginWindow=function(){
+    alert("showEmailLoginWindow");
+        $scope.LoginType="Phone";
+        $("#collapseTwo").removeClass("in");
+        $("#collapseOne").addClass("in");
+        
+      };
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(platformId){

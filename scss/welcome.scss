@@ -10,6 +10,14 @@
   .list-inset {
     margin: 10px 10px;
   }
+  .collapse{
+    display: none;
+    visibility: hidden;
+  }
+  .collapse.in{
+    display: block;
+    visibility: visible;
+  }
   .ps-logo {
     height:5em;
     margin: auto;

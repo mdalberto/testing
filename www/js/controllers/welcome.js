@@ -8,20 +8,32 @@ $scope.LoginType="Email";
     AuthService.setRememberMe($scope.data.rememberMe);
   };
 
+
+  
   $scope.showPhoneLoginWindow=function(){
-alert("showPhoneLoginWindow");
     $scope.LoginType="Phone";
     $("#collapseOne").removeClass("in");
     $("#collapseTwo").addClass("in");
-    
+    $localstorage.set('loginType',$scope.LoginType);
   };
-  $scope.showEmailLoginWindow=function(){
-    alert("showEmailLoginWindow");
-        $scope.LoginType="Phone";
+  $scope.showEmailLoginWindow=function(){    
+        $scope.LoginType="Email";
         $("#collapseTwo").removeClass("in");
         $("#collapseOne").addClass("in");
-        
+        $localstorage.set('loginType',$scope.LoginType);
       };
+    if($localstorage.get('loginType')==='Email'){
+      $scope.showEmailLoginWindow();
+
+    }else if($localstorage.get('loginType')==='Phone') {
+      $scope.showPhoneLoginWindow();
+    }
+    else{
+      $localstorage.set('loginType',$scope.LoginType);
+    }
+      
+
+
   $scope.login = function(data) {
     $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(platformId){

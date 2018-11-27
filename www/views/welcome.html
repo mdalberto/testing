@@ -1,62 +1,63 @@
 <ion-view title="Welcome">
   <ion-content class="padding welcome-content">
-    <div class="logo-wrapper col-80 col-offset-10">
-      <object id="pslogo" type="image/svg+xml" class="ps-logo text-center" data="img/pslogo.svg"></object>
-    </div>
-    <h3 class="title text-center no-ellipsis">To Get Started Please Login</h3>
-    <div class="collapse" id="collapseOne">
-      <div class="padding">Login with your Email address or 
-        <a id="btn_showPhone" role="button" ng-click="showPhoneLoginWindow()">Phone number</a>
-      </div>
-      <div class="list list-inset text-center">
-        <label class="item item-input">
-          <input type="text" id="email" placeholder="Email Address" ng-model="data.email">
-        </label>
-        <label class="item item-input">
-          <input type="password" id="password" placeholder="Password" ng-model="data.password">
-        </label>
-      </div>
-    </div>
-    
-     <!-- <span class="or-separator text-center">
-        or<br>
-      </span>-->
-      <div class="collapse" id="collapseTwo">
-        <div class="padding subtitle">Login with your Phone Number or 
-          <a id="btn_showEmail" role="button" ng-click="showEmailLoginWindow()" >Email Address</a>
-        </div>
-        <div class="list list-inset text-center">
-          <label class="item item-input">
-            <input type="text" id="phonenumber" placeholder="Phone Number" ng-model="data.phone">
-          </label>
-          <label class="item item-input">
-            <input type="password" id="pin" placeholder="4 Digit PIN" ng-model="data.pin" maxlength="4">
-          </label>
-        </div> 
-      </div>
-     
-    <div class="row">
-      <div class="col col-80 text-right">
-        <h4 class="remember-me-label">Remember Me</h4>
-      </div>
-      <label class="toggle toggle-balanced remember-me">
-        <input type="checkbox" ng-model="data.rememberMe" ng-change="changeRememberMe()">
-        <div class="track">
-          <div class="handle"></div>
-        </div>
-      </label>
-    </div>
-    <div class="padding"><button class="button button-large button-block button-psychic2" ng-click="login(data)">Login</button></div>
-      <div class="row">
-        <div class="forgot-login col col-70 col-offset-15 text-center">
-          <div>Forgot your login information? </div>
-          <a href="#" href ng-click="external($event)" data-href="https://www.psychicsource.com/forgot-information?utm_source=smart_phone_app&utm_campaign=forgot_password&utm_medium=welcome_screen" data-event-category='forgot password'>CLICK HERE</a><span class="break-line-when-small"></span> or call <span class="break-line-when-small"></span><a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
-        </div>
-      </div>
+      <form ng-submit="test()">
+          <div class="logo-wrapper col-80 col-offset-10">
+              <object id="pslogo" type="image/svg+xml" class="ps-logo text-center" data="img/pslogo.svg"></object>
+            </div>
+            <h3 class="title text-center no-ellipsis">To Get Started Please Login</h3>
+            <div class="collapse" id="collapseOne">
+              <div class="padding">Login with your Email address or 
+                <a id="btn_showPhone" role="button" ng-click="showPhoneLoginWindow()">Phone number</a>
+              </div>
+              <div class="list list-inset text-center">
+                <label class="item item-input">
+                  <input type="email" id="email" placeholder="Email Address" ng-model="data.email">
+                </label>
+                <label class="item item-input">
+                  <input type="password" id="password" placeholder="Password" ng-model="data.password">
+                </label>
+              </div>
+            </div>
+              <div class="collapse" id="collapseTwo">
+                <div class="padding subtitle">Login with your Phone Number or 
+                  <a id="btn_showEmail" role="button" ng-click="showEmailLoginWindow()" >Email Address</a>
+                </div>
+                <div class="list list-inset text-center">
+                  <label class="item item-input">
+                    <input type="tel" id="phonenumber" placeholder="Phone Number" ng-model="data.phone">
+                  </label>
+                  <label class="item item-input">
+                    <input type="password" id="pin" placeholder="4 Digit PIN" ng-model="data.pin" maxlength="4">
+                  </label>
+                </div> 
+              </div>
+             
+            <div class="row">
+              <div class="col col-80 text-right">
+                <h4 class="remember-me-label">Remember Me</h4>
+              </div>
+              <label class="toggle toggle-balanced remember-me">
+                <input type="checkbox" ng-model="data.rememberMe" ng-change="changeRememberMe()">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </div>         
+         
+              <div class="padding"><button class="button button-large button-block button-psychic2" ng-click="login(data)">Login</button></div>
+              <div class="row">
+                <div class="forgot-login col col-70 col-offset-15 text-center">
+                  <div>Forgot your login information? </div>
+                  <a href="#" href ng-click="external($event)" data-href="https://www.psychicsource.com/forgot-information?utm_source=smart_phone_app&utm_campaign=forgot_password&utm_medium=welcome_screen" data-event-category='forgot password'>CLICK HERE</a><span class="break-line-when-small"></span> or call <span class="break-line-when-small"></span><a href="#" ng-click="callNow()">1 {{callNowNumber | phonenumber}}</a>
+                </div>
+              </div>
+        
+   
       <div class="padding">
         <button class="button button-large button-block button-psychic2 medium-font-size" menu-close ui-sref="app.become-member">
           Not a Customer? <span class="break-line-when-small"></span>Create an Account
         </button>
       </div>
+    </form>
   </ion-content>
 </ion-view>

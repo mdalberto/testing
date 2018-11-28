@@ -204,5 +204,3 @@ var PsychicSource = angular.module('PsychicSource', requires)
     }
   });
 })
-
-

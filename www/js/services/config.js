@@ -68,4 +68,3 @@ angular.module('PsychicSource.Config', [])
   var shared = getShared(config);
   return extendConfig(config,shared);
 }]);
-

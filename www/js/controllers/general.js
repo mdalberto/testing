@@ -71,4 +71,3 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
   $scope.init();
 
 });
-

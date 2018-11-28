@@ -18,4 +18,3 @@ PsychicSource.controller('PrivacyCtrl',function($scope,$ionicScrollDelegate,$tim
   $scope.registerEventListeners();
 
 });
-

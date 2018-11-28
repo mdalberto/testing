@@ -28,4 +28,3 @@ PsychicSource.controller('ReturnCallCtrl', function($scope, AuthService, ReturnC
     });
   };
 });
-

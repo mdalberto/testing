@@ -9,9 +9,6 @@ $scope.LoginType="Email";
   };
 
 
-  test=function(){
-    alert(submit);
-  }
   $scope.showPhoneLoginWindow=function(){
     $scope.LoginType="Phone";
     $("#collapseOne").removeClass("in");

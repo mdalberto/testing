@@ -56,6 +56,8 @@
     font-size: 1.3em;
     margin-right: 8%;
   }
+  .col-offset-11 {
+    margin-left: 11%; }
   .forgot-login {
     font-size: 18px;
     & > div {
@@ -66,5 +68,6 @@
       /*text-decoration:none;*/
       color: black;
     }
+
   }
 }

@@ -62,6 +62,7 @@ var PsychicSource = angular.module('PsychicSource', requires)
   $ionicConfigProvider.navBar.alignTitle('center');
   //$httpProvider.defaults.withCredentials = true;
   //$ionicConfigProvider.views.maxCache(0);
+  $ionicConfigProvider.views.swipeBackEnabled(false);
   $stateProvider
   .state('app',{
     url: "/app",

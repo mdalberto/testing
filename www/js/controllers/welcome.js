@@ -3,7 +3,7 @@ PsychicSource.controller('WelcomeCtrl', function($scope, $rootScope, $state, $q,
   $scope.data = {};
   $scope.callNowNumber = CommonService.callNowNumber();
   $scope.data.rememberMe = AuthService.getRememberMe();
-$scope.LoginType="Email";
+$scope.LoginType="Phone";
   $scope.changeRememberMe = function(){
     AuthService.setRememberMe($scope.data.rememberMe);
   };
@@ -21,6 +21,7 @@ $scope.LoginType="Email";
         $("#collapseOne").addClass("in");
         $localstorage.set('loginType',$scope.LoginType);
       };
+
     if($localstorage.get('loginType')==='Email'){
       $scope.showEmailLoginWindow();
 

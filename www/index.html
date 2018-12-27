@@ -38,6 +38,7 @@
     <script src="js/factories/gtm.js"></script>
     <script src="js/services/config.js"></script>
     <script src="js/services/ajax.js"></script>
+    <script src="js/services/messages.js"></script>
     <script src="js/services/summary.js"></script>
     <script src="js/services/authentication.js"></script>
     <script src="js/services/push.js"></script>
@@ -55,6 +56,8 @@
     <script src="js/controllers/availability.js"></script>
     <script src="js/controllers/welcome.js"></script>
     <script src="js/controllers/preferences.js"></script>
+    <script src="js/controllers/MsgController.js"></script>
+    <script src="js/Constants/constants.js"></script>
   </head>
 
   <body ng-app="PsychicSource">
@@ -72,6 +75,7 @@
         <a class="tab-item" ng-class="{ 'is-active': isAvailability() }" ui-sref="app.availability" ui-sref-opts="{reload: true, notify: true}" >
           <i class="icon ion-clock"><span>Availability</span></i>
         </a>
+
         <a class="tab-item" ng-class="{ 'is-active': isFavs() }" ui-sref="app.favs" ui-sref-opts="{reload: true, notify: true}" >
           <i class="icon ion-ios-heart"><span>Favs</span></i>
         </a>

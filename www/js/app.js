@@ -2,7 +2,7 @@ var requires = ['ionic', 'ionic.utils', 'ngCordova', 'PsychicSource.Authenticati
 var PsychicSource = angular.module('PsychicSource', requires)
 .run(function($ionicPlatform,$ionicPopup,$cordovaSplashscreen,$rootScope, $state, GTM, AuthService,AUTH_EVENTS){
     setTimeout(function(){
-    $cordovaSplashscreen.hide();
+   // $cordovaSplashscreen.hide();
   },5000);
   $rootScope.$on('$stateChangeSuccess',function(event,next,nextParams,fromState){
     GTM.trackPage(next.url);
@@ -50,14 +50,14 @@ var PsychicSource = angular.module('PsychicSource', requires)
   });
 
 })
-.constant('AUTH_EVENTS', {
+/* .constant('AUTH_EVENTS', {
   notAuthenticated: 'auth-not-authenticated',
   notAuthorized: 'auth-not-authorized'
 })
 .constant('USER_ROLES',{
   member: 'member_role',
   public_role: 'public_role'
-})
+}) */
 .config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider,USER_ROLES) {
   $ionicConfigProvider.navBar.alignTitle('center');
   //$httpProvider.defaults.withCredentials = true;
@@ -187,6 +187,18 @@ var PsychicSource = angular.module('PsychicSource', requires)
     resolve: {
       preferences: function(PreferencesService){
         return PreferencesService.getPreferences();
+      }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.member],
+      showFooter: true
+    }
+  }).state('app.messages_list',{
+    url: '/messages_list',
+    views: {
+      'menuContent':{
+        templateUrl: 'views/messages_list.html',
+        controller: 'MsgCtrl'
       }
     },
     data: {

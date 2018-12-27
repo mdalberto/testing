@@ -41,7 +41,7 @@ $scope.LoginType="Phone";
 
 
   $scope.login = function(data) {
-    Keyboard.hide();
+   //Keyboard.hide();
     $ionicLoading.show({template: 'Verifying Credentials...'});
     AuthService.login(data).then(function(platformId){
       if(platformId) {

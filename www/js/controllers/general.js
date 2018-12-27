@@ -64,6 +64,7 @@ PsychicSource.controller('GeneralCtrl',function($scope,$rootScope,$window,$ionic
     $scope.isAvailability = function() { return $state.is('app.availability'); };
     $scope.isFavs = function() { return $state.is('app.favs'); };
     $scope.isPreference = function() { return $state.is('app.preferences'); };
+   
   };
 
   $scope.external = CommonService.external;

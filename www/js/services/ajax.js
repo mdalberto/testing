@@ -141,6 +141,22 @@ angular.module('PsychicSource.Ajax', [])
         data: data
       });
 
+    },
+    getMessagesList: function(membershipId,messagestatusid){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + membershipId +'/messages/status'+ messagestatusid,
+        headers: ajaxHandler.headers(),       
+      });
+    },
+    getMessagesPerConversation: function(membershipId,conversationid){
+      return $http({
+        method: 'GET',
+        cache: false,
+        url: ajaxHandler.baseUrl + 'member/v1/' + membershipId +'/messages/conversationid'+ conversationid,
+        headers: ajaxHandler.headers(),       
+      });
     }
   };
   return ajaxHandler;
